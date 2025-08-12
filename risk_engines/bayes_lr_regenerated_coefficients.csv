@@ -1,0 +1,87 @@
+feature_name,LR
+province_AB,2.239234449760766
+province_BC,0.1830663615560641
+province_MB,2.5263157894736845
+province_MULTI,1.2631578947368425
+province_NB,1.68421052631579
+province_NL,1.2631578947368425
+province_NS,0.56140350877193
+province_NT,0.8421052631578948
+province_NU,1.2631578947368425
+province_ON,1.728531855955679
+province_PE,2.5263157894736845
+province_QC,0.6549707602339182
+province_SK,1.0827067669172936
+province_YK,3.789473684210527
+province_Unknown,1.0
+sector_Energy,1.3883357041251785
+sector_Forest,0.6889952153110048
+sector_Mining,0.4889643463497455
+sector_Unknown,1.0
+group_Base Metal,1.2631578947368425
+group_Bioenergy & Waste Biomass,0.7578947368421055
+group_Clean Electricity,1.5467239527389909
+group_Clean Heat,1.2631578947368425
+group_Coal,0.2105263157894737
+group_Critical Mineral,0.2105263157894737
+"group_Distributed Resources, Energy Storage, EVs",1.2631578947368425
+group_Engineered Wood Products,0.8421052631578948
+group_Low Carbon Fuels,0.4210526315789474
+group_Lumber,1.68421052631579
+group_Natural Gas Power Generation,10.105263157894742
+group_Nuclear,2.5263157894736845
+group_Oil & Gas - Downstream,0.2526315789473685
+group_Oil & Gas - Upstream,0.9716599190283404
+group_Other,0.7894736842105264
+group_Precious Metal,1.0402476780185763
+group_Pulp & Paper,1.2631578947368425
+group_Transmission and Distribution,4.105263157894738
+group_Unknown,1.0
+cost_quintile_0,0.4837625979843226
+cost_quintile_1,1.4436090225563911
+cost_quintile_2,1.1659919028340082
+cost_quintile_3,1.2631578947368425
+cost_quintile_4,1.0105263157894735
+cost_quintile_Unknown,1.0
+start_bin_2018,1.140916808149406
+start_bin_2019,0.9122807017543862
+start_bin_2020,1.035375323554789
+start_bin_2021,2.5263157894736845
+start_bin_2022,2.5263157894736845
+start_bin_2023,2.5263157894736845
+start_bin_2024,2.5263157894736845
+start_bin_Unknown,1.0
+prov_sec_AB_Energy,2.4030808729139927
+prov_sec_AB_Mining,0.6315789473684211
+prov_sec_BC_Energy,0.1894736842105263
+prov_sec_BC_Forest,0.8421052631578948
+prov_sec_BC_Mining,0.2021052631578948
+prov_sec_MB_Energy,7.578947368421054
+prov_sec_MB_Mining,0.8421052631578948
+prov_sec_MULTI_Energy,1.2631578947368425
+prov_sec_NB_Energy,1.8947368421052635
+prov_sec_NB_Forest,2.5263157894736845
+prov_sec_NB_Mining,1.2631578947368425
+prov_sec_NL_Energy,1.0827067669172936
+prov_sec_NL_Forest,1.2631578947368425
+prov_sec_NL_Mining,2.5263157894736845
+prov_sec_NS_Energy,0.7218045112781956
+prov_sec_NS_Mining,0.8421052631578948
+prov_sec_NT_Energy,1.2631578947368425
+prov_sec_NT_Mining,1.2631578947368425
+prov_sec_NU_Mining,1.2631578947368425
+prov_sec_ON_Energy,1.403508771929825
+prov_sec_ON_Forest,0.8421052631578948
+prov_sec_ON_Mining,2.5263157894736845
+prov_sec_PE_Energy,2.5263157894736845
+prov_sec_QC_Energy,2.5263157894736845
+prov_sec_QC_Forest,0.7773279352226723
+prov_sec_QC_Mining,0.2105263157894737
+prov_sec_SK_Energy,3.789473684210527
+prov_sec_SK_Mining,0.4210526315789474
+prov_sec_YK_Energy,7.578947368421054
+prov_sec_YK_Mining,1.2631578947368425
+prov_sec_Unknown,1.0
+cleantech_No,0.7035309793471021
+cleantech_Yes,1.2302059496567508
+cleantech_Unknown,1.0
