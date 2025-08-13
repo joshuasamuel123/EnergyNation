@@ -27,7 +27,9 @@ Open, no‑paywall tools to explore the probability and urgency of major infrast
 ## Risk engines (Colab)
 Open the main notebook directly in Colab:
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/joshuasamuel123/EnergyNation/blob/main/risk_engines/mpi_risk_engine_v01.py)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](
+  https://colab.research.google.com/github/joshuasamuel123/EnergyNation/blob/main/risk_engines/EnergyNation_Risk_Engine_Colab_v02.ipynb
+)
 
 ---
 
