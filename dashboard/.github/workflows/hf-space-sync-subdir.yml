@@ -1,23 +1,36 @@
-name: Sync dashboard/ to Hugging Face Space
+name: Deploy dashboard/ to Hugging Face Space
+
 on:
   push:
-    branches: [main]         # change if your default branch is different
-    paths:
-      - 'dashboard/**'       # only rebuild when dashboard/ changes
-      - '.github/workflows/hf-space-sync-subdir.yml'
-  workflow_dispatch:
+    branches: [main]            # change if your default branch is different
+  workflow_dispatch:            # lets you run it manually
 
 jobs:
-  sync:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           lfs: true
-          fetch-depth: 0      # required for subtree split
-      - name: Push only dashboard/ to Space
+
+      # Package only the dashboard/ folder as a standalone repo
+      - name: Prepare subfolder as repo
+        run: |
+          rm -rf /tmp/space && mkdir -p /tmp/space
+          cp -a dashboard/. /tmp/space/
+          cd /tmp/space
+          git init
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add -A
+          git commit -m "Sync from $GITHUB_REPOSITORY@$GITHUB_SHA (dashboard/)"
+          git branch -M main
+
+      # Push to your Space
+      - name: Push to Hugging Face Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git subtree split --prefix dashboard -b space-tmp
-          git push --force https://EnergyNation:$HF_TOKEN@huggingface.co/spaces/EnergyNation/MPI-Dashboard space-tmp:main
+          cd /tmp/space
+          git remote add space https://EnergyNation:${HF_TOKEN}@huggingface.co/spaces/EnergyNation/MPI-Dashboard
+          git push --force space main
