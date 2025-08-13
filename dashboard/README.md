@@ -8,7 +8,7 @@ A lightweight **Dash** app for exploring the **Major Projects Inventory (MPI)** 
 ---
 
 ## Live demo
-- **Hugging Face Space:** https://huggingface.co/spaces/EnergyNation/MPI-Dashboard-v4
+- **Hugging Face Space:** https://huggingface.co/spaces/EnergyNation/MPI-Dashboard
 
 ---
 
