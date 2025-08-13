@@ -19,14 +19,12 @@ EnergyNation provides reproducible tools to assess the **probability** of constr
    → [![Risk Engines](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/joshuasamuel123/EnergyNation/blob/main/risk_engines/EnergyNation_Risk_Engine_Colab_v02.ipynb)
 3. **Review the data** — see `/data` and the data dictionary for field definitions and derived features.
 
-> If you encounter “file not found” errors, ensure the dataset path in notebooks/scripts matches your folder layout.
-
 ---
 
 ## Repository contents
-- `risk_engines/` — notebooks and scripts for the Bayesian scorecard and Cox model; outputs include Probability of Construction (≤ 3y) and a Priority Index.
+- `risk_engines/` — notebooks and scripts for the Bayesian scorecard and Cox model; outputs include Probability of Construction (≤ 3y), a Priority Index and Power Ranking
 - `data/` — cleaned MPI dataset, scored outputs, and `data_dictionary.md`.
-- `dashboard/` or `app/` — files for the interactive dashboard (if included for local development).
+- `dashboard/` or `app/` — files for the interactive dashboard.
 - `papers/` — articles on methodology and findings.
 - `README.md` — this document.
 
@@ -44,6 +42,8 @@ EnergyNation combines a cleaned MPI dataset, two complementary risk engines (a *
 - **Papers / Notes:** Short, readable write‑ups on methodology, findings, and policy implications → `./papers`
 - **Updates & explainers (Substack):** https://substack.com/@energynation
 
+---
+
 ## Quick start
 1. **Kick the tires:** open the dashboard on Hugging Face—no install required.  
    → https://huggingface.co/spaces/EnergyNation/MPI-Dashboard
@@ -51,6 +51,7 @@ EnergyNation combines a cleaned MPI dataset, two complementary risk engines (a *
 3. **Explore the data:** grab files under `/data` and read the `data_dictionary.md`.
 4. **Read the background:** see `/papers` or the Substack posts for context.
 
+---
 
 ## Repo layout (typical)
 ```
@@ -61,6 +62,7 @@ EnergyNation/
 ├─ app/ or dashboard/   # (If present) Dash app for local run
 └─ README.md
 ```
+
 ---
 
 ## License
@@ -83,6 +85,5 @@ See the LICENSE files for details.
 ---
 
 ## Contact
-Feedback is welcome—please open a GitHub issue or comment on Substack.  
-Happy to hop on a quick Zoom/Teams walkthrough if helpful.
->>>>>>> a612a0c121f5296d1d17a5a99460f028895b25b2
+Feedback is welcome.  
+
