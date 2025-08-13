@@ -1,7 +1,17 @@
+---
+title: MPI Dashboard
+emoji: 📊
+colorFrom: blue
+colorTo: gray
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # EnergyNation — MPI Dashboard (Dash)
 
-[![Open in Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Open%20in%20Spaces-black)](https://huggingface.co/spaces/EnergyNation/MPI-Dashboard-v4)
-[![Sync to HF Space](https://github.com/joshuasamuel123/EnergyNation/actions/workflows/hf-space-sync.yml/badge.svg)](https://github.com/joshuasamuel123/EnergyNation/actions/workflows/hf-space-sync.yml)
+[![Open in Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Open%20in%20Spaces-black)](https://huggingface.co/spaces/EnergyNation/MPI-Dashboard)
+[![Sync to HF Space](https://github.com/joshuasamuel123/EnergyNation/actions/workflows/hf-space-sync-subdir.yml/badge.svg)](https://github.com/joshuasamuel123/EnergyNation/actions/workflows/hf-space-sync-subdir.yml)
 
 A lightweight **Dash** app for exploring the **Major Projects Inventory (MPI)** dataset with interactive KPIs, probability/priority charts, rankings, and a map view. Designed as a minimal, review-friendly interface that can be deployed on **Hugging Face Spaces** and kept in sync from **GitHub**.
 
@@ -20,17 +30,19 @@ A lightweight **Dash** app for exploring the **Major Projects Inventory (MPI)** 
 
 ---
 
-## Repository structure
+## Folder layout (this repo)
 ```
-.
-├── app.py                   # Dash app (exposes `server = app.server`)
-├── requirements.txt         # Python deps (Dash, Plotly, Pandas, etc.)
-├── Dockerfile               # Runs app with gunicorn on port 7860
-├── space.yml                # Space metadata (sdk: docker)
-├── mpi_2024_scored.xlsx     # Sample dataset used by the app
+EnergyNation/
+├── dashboard/               # <— this folder is pushed to the Space
+│   ├── app.py               # Dash app (exposes `server = app.server`)
+│   ├── requirements.txt     # Python deps
+│   ├── Dockerfile           # Runs app with gunicorn on port 7860
+│   ├── space.yml            # (optional) Space metadata
+│   ├── mpi_2024_scored.xlsx # Sample dataset used by the app
+│   └── README.md            # (this file)
 └── .github/
     └── workflows/
-        └── hf-space-sync.yml  # (added in setup) GitHub→HF auto-deploy
+        └── hf-space-sync-subdir.yml  # GitHub→HF auto-deploy (subfolder)
 ```
 
 ---
@@ -49,7 +61,8 @@ Then open http://localhost:7860
 > The app reads an Excel file placed next to `app.py`. To point at a different file, set `DATAFILE`:
 ```bash
 export DATAFILE=my_other_file.xlsx  # macOS/Linux
-# set DATAFILE=my_other_file.xlsx   # Windows PowerShell: $env:DATAFILE="my_other_file.xlsx"
+# Windows PowerShell:
+# $env:DATAFILE="my_other_file.xlsx"
 ```
 
 ### 2) Run locally (Docker)
@@ -58,35 +71,12 @@ docker build -t mpi-dash .
 docker run -p 7860:7860 -e DATAFILE=mpi_2024_scored.xlsx mpi-dash
 ```
 
-### 3) Deploy to Hugging Face Spaces (auto from GitHub)
-1. **Create a write token** on Hugging Face: *Settings → Access Tokens → New token (Write)*.
-2. **Add secret to GitHub** repo: *Settings → Secrets and variables → Actions → New repository secret*:
-   - **Name**: `HF_TOKEN`
-   - **Value**: the HF write token
-3. **Create the workflow** file in your repo at `.github/workflows/hf-space-sync.yml`:
-```yaml
-name: Sync to Hugging Face Space
-on:
-  push:
-    branches: [main]    # change to 'master' if your default branch is master
-  workflow_dispatch:
+### 3) Deploy to Hugging Face Spaces (auto from GitHub, subfolder)
+- This repository uses a workflow that **packages `dashboard/`** and **pushes it to the Space**.
+- Ensure you added a Hugging Face **Write** token as a repo secret named `HF_TOKEN`.
+- Workflow file: `.github/workflows/hf-space-sync-subdir.yml`
 
-jobs:
-  sync:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          lfs: true
-      - name: Push to Space
-        env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: |
-          git push https://EnergyNation:$HF_TOKEN@huggingface.co/spaces/EnergyNation/MPI-Dashboard-v4 HEAD:main
-```
-4. **Commit any change** to `main` (e.g., edit README). Watch **Actions** run. Your Space rebuilds and goes live.
-
-> Prefer web UI? You can create this workflow completely from GitHub’s web interface (no terminal required).
+Trigger a deploy by committing any change under `dashboard/` (or run the workflow manually in the **Actions** tab).
 
 ---
 
@@ -113,24 +103,12 @@ The app expects the following columns in the Excel file:
 ---
 
 ## Troubleshooting
-- **“Failed to read Excel”**: Ensure the `.xlsx` is in the repo root (next to `app.py`) or set `DATAFILE` to the correct filename.
+- **Configuration error (Missing configuration in README)**: The Space requires a README with a YAML front matter block (the one at the top of this file) that sets `sdk: docker`. Keep this README at the **root of the Space repo**. In our setup, `dashboard/README.md` becomes the Space’s root README when deployed.
+- **“Failed to read Excel”**: Ensure the `.xlsx` is next to `app.py` or set `DATAFILE` to the correct filename.
 - **Build succeeds but blank page**: Check Space **Settings → Builds → Logs**. Common culprits are missing columns or typos in column names.
-- **Port/Bind errors**: The Dockerfile already binds `0.0.0.0:7860`. If you change the command, keep the same port.
 - **Workflow didn’t run**: Confirm your default branch is `main` (or update the YAML), and that `HF_TOKEN` exists with **Write** scope.
-
----
-
-## Roadmap
-- Add contextual features (policy & local signals) to evolve from static monitoring to decision support.
-- Expand data dictionary and validation checks on load.
-- Optional: public Colab for the risk engines (separate notebook).
 
 ---
 
 ## License
 MIT — see `LICENSE` (add one if missing).
-
----
-
-## Acknowledgements
-Thanks to reviewers and collaborators providing feedback on the MVP dashboard.
