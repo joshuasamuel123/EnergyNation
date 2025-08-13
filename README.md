@@ -4,7 +4,7 @@ Open, no‑paywall tools to explore the probability and urgency of major infrast
 
 **What’s here**
 - **Dashboard** (Hugging Face): interactive views of Probability vs. Urgency and Top‑N rankings  
-  → https://huggingface.co/spaces/EnergyNation/MPI-Dashboard-v4
+  → https://huggingface.co/spaces/EnergyNation/MPI-Dashboard
 - **Risk Engines** (Python): Bayesian scorecard + Cox model, runnable in Colab  
   → ./risk_engines
 - **Dataset**: cleaned MPI data + derived fields and a data dictionary  
