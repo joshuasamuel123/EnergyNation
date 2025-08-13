@@ -1,4 +1,4 @@
-# EnergyNation — MPI Project Risk Intelligence
+# Energy Nation — MPI Project Risk Intelligence
 
 ---
 
