@@ -8,6 +8,6 @@ app_port: 7860
 pinned: false
 short_description: Explore MPI 2024 data with filters, KPIs, and interactive visuals.
 full_description: |
-  A Dash-based dashboard with tabs: Priority vs Probability, Sector & Cleantech, Cost & Timeline, Map, and Stage Flow.
+  A Dash-based dashboard with tabs: Probability & Power Ranking, Sector & Cleantech, Cost & Timeline, Map, and Stage Flow.
   Upload a revised .xlsx or use the bundled sample.
 license: mit
