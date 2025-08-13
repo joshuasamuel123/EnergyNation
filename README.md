@@ -8,79 +8,64 @@
 ---
 
 ## Overview
-EnergyNation provides reproducible tools to assess the **probability** of construction (≤ 3 years) and the **urgency** (time‑to‑event priority) of major infrastructure projects in Canada. The repository combines a cleaned MPI dataset, two complementary risk engines (Bayesian scorecard and Cox proportional hazards), and an interactive dashboard.
+EnergyNation offers data-driven tools to evaluate the probability of construction (within 3 years), urgency (time-to-event priority), and power ranking of major infrastructure projects in Canada. The repository integrates a cleaned MPI datasets, two complementary risk engines (a Bayesian scorecard and a Cox proportional hazards model), an interactive dashboard, and supporting papers. 
 
 ---
 
-## How to use
-1. **Explore the dashboard** — interactive Probability vs. Priority views, Top‑N rankings, and maps.  
+## How to Use
+
+1. **Explore the Dashboard** — view interactive Probability vs. Priority charts, Top-N rankings, chart, and geographic maps.
    → [![Hugging Face — Dashboard](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Open-blue)](https://huggingface.co/spaces/EnergyNation/MPI-Dashboard)
-2. **Run the models in Colab** — open the notebook and run all cells (no local setup required).  
+
+2. **Run the Models in Colab** — open the notebook and execute all cells (no local setup required).
    → [![Risk Engines](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/joshuasamuel123/EnergyNation/blob/main/risk_engines/EnergyNation_Risk_Engine_Colab_v02.ipynb)
-3. **Review the data** — see `/data` and the data dictionary for field definitions and derived features.
+
+3. **Review the Data** — browse the `/data` directory and consult the data dictionary for field definitions and derived features.
 
 ---
 
-## Repository contents
-- `risk_engines/` — notebooks and scripts for the Bayesian scorecard and Cox model; outputs include Probability of Construction (≤ 3y), a Priority Index and Power Ranking
-- `data/` — cleaned MPI dataset, scored outputs, and `data_dictionary.md`.
-- `dashboard/` or `app/` — files for the interactive dashboard.
-- `papers/` — articles on methodology and findings.
-- `README.md` — this document.
+## Repository Contents
+
+* `risk_engines/` — notebooks and scripts for the Bayesian scorecard and Cox proportional hazards model; outputs include Probability of Construction (≤ 3 years), Priority Index, and Power Ranking.
+* `data/` — cleaned MPI dataset, scored outputs, and `data_dictionary.md`.
+* `dashboard/` or `app/` — source files for the interactive dashboard.
+* `papers/` — articles detailing the methodology and findings.
+* `README.md` — this document.
 
 ---
 
-## Overview
-EnergyNation combines a cleaned MPI dataset, two complementary risk engines (a **Bayesian scorecard** and a **Cox proportional hazards model**), and a lightweight dashboard so anyone can quickly evaluate which projects are **likely to be built soon** and which are **most urgent** to watch.
+## Quick Start
 
----
+1. **Open the Dashboard** — launch the interactive view on Hugging Face (no installation required).
+   → [https://huggingface.co/spaces/EnergyNation/MPI-Dashboard](https://huggingface.co/spaces/EnergyNation/MPI-Dashboard)
 
-## What’s in this repo
-- **Dashboard (Hugging Face):** Interactive views of Probability vs. Urgency, Top‑N rankings, maps, and drill‑downs → https://huggingface.co/spaces/EnergyNation/MPI-Dashboard
-- **Risk Engines (Python/Colab):** Reproducible notebooks and scripts to compute Probability of Construction (≤3y) and a Priority Index → `./risk_engines`
-- **Dataset:** Cleaned MPI data, derived fields, and a data dictionary → `./data`
-- **Papers / Notes:** Short, readable write‑ups on methodology, findings, and policy implications → `./papers`
-- **Updates & explainers (Substack):** https://substack.com/@energynation
+2. **Run the Models** — click the Colab badge above to open the main notebook, then select **Runtime → Run all** to execute.
 
----
+3. **Review the Data** — access files in `/data` and consult `data_dictionary.md` for field definitions and derived features.
 
-## Quick start
-1. **Kick the tires:** open the dashboard on Hugging Face—no install required.  
-   → https://huggingface.co/spaces/EnergyNation/MPI-Dashboard
-2. **Run the models:** click the Colab badge above to open the main notebook and press **Runtime → Run all**.
-3. **Explore the data:** grab files under `/data` and read the `data_dictionary.md`.
-4. **Read the background:** see `/papers` or the Substack posts for context.
+4. **Read the Background** — explore `/papers` or related Substack posts for methodology and context.
 
 ---
 
 ## Repo layout (typical)
-```
 EnergyNation/
-├─ data/                # Cleaned MPI data, scored outputs, data dictionary
-├─ risk_engines/        # Notebooks & scripts (Bayes scorecard, Cox model)
-├─ papers/              # Short PDFs/notes on methods & findings
-├─ app/ or dashboard/   # (If present) Dash app for local run
-└─ README.md
-```
+├─ data/                # Cleaned MPI dataset, scored outputs, and data dictionary
+├─ risk_engines/        # Notebooks and scripts (Bayesian scorecard, Cox model)
+├─ papers/              # PDF articles on methods, results, discussion, and conclusions
+├─ app/ or dashboard/   # Dash application for local use
+└─ README.md            # Project overview and usage instructions
 
 ---
 
 ## License
-- **Code:** MIT  
-- **Data & Papers:** CC BY 4.0
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+* **Code:** Licensed for educational and research purposes only under a modified MIT license (non-commercial use).
+* **Data & Papers:** Licensed under CC BY-NC 4.0 (non-commercial use).
 
----
+See the LICENSE files for full terms.
 
-## Feedback
-Questions or suggestions are welcome. 
-=======
-- **Code:** MIT (free to use/modify; please credit)
-- **Data & Papers:** CC BY 4.0 (free with attribution)
-
-See the LICENSE files for details.
+[![MIT License — Non-Commercial](https://img.shields.io/badge/License-MIT%20\(NC\)-green.svg)](https://opensource.org/licenses/MIT)
+[![CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
 ---
 
