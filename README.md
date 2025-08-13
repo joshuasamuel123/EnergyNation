@@ -1,6 +1,6 @@
 # EnergyNation — MPI Project Risk Intelligence
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/joshuasamuel123/EnergyNation/blob/main/risk_engines/EnergyNation_Risk_Engine_Colab_v02.ipynb)
+[![Risk Engines](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/joshuasamuel123/EnergyNation/blob/main/risk_engines/EnergyNation_Risk_Engine_Colab_v02.ipynb)
 [![Hugging Face — Dashboard](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dashboard-blue)](https://huggingface.co/spaces/EnergyNation/MPI-Dashboard)
 [![Substack](https://img.shields.io/badge/Substack-Updates-orange)](https://substack.com/@energynation)
 [![Issues](https://img.shields.io/badge/GitHub-Issues-informational)](https://github.com/joshuasamuel123/EnergyNation/issues)
@@ -16,7 +16,7 @@ EnergyNation provides reproducible tools to assess the **probability** of constr
 1. **Explore the dashboard** — interactive Probability vs. Priority views, Top‑N rankings, and maps.  
    → [![Hugging Face — Dashboard](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Open-blue)](https://huggingface.co/spaces/EnergyNation/MPI-Dashboard)
 2. **Run the models in Colab** — open the notebook and run all cells (no local setup required).  
-   → [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/joshuasamuel123/EnergyNation/blob/main/risk_engines/EnergyNation_Risk_Engine_Colab_v02.ipynb)
+   → [![Risk Engines](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/joshuasamuel123/EnergyNation/blob/main/risk_engines/EnergyNation_Risk_Engine_Colab_v02.ipynb)
 3. **Review the data** — see `/data` and the data dictionary for field definitions and derived features.
 
 > If you encounter “file not found” errors, ensure the dataset path in notebooks/scripts matches your folder layout.
@@ -29,12 +29,6 @@ EnergyNation provides reproducible tools to assess the **probability** of constr
 - `dashboard/` or `app/` — files for the interactive dashboard (if included for local development).
 - `papers/` — articles on methodology and findings.
 - `README.md` — this document.
-=======
-Open, no‑paywall tools to explore the **probability** and **urgency** of major infrastructure projects in Canada (MPI).
-
-<<<<<<< HEAD
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/joshuasamuel123/EnergyNation/blob/main/risk_engines/EnergyNation_Risk_Engine_Colab_v02.ipynb)
-[![Hugging Face — Dashboard](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/EnergyNation/MPI-Dashboard)
 
 ---
 
@@ -67,17 +61,9 @@ EnergyNation/
 ├─ app/ or dashboard/   # (If present) Dash app for local run
 └─ README.md
 ```
-=======
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](
-  https://colab.research.google.com/github/joshuasamuel123/EnergyNation/blob/main/risk_engines/EnergyNation_Risk_Engine_Colab_v02.ipynb
-)
->>>>>>> 4424e9dd2b2b86e51d01c0b0c0532d135bc49095
->>>>>>> a612a0c121f5296d1d17a5a99460f028895b25b2
-
 ---
 
 ## License
-<<<<<<< HEAD
 - **Code:** MIT  
 - **Data & Papers:** CC BY 4.0
 
