@@ -1,0 +1,112 @@
+## **Model Card: Canada Major Projects Inventory 2024 — Pre-Construction Dashboard**
+
+### **Model Details**
+
+* **Name:** Canada Major Projects Inventory 2024 — Pre-Construction Dashboard
+* **Version:** 1.0
+* **Author:** Joshua Samuel (Energy Nation)
+* **Framework:** Python 3.11, Plotly Dash, Pandas, NumPy, Plotly Express, Dash Bootstrap Components
+* **License:** [MIT](https://opensource.org/licenses/MIT) for code; dataset licensing depends on the source of the underlying Excel file.
+* **Repository/Space:** *(insert GitHub or Hugging Face Space link)*
+
+This interactive dashboard visualizes and filters the 2024 Canada Major Projects Inventory (MPI) dataset for **pre-construction** projects, enabling exploration of probability of construction, priority, sectoral trends, and geospatial distribution.
+
+---
+
+### **Intended Use**
+
+The dashboard is designed for:
+
+* **Policy analysts, planners, and investors** to identify high-priority, high-probability projects.
+* **Researchers** examining trends in Canadian major project development.
+* **Public audiences** seeking accessible views of infrastructure and clean energy project pipelines.
+
+Users can:
+
+* Filter by company, province, sector, group, cleantech status, status codes, cost range, and year range.
+* Explore KPI summaries for **total projects**, **total investment**, and **average probability of construction**.
+* View interactive charts on:
+
+  * **Probability vs. Priority** scatter plots with quadrant labels.
+  * **Top-N rankings** by Power Score, Probability, and Priority Index.
+  * **Sectoral and cleantech breakdowns**.
+  * **Start-year trends** and cost distributions.
+  * **Geospatial maps** with proportional symbol sizing.
+  * **Stage flow diagrams** (Start → End status).
+
+---
+
+### **Data**
+
+* **Input Format:** Excel (`.xlsx`) — automatically loaded from local directory, with preference order:
+
+  1. `DATAFILE` environment variable path
+  2. `mpi_2024_scored.xlsx`
+  3. `sample_mpi.xlsx`
+  4. Any other `.xlsx` in the same folder.
+* **Required Columns:**
+  `province`, `sector`, `group`, `cleantech`, `start_year`, `end_year`, `project_cost`,
+  `current_survival`, `end_success`, `start_status`, `end_status`, `latitude_1`, `longitude_1`,
+  `company`, `project`, `blended_prob`, `priority_index`, `power_ranking`
+* **Preprocessing:** Type coercion, rounding to two decimal places for probability and indices, cost conversion to millions, and sector-based color mapping.
+
+---
+
+### **Performance Metrics**
+
+While this dashboard is primarily an **exploratory visualization tool** and not a predictive model in itself, it assumes:
+
+* `blended_prob` values are pre-computed externally (e.g., via risk engines).
+* KPI accuracy is dependent on the validity and completeness of the source dataset.
+
+**Key calculated outputs:**
+
+* **KPI 1:** Total projects (filtered)
+* **KPI 2:** Total investment (CAD\$ MM)
+* **KPI 3:** Mean Probability of Construction (≤ 3 Years)
+
+---
+
+### **Limitations**
+
+* The tool does **not** generate probabilities or rankings itself — it visualizes pre-scored data.
+* Performance is tied directly to the **quality, timeliness, and coverage** of the input data.
+* Filtering logic assumes consistent naming conventions in categorical fields.
+* Map visualizations require geocoded coordinates; projects without lat/lon are excluded from maps.
+
+---
+
+### **Ethical Considerations**
+
+* The dashboard presents **probabilities of construction** which may influence investment or policy decisions; users should consider uncertainty in the underlying scoring methodology.
+* Public release should be accompanied by **methodology documentation** for how probabilities, priorities, and rankings were derived.
+* If data includes sensitive or proprietary project information, ensure compliance with the source’s data-sharing policies.
+
+---
+
+### **How to Run**
+
+1. Place the target `.xlsx` dataset in the same directory as `app.py` (or set `DATAFILE` env variable).
+2. Install dependencies:
+
+   ```bash
+   pip install pandas numpy plotly dash dash-bootstrap-components openpyxl
+   ```
+3. Run the app:
+
+   ```bash
+   python app.py
+   ```
+4. Access at: `http://localhost:7860`
+
+---
+
+### **Example KPI Output (Filtered View)**
+
+| KPI                         | Value  |
+| --------------------------- | ------ |
+| Total Projects              | 125    |
+| Total Investment (CAD\$ MM) | 68,500 |
+| Avg Probability (≤ 3 Years) | 0.57   |
+
+---
