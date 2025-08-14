@@ -46,7 +46,9 @@ See the LICENSE files for full terms.
 
 ## About Us  
 
-**Joshua Samuel** is an executive in energy infrastructure and strategic development with 20 years’ experience delivering over C$820M in renewable energy and clean fuel projects, including hydrogen, RNG, LNG, CCUS, energy storage, and district energy, totaling 21 PJ/year (670 MW th) capacity. He specializes in project development, finance, feasibility, front-end engineering, and regulatory approvals from site selection through FID/COD, with a proven record in securing funding, negotiating complex agreements, and leading multidisciplinary teams. Known for strategic direction, stakeholder engagement, and technical excellence, Joshua brings expertise in business case structuring, investment analysis, and market development across regional and emerging markets. Feedback is welcome.  
+**Energy Nation** is a research project by Joshua Samuel to fill a critical gap in data-driven intelligence on the development of major projects, leveraging machine learning and AI-assisted tools.  
+
+**Joshua Samuel** is an executive in energy infrastructure and strategic development with 20 years’ experience delivering over C$820M in renewable energy and clean fuel projects, including hydrogen, RNG, LNG, CCUS, energy storage, and district energy, totaling 21 PJ/year (670 MW th) capacity. He specializes in project finance, feasibility, front-end engineering, and regulatory approvals from site selection through FID/COD, with a proven record in securing funding, negotiating complex agreements, and leading multidisciplinary teams. Known for strategic direction, stakeholder engagement, and technical excellence, Joshua brings expertise in business case structuring, investment analysis, and market development across regional and emerging markets.  
 
 ---
 
