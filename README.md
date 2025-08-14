@@ -44,10 +44,12 @@ See the LICENSE files for full terms.
 
 ---
 
-## Contact
-Feedback is welcome.  
+## About Us  
+
+**Joshua Samuel** is an executive in energy infrastructure and strategic development with 20 years’ experience delivering over C$820M in renewable energy and clean fuel projects, including hydrogen, RNG, LNG, CCUS, energy storage, and district energy, totaling 21 PJ/year (670 MW th) capacity. He specializes in project development, finance, feasibility, front-end engineering, and regulatory approvals from site selection through FID/COD, with a proven record in securing funding, negotiating complex agreements, and leading multidisciplinary teams. Known for strategic direction, stakeholder engagement, and technical excellence, Joshua brings expertise in business case structuring, investment analysis, and market development across regional and emerging markets. Feedback is welcome.  
+
+---
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Contact%20Us-blue?logo=linkedin)](https://www.linkedin.com/in/jlsamuel/)
-
+[![Substack](https://img.shields.io/badge/Substack-Updates-orange?logo=substack)](https://substack.com/@energynation)
 [![Issues](https://img.shields.io/badge/GitHub-Issues-informational)](https://github.com/joshuasamuel123/EnergyNation/issues)
-
