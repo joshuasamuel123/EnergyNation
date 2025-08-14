@@ -1,0 +1,125 @@
+# Model Card: EnergyNation MPI Risk Engine — v02 (Colab)
+
+## Model Details
+- **Name:** EnergyNation — MPI Risk Engine v02  
+- **Author:** Joshua Samuel (Energy Nation)  
+- **Version:** v02  
+- **Frameworks:** Python 3.x, Pandas, NumPy, SciPy, Statsmodels, Lifelines, Scikit-learn  
+- **Environment:** Designed for Google Colab one-click execution  
+- **License:** MIT (code); data licensing per MPI and feature datasets
+
+This notebook executes the **v02** risk assessment pipeline for the **Canada Major Projects Inventory (MPI)**, generating **probability of construction** and **priority index** scores using Bayesian logistic regression and a Cox proportional hazards survival model.
+
+---
+
+## Intended Use
+The risk engine is intended for:
+- **Policy & investment decision support** — ranking pre-construction projects by likelihood and urgency.
+- **Research** — analyzing sectoral, provincial, and thematic trends in major project completion rates.
+- **Dashboard integration** — feeding scored datasets into the MPI Pre-Construction Dashboard.
+
+It is **not** a forecasting tool for individual investment decisions without supplementary due diligence.
+
+---
+
+## Input Data Requirements
+The notebook requires **three user-provided files** (uploaded interactively in Colab or via Google Drive mount):
+
+1. **`bayes_lr_regenerated_coefficients.csv`**  
+   - Coefficients for Bayesian logistic regression scorecard model.
+2. **`cox_coefficients_with_references.csv`**  
+   - Coefficients and baseline hazard data for Cox proportional hazard survival model.
+3. **`mpi_2024_input.xlsx`**  
+   - Current MPI dataset with predictor variables for all projects.
+
+**Key Assumptions:**  
+- Predictors have the same names, types, and scales as those used in the model development phase.  
+- Only **pre-construction projects** are scored.  
+- Exclusion criteria: projects under construction with `end_year < 2024`.  
+
+---
+
+## Processing Pipeline
+The notebook performs the following:
+
+1. **Environment Setup**  
+   - Installs required Python packages (`pandas`, `numpy`, `lifelines`, `scikit-learn`, etc.).
+   
+2. **Load and Validate Inputs**  
+   - Reads the MPI dataset and model coefficient files.  
+   - Checks for missing required features.
+
+3. **Bayesian Logistic Regression Scoring**  
+   - Applies coefficient weights to predictor values.  
+   - Produces `p_bayes` = estimated probability of construction within 3 years.  
+   - Includes floor constraint: minimum 0.25 probability after adjusting for reporting lag.
+
+4. **Cox Proportional Hazard Scoring**  
+   - Uses survival analysis to estimate hazard rates and convert to probability over the target window (`p_cox`).  
+   - Outputs urgency metric (`priority_index`) from survival curve.
+
+5. **Combined Scoring**  
+   - Blends `p_bayes` and `p_cox` into a **`blended_prob`** using weighted average.  
+   - Generates **`power_ranking`** = composite score for ranking.
+
+6. **Output Generation**  
+   - Writes scored dataset to:
+     - `mpi_2024_scored.csv`
+     - `mpi_2024_scored.xlsx`  
+   - Output includes original features + model outputs.
+
+---
+
+## Outputs
+**Core calculated columns:**
+- `p_bayes` — probability from Bayesian logistic regression  
+- `p_cox` — probability from Cox model  
+- `blended_prob` — combined probability estimate  
+- `priority_index` — urgency metric from survival analysis  
+- `power_ranking` — normalized composite ranking score  
+
+**File formats:** CSV and XLSX, with schema compatible with the dashboard in `app.py`.
+
+---
+
+## Performance and Validation
+- Model coefficients are pre-trained on historical MPI data with 86 predictors.
+- Cross-validated on historical outcomes to ensure generalizability.
+- Survival model baseline hazard calibrated from sectoral and regional subgroups.
+- No runtime training — fully deterministic scoring given inputs.
+
+---
+
+## Limitations
+- Dependent on the accuracy, completeness, and timeliness of MPI data.
+- Model parameters are static — periodic retraining needed for changing market conditions.
+- Blended probabilities assume both models contribute equally; no dynamic weighting by data segment.
+- Does not account for qualitative project-specific factors not in MPI dataset.
+- Small-sample or extreme predictor values may produce unstable probabilities.
+
+---
+
+## Ethical Considerations
+- Probabilities are **statistical estimates**, not certainties — users must consider uncertainty and policy context.
+- Model may reflect historical biases in project approvals and completions.
+- Public communication of scores should include methodology transparency.
+
+---
+
+## How to Run
+1. Open in Google Colab.
+2. Run all cells:
+   - Install dependencies.
+   - Auto-write `mpi_risk_engine_v02.py` into Colab runtime.
+3. When prompted, upload:
+   - `bayes_lr_regenerated_coefficients.csv`
+   - `cox_coefficients_with_references.csv`
+   - `mpi_2024_input.xlsx`
+4. Wait for scoring to complete; download the `mpi_2024_scored.*` outputs.
+
+---
+
+## Citation
+If you use this engine in research or publications:  
+> Samuel, Joshua. *EnergyNation — MPI Risk Engine v02*. 2025.  
+> [GitHub/Repo link]  
