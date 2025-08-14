@@ -47,5 +47,7 @@ See the LICENSE files for full terms.
 ## Contact
 Feedback is welcome.  
 
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Contact%20Us-blue)](https://www.linkedin.com/in/jlsamuel/)
+
 [![Issues](https://img.shields.io/badge/GitHub-Issues-informational)](https://github.com/joshuasamuel123/EnergyNation/issues)
 
