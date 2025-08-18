@@ -1,9 +1,9 @@
-# Energy Nation — MPI Project Risk Intelligence
+# Energy Nation — AI-Assisted Portfolio Triage for Canada’s Major Projects
 
 ---
 
 ## Overview
-EnergyNation offers data-driven tools to evaluate the probability of construction (within 3 years), urgency (time-to-event priority), and power ranking of major infrastructure projects in Canada. The repository integrates a cleaned MPI datasets, two complementary risk engines (a Bayesian scorecard and a Cox proportional hazards model), an interactive dashboard, and supporting papers. 
+EnergyNation offers data-driven tools to evaluate the probability of construction (within 3 years), urgency (time-to-event priority), and power ranking of major infrastructure projects in Canada. The repository integrates cleaned Major Projects Inventory datasets, two complementary risk engines (a Bayesian scorecard and a Cox proportional hazards model), an interactive dashboard, and supporting papers. 
 
 ---
 
@@ -11,13 +11,15 @@ EnergyNation offers data-driven tools to evaluate the probability of constructio
 
 1. **Explore the Dashboard** — view interactive Probability vs. Priority plots, Top-N Power Rankings, charts and figures, and geographic maps.
    → [![Hugging Face — Dashboard](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Open-blue)](https://huggingface.co/spaces/EnergyNation/MPI-Dashboard)
+   
+2. **Read the Papers** — explore the full series, from foundational literature review through forecasting, power ranking, and dashboard deployment. 
 
-2. **Run the Models in Colab** — open the notebook and execute all cells (no local setup required).
+3. **Run the Models in Colab** — open the notebook and execute all cells (no local setup required).
    → [![Risk Engines](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/joshuasamuel123/EnergyNation/blob/main/risk_engines/EnergyNation_Risk_Engine_Colab_v02.ipynb)
 
-3. **Review and Analyze the Data** — download the files and data dictionaries in /data for your own analysis, or explore them using AI data-analysis tools. 
+4. **Review and Analyze the Data** — download the files and data dictionaries in /data for your own analysis, or explore them using AI data-analysis tools. 
 
-4. **Subscribe on Substack** — follow for articles, notes, and updates.   → 
+5. **Subscribe on Substack** — follow for articles, notes, and updates.
    → [![Substack](https://img.shields.io/badge/Substack-Updates-orange)](https://substack.com/@energynation)
 
 ---
@@ -44,7 +46,7 @@ See the LICENSE files for full terms.
 
 ---
 
-## About Us  
+## About Energy Nation
 
 **Energy Nation** is a research project by Joshua Samuel to fill a critical gap in data-driven intelligence on the development of major projects, leveraging machine learning and AI-assisted tools.  
 
