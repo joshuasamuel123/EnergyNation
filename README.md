@@ -20,7 +20,7 @@ EnergyNation offers data-driven tools to evaluate the probability of constructio
 4. **Review and Analyze the Data** — download the files and data dictionaries in /data for your own analysis, or explore them using AI data-analysis tools. 
 
 5. **Subscribe on Substack** — follow for articles, notes, and updates.
-   → [![Substack](https://img.shields.io/badge/Substack-Updates-orange)](https://substack.com/@energynation)
+   → [![Substack](https://img.shields.io/badge/Substack-Updates-orange)](https://energynation.substack.com/)
 
 ---
 
@@ -55,5 +55,5 @@ See the LICENSE files for full terms.
 ---
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Contact%20Us-blue?logo=linkedin)](https://www.linkedin.com/in/jlsamuel/)
-[![Substack](https://img.shields.io/badge/Substack-Updates-orange?logo=substack)](https://substack.com/@energynation)
+[![Substack](https://img.shields.io/badge/Substack-Updates-orange?logo=substack)](https://energynation.substack.com/)
 [![Issues](https://img.shields.io/badge/GitHub-Issues-informational)](https://github.com/joshuasamuel123/EnergyNation/issues)
