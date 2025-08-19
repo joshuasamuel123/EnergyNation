@@ -46,10 +46,6 @@ See the LICENSE files for full terms.
 
 ---
 
-
-
----
-
 ## Acknowledgements & Official MPI Resources
 
 **Energy Nation** builds on publicly available materials from **Natural Resources Canada (NRCan)**’s **Major Projects Inventory (MPI)**.  
