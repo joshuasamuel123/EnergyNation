@@ -1,94 +1,125 @@
-# Model Card: Canada Major Projects Inventory 2024 — Pre-Construction Dashboard
+# Model Card: Canada Major Projects Inventory 2024 — Pre-Construction Dashboard (v1.1)
 
 ## Model Details
 - **Name:** Canada Major Projects Inventory 2024 — Pre-Construction Dashboard  
-- **Version:** 1.0  
+- **Version:** **1.1** (2025-08-19)  
 - **Author:** Joshua Samuel (Energy Nation)  
 - **Framework:** Python 3.11, Plotly Dash, Pandas, NumPy, Plotly Express, Dash Bootstrap Components  
-- **License:** [MIT](https://opensource.org/licenses/MIT) for code; dataset licensing depends on the source of the underlying Excel file.  
-- **Repository/Space:** *(insert GitHub or Hugging Face Space link)*  
+- **License:** Code MIT; dataset licensing per source of the underlying Excel file.  
+- **Repo/Space:** GitHub: *(insert link)* · Hugging Face Space: *(insert link)*
 
-This interactive dashboard visualizes and filters the 2024 Canada Major Projects Inventory (MPI) dataset for **pre-construction** projects, enabling exploration of probability of construction, priority, sectoral trends, and geospatial distribution.
+> This interactive dashboard visualizes the 2024 MPI for **pre-construction** projects, enabling exploration of probability of construction, urgency (priority), portfolio rankings, sectoral/provincial trends, and map views.
 
 ---
 
 ## Intended Use
-The dashboard is designed for:
-- **Policy analysts, planners, and investors** to identify high-priority, high-probability projects.  
-- **Researchers** examining trends in Canadian major project development.  
-- **Public audiences** seeking accessible views of infrastructure and clean energy project pipelines.
+- **Policy analysts & planners:** triage portfolios; identify high-priority, high-probability projects.  
+- **Investors & utilities:** surface near-term, construction-ready opportunities.  
+- **Researchers & public:** explore regional and sectoral patterns.
 
-Users can:
-- Filter by company, province, sector, group, cleantech status, status codes, cost range, and year range.  
-- Explore KPI summaries for **total projects**, **total investment**, and **average probability of construction**.  
-- View interactive charts on:
-  - **Probability vs. Priority** scatter plots with quadrant labels.  
-  - **Top-N rankings** by Power Score, Probability, and Priority Index.  
-  - **Sectoral and cleantech breakdowns**.  
-  - **Start-year trends** and cost distributions.  
-  - **Geospatial maps** with proportional symbol sizing.  
-  - **Stage flow diagrams** (Start → End status).  
+Key interactions:
+- Rich filters (company, province, sector, group, cleantech, status, cost, year range).  
+- KPIs for **total projects**, **total investment (CAD$ MM)**, **mean probability (≤3y)**.  
+- Export filtered CSV.
 
 ---
 
 ## Data
-- **Input Format:** Excel (`.xlsx`) — automatically loaded from local directory, with preference order:
-  1. `DATAFILE` environment variable path  
-  2. `mpi_2024_scored.xlsx`  
-  3. `sample_mpi.xlsx`  
-  4. Any other `.xlsx` in the same folder.
-- **Required Columns:**  
-  `province`, `sector`, `group`, `cleantech`, `start_year`, `end_year`, `project_cost`,  
-  `current_survival`, `end_success`, `start_status`, `end_status`, `latitude_1`, `longitude_1`,  
-  `company`, `project`, `blended_prob`, `priority_index`, `power_ranking`
-- **Preprocessing:** Type coercion, rounding to two decimal places for probability and indices, cost conversion to millions, and sector-based color mapping.
+**Input:** Excel (`.xlsx`) discovered in this priority:
+1) `DATAFILE` env var → 2) `mpi_2024_scored.xlsx` → 3) `sample_mpi.xlsx` → 4) *any* `.xlsx` in app directory.
+
+**Required columns:**  
+`province`, `sector`, `group`, `cleantech`, `start_year`, `end_year`, `project_cost`,  
+`current_survival`, `end_success`, `start_status`, `end_status`, `latitude_1`, `longitude_1`,  
+`company`, `project`, `blended_prob`, `priority_index`, `power_ranking`
+
+**Additional columns used:**  
+- `urgency_scale_(0-1)` (now the **source of Priority/urgency**)  
+- `company_type` (Ownership donut: Public/Private)
 
 ---
 
-## Performance Metrics
-While this dashboard is primarily an **exploratory visualization tool** and not a predictive model in itself, it assumes:
-- `blended_prob` values are pre-computed externally (e.g., via risk engines).
-- KPI accuracy is dependent on the validity and completeness of the source dataset.
+## Preprocessing & Display Logic (what the app does)
+- Type coercion for numerics; cost presented in **CAD$ MM**.  
+- Display helpers produce two-decimal rounded fields for charts/hover.  
+- **Priority wiring change:**  
+  - The app maps `urgency_scale_(0-1)` → `priority_index` **before** display fields are computed.  
+  - All Priority visuals (e.g., Tab 1 scatter; Top-N Priority bar) now reflect **0–1 urgency** while keeping the **“Priority Index”** label for continuity.
+- Sector color mapping for consistent legends.
 
-**Key calculated outputs:**
-- **KPI 1:** Total projects (filtered)
-- **KPI 2:** Total investment (CAD$ MM)
-- **KPI 3:** Mean Probability of Construction (≤ 3 Years)  
+---
+
+## UI Overview (tabs)
+1) **Probability & Ranking**  
+   - **Scatter:** Probability (≤3y) vs **Priority Index (0–1 urgency)** with quadrant guides.
+2) **Power Ranking**  
+   - Three Top-N bars: **Power Ranking**, **Probability**, **Priority Index** (urgency).
+3) **Facts and Figures**  
+   - **Row 1 (toggle)**:  
+     - Projects by **Sector** (stacked by Group) — **Count/Cost**  
+     - Projects by **Province** (stacked by Sector) — **Count/Cost**
+   - **Row 2 (fixed Cost)**:  
+     - Total Project Value by **Sector** (CAD$ MM)  
+     - Total Project Value by **Province** (CAD$ MM)
+   - **Row 3 (toggle)**:  
+     - **Cleantech** donut — **Count/Cost**  
+     - **Ownership** donut (from `company_type`) — **Count/Cost**
+   - **Row 4 (toggle)**:  
+     - **Vintage** (start_year, stacked by sector) — **Count/Cost**
+   - The **Count vs Cost** sidebar control drives **Row 1, Row 3, Row 4**. Row 2 always shows **Cost**.
+4) **Map**  
+   - Proportional markers (cost) for geocoded projects.  
+5) **Stage Flow**  
+   - Start → End status flow diagram.
+
+---
+
+## Performance & Assumptions
+This dashboard is an **exploratory UI**—it **does not** generate predictions; it visualizes pre-scored fields:
+- `blended_prob` (probability of construction within a defined horizon)  
+- `priority_index` (now **urgency_scale_(0-1)**)  
+- `power_ranking` (composite score)
+
+**KPIs:**  
+- Total projects (filtered)  
+- Total investment (CAD$ MM)  
+- Mean probability (≤3y)
+
+Accuracy depends on source data correctness and update cadence.
 
 ---
 
 ## Limitations
-- The tool does **not** generate probabilities or rankings itself — it visualizes pre-scored data.
-- Performance is tied directly to the **quality, timeliness, and coverage** of the input data.
-- Filtering logic assumes consistent naming conventions in categorical fields.
-- Map visualizations require geocoded coordinates; projects without lat/lon are excluded from maps.
+- Visualizations inherit all **biases, omissions, and staleness** present in the input spreadsheet.  
+- Non-geocoded projects don’t render on the map.  
+- Category names must be consistently coded (e.g., sector, group, cleantech).  
+- The **interpretation** of probability/priority/ranking should be contextualized with the methodology that produced them.
 
 ---
 
 ## Ethical Considerations
-- The dashboard presents **probabilities of construction** which may influence investment or policy decisions; users should consider uncertainty in the underlying scoring methodology.
-- Public release should be accompanied by **methodology documentation** for how probabilities, priorities, and rankings were derived.
-- If data includes sensitive or proprietary project information, ensure compliance with the source’s data-sharing policies.
+- Displayed probabilities and rankings can influence investment and policy; treat as **decision support**, not ground truth.  
+- Publish or link the **methodology** used to compute `blended_prob`, `power_ranking`, and urgency to support transparency and reproducibility.  
+- Ensure compliance with licensing and any confidentiality constraints in project metadata.
 
 ---
 
 ## How to Run
-1. Place the target `.xlsx` dataset in the same directory as `app.py` (or set `DATAFILE` env variable).
-2. Install dependencies:
-   ```bash
-   pip install pandas numpy plotly dash dash-bootstrap-components openpyxl
-   ```
-3. Run the app:
-   ```bash
-   python app.py
-   ```
-4. Access at: `http://localhost:7860`
+```bash
+# 1) Place a target .xlsx next to app.py (or set DATAFILE)
+# 2) Install
+pip install pandas numpy plotly dash dash-bootstrap-components openpyxl
+# 3) Launch
+python app.py
+# 4) Browse
+# http://localhost:7860
+```
 
 ---
 
-## Example KPI Output (Filtered View)
-| KPI | Value |
-|---|---|
-| Total Projects | 125 |
-| Total Investment (CAD$ MM) | 68,500 |
-| Avg Probability (≤ 3 Years) | 0.57 |
+## Changelog
+- **v1.1 (2025-08-19):**  
+  - **Priority wiring:** `urgency_scale_(0-1)` now drives **Priority Index (0–1)** across the app.  
+  - **Tabs:** Top-N moved to **Power Ranking**; new **Facts & Figures** grid; **Count vs Cost** toggle wired to Rows **1, 3, 4**; Row 2 fixed to Cost.  
+  - Ownership donuts use **`company_type`**.  
+- **v1.0:** Initial release. 
