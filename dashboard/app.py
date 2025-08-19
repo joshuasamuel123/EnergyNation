@@ -300,7 +300,14 @@ def tabs():
 app.layout = dbc.Container([
     dcc.Store(id="filtered"),
     dbc.Row([
-        dbc.Col(html.H3("Canada Major Projects Inventory 2024 — Pre-Construction Dashboard"), width=9),
+        dbc.Col([
+            html.H3("Energy Nation Dashboard: Canada's Major Projects Planned, 2024-2034"),
+            html.Div([
+                dcc.Markdown("""**Energy Nation** builds on publicly available materials from **Natural Resources Canada (NRCan)**’s **Major Projects Inventory (MPI)**. We are not affiliated with NRCan; any analysis, modeling, or opinions in this repository are our own.
+
+[![GitHub — EnergyNation](https://img.shields.io/badge/GitHub-EnergyNation-24292f?logo=github)](https://github.com/joshuasamuel123/EnergyNation) [![Substack — EnergyNation](https://img.shields.io/badge/Substack-EnergyNation-ff6719?logo=substack)](https://substack.com/@energynation) • [![NRCan — MPI Report](https://img.shields.io/badge/NRCan-MPI_Report-0b5fff)](https://natural-resources.canada.ca/science-data/data-analysis/natural-resources-major-projects-planned-under-construction-2024-2034) [![NRCan — Interactive Map](https://img.shields.io/badge/NRCan-Interactive_Map-0b5fff)](https://nrcan-rncan.maps.arcgis.com/apps/dashboards/5ab61c54487e4d05a4ff83c84e018cde) [![Open Canada — Dataset](https://img.shields.io/badge/Open_Canada-Dataset-0b5fff)](https://open.canada.ca/data/en/dataset/f5f2db55-31e4-42fb-8c73-23e1c44de9b2)""")
+            ], className="mt-2 text-muted", style={"fontSize":"0.9rem"})
+        ], width=9),
         dbc.Col(html.Div(SCHEMA_INIT_MSG, id="schema-msg", className="text-danger"), width=3)
     ], align="center", className="mt-2"),
     dbc.Row([
