@@ -1,4 +1,4 @@
-# Energy Nation — AI-Assisted Portfolio Triage for Canada’s Major Projects
+# Energy Nation — AI-Assisted Portfolio Triage for Canada’s Major Projects Planned, 2024 to 2034
 
 ---
 
