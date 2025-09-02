@@ -12,7 +12,6 @@ import dash_bootstrap_components as dbc
 # ============================================================
 from pathlib import Path
 import os
-
 # --- Header configuration via environment variables (safe defaults) ---
 APP_TITLE = os.getenv("APP_TITLE", "Energy Nation — MPI Probability (≤3 Years)")
 APP_NOTICE_MD = os.getenv("APP_NOTICE_MD", "")  # Markdown allowed
@@ -176,11 +175,15 @@ app.config.suppress_callback_exceptions = True
 server = app.server
 
 try:
-    INIT_DF = add_display_columns(_coerce_types(_load_default_or_raise()))
+    INIT_RAW = _coerce_types(_load_default_or_raise())
+    if "urgency_scale_(0-1)" in INIT_RAW.columns:
+        INIT_RAW["priority_index"] = pd.to_numeric(INIT_RAW["urgency_scale_(0-1)"], errors="coerce").clip(0,1)
+    INIT_DF = add_display_columns(INIT_RAW)
     SCHEMA_INIT_MSG = ""
 except Exception as e:
     INIT_DF = pd.DataFrame(columns=REQUIRED_COLUMNS)
     SCHEMA_INIT_MSG = str(e)
+
 
 # Sidebar option lists (static; from initial data)
 PROVINCES = _unique_sorted(INIT_DF, "province")
@@ -219,12 +222,10 @@ MAX_COST = _safe_float(INIT_DF["project_cost"].max() if "project_cost" in INIT_D
 if not np.isfinite(MIN_COST) or not np.isfinite(MAX_COST) or MIN_COST > MAX_COST:
     MIN_COST, MAX_COST = 0.0, 1.0
 
-# ============================================================
-# Sidebar (STATIC) and Layout with Tabs
-# ============================================================
 
 def header():
     title_block = html.H3(APP_TITLE, className="mb-2")
+
     notice = None
     if APP_NOTICE_MD.strip():
         notice = dbc.Alert(
@@ -233,6 +234,7 @@ def header():
             className="py-2 px-3 mb-2",
             style={"whiteSpace": "pre-wrap"}
         )
+
     link_buttons = []
     if APP_LINKS_SPEC.strip():
         for item in [p.strip() for p in APP_LINKS_SPEC.split(";") if p.strip()]:
@@ -250,8 +252,12 @@ def header():
                     )
                 )
     links_bar = html.Div(link_buttons, className="mb-1") if link_buttons else None
+
     return html.Div([title_block, links_bar, notice])
 
+# ============================================================
+# Sidebar (STATIC) and Layout with Tabs
+# ============================================================
 def sidebar_static():
     return dbc.Card([
         dbc.CardHeader("Filters"),
@@ -319,11 +325,12 @@ def kpi_row():
         dbc.Col(dbc.Card([dbc.CardHeader("Probability of Construction (≤3 Years)", style=center_style), dbc.CardBody(html.H4(id="kpi-prob", className="card-title", style=center_style))])),
     ])
 
+
 def tabs():
     return dcc.Tabs(id="tabs", value="tab-1", children=[
-        dcc.Tab(label="Probability & Ranking", value="tab-1"),
-        dcc.Tab(label="Sector & Cleantech", value="tab-2"),
-        dcc.Tab(label="Start-Year & Cost", value="tab-3"),
+        dcc.Tab(label="Probability & Priority", value="tab-1"),
+        dcc.Tab(label="Power Ranking", value="tab-2"),
+        dcc.Tab(label="Facts & Figures", value="tab-3"),
         dcc.Tab(label="Map", value="tab-4"),
         dcc.Tab(label="Stage Flow", value="tab-5"),
     ])
@@ -394,7 +401,11 @@ def do_reset(n):
 )
 def compute_filtered(companies, provinces, sectors, groups, cleantechs, statuses, comp_sel, proj_sel, years, costs):
     try:
-        df = add_display_columns(_coerce_types(_load_default_or_raise()))
+        raw = _coerce_types(_load_default_or_raise())
+        if "urgency_scale_(0-1)" in raw.columns:
+            raw["priority_index"] = pd.to_numeric(raw["urgency_scale_(0-1)"], errors="coerce").clip(0,1)
+        df = add_display_columns(raw)
+
         schema_msg = ""
     except Exception as e:
         empty = pd.DataFrame(columns=REQUIRED_COLUMNS)
@@ -553,131 +564,183 @@ def render_tabs(filtered_json, active_tab, agg_mode, topn, logcost):
             fig_scatter.add_hline(y=y_med, line_dash="dash", line_color="black")
             quadrant_labels_flushed(fig_scatter)
 
+        content = html.Div([ dcc.Graph(figure=fig_scatter) ])
+
+    elif active_tab == "tab-2":
+        # Build Top‑N bars: Power Ranking, Probability, Priority Index
         score = normalize_power_score(df["power_ranking"] if "power_ranking" in df.columns else pd.Series(dtype=float))
         tmp = df.copy()
         tmp["score01"] = score
-        tmp["prob2dp"] = df["blended_prob"].round(2)
-        tmp["cost_mm"] = (df["project_cost"] * 1).round(0).astype("Int64")
+        tmp["prob2dp"] = pd.to_numeric(tmp["blended_prob"], errors="coerce").round(2)
+        tmp["cost_mm"] = pd.to_numeric(tmp["project_cost"], errors="coerce").round(0).astype("Int64")
         tmp["label"] = tmp["project"].apply(lambda x: truncate(x, 36))
 
-        top = tmp.sort_values("score01", ascending=False).head(topn if topn else 10)
+        N = topn if topn else 10
 
-        fig_bar = go.Figure()
-        fig_bar.add_trace(go.Bar(
-            x=top["score01"],
-            y=top["label"],
+        # Top‑N by Power Ranking
+        top_power = tmp.sort_values("score01", ascending=False).head(N)
+        fig_power = go.Figure()
+        fig_power.add_trace(go.Bar(
+            x=top_power["score01"],
+            y=top_power["label"],
             orientation="h",
-            text=top["score01"].map(lambda v: f"{v:.2f}"),
+            text=top_power["score01"].map(lambda v: f"{v:.2f}"),
             textposition="auto",
-            customdata=build_common_customdata(top),
+            customdata=build_common_customdata(top_power),
             hovertemplate=COMMON_HOVER_TMPL
         ))
-        fig_bar.update_layout(
-            title=f"Top {topn if topn else 10} by Power Ranking",
+        fig_power.update_layout(
+            title=f"Top {N} by Power Ranking",
             xaxis=dict(range=[0,1], title="Score (0–1)"),
             yaxis=dict(autorange="reversed"),
             margin=dict(l=10,r=10,t=50,b=40),
             template=template
         )
 
-        # Build Top‑N Probability and Priority
-        score = normalize_power_score(df["power_ranking"] if "power_ranking" in df.columns else pd.Series(dtype=float))
-        tmp2 = df.copy()
-        tmp2["score01"] = score
-        tmp2["prob2dp"] = pd.to_numeric(tmp2["blended_prob"], errors="coerce").round(2)
-        tmp2["cost_mm"] = pd.to_numeric(tmp2["project_cost"], errors="coerce").round(0).astype("Int64")
-        tmp2["label"] = tmp2["project"].apply(lambda x: truncate(x, 36))
-
         # Top‑N by Probability
-        prob_sorted = tmp2.sort_values('prob2dp', ascending=False).head(topn if topn else 10)
+        top_prob = tmp.sort_values("prob2dp", ascending=False).head(N)
         fig_prob = go.Figure()
         fig_prob.add_trace(go.Bar(
-            x=prob_sorted['prob2dp'],
-            y=prob_sorted['label'],
+            x=top_prob['prob2dp'],
+            y=top_prob['label'],
             orientation='h',
-            text=prob_sorted['prob2dp'].map(lambda v: f"{v:.2f}"),
+            text=top_prob['prob2dp'].map(lambda v: f"{v:.2f}"),
             textposition='auto',
-            customdata=build_common_customdata(prob_sorted),
+            customdata=build_common_customdata(top_prob),
             hovertemplate=COMMON_HOVER_TMPL
         ))
         fig_prob.update_layout(
-            title=f"Top {topn if topn else 10} by Probability of Construction (≤ 3 Years)",
+            title=f"Top {N} by Probability of Construction (≤ 3 Years)",
             xaxis=dict(range=[0,1], title="Probability (0–1)"),
             yaxis=dict(autorange='reversed'),
             margin=dict(l=10,r=10,t=50,b=40),
             template=template
         )
 
-        # Top‑N by Priority Index
-        prio_sorted = tmp2.sort_values('priority_index', ascending=False).head(topn if topn else 10)
+        # Top‑N by Priority Index (uses urgency_scale_(0-1) mapped to priority_index)
+        top_prio = tmp.sort_values('priority_index', ascending=False).head(N)
         fig_prio = go.Figure()
         fig_prio.add_trace(go.Bar(
-            x=pd.to_numeric(prio_sorted['priority_index'], errors='coerce'),
-            y=prio_sorted['label'],
+            x=pd.to_numeric(top_prio['priority_index'], errors='coerce'),
+            y=top_prio['label'],
             orientation='h',
-            text=prio_sorted['priority_index'].map(lambda v: f"{float(v):.2f}" if pd.notna(v) else ""),
+            text=top_prio['priority_index'].map(lambda v: f"{float(v):.2f}" if pd.notna(v) else ""),
             textposition='auto',
-            customdata=build_common_customdata(prio_sorted),
+            customdata=build_common_customdata(top_prio),
             hovertemplate=COMMON_HOVER_TMPL
         ))
         fig_prio.update_layout(
-            title=f"Top {topn if topn else 10} by Priority Index (Time to Event Urgency)",
-            xaxis=dict(title="Priority Index"),
+            title=f"Top {N} by Priority Index (Time to Event Urgency)",
+            xaxis=dict(range=[0,1], title="Priority Index"),
             yaxis=dict(autorange='reversed'),
             margin=dict(l=10,r=10,t=50,b=40),
             template=template
         )
 
         content = html.Div([
-            dcc.Graph(figure=fig_scatter),
-            html.Br(),
-            dcc.Graph(figure=fig_bar),
+            dcc.Graph(figure=fig_power),
             html.Br(),
             dcc.Graph(figure=fig_prob),
             html.Br(),
             dcc.Graph(figure=fig_prio),
         ])
 
-    elif active_tab == "tab-2":
-        if agg_mode == "cost":
-            dfg = df.groupby(["sector","group"], dropna=False)["project_cost"].sum().reset_index()
-            ycol, ylab = "project_cost", "Total Cost (B)"
-        else:
-            dfg = df.groupby(["sector","group"], dropna=False).size().reset_index(name="count")
-            ycol, ylab = "count", "Count"
-        fig_stack = px.bar(dfg, x="sector", y=ycol, color="group", barmode="stack",
-                           labels={ycol: ylab}, title="Projects by Sector (stacked by Group)", template=template)
-
-        dp = df.groupby(["province","sector"], dropna=False).size().reset_index(name="count")
-        dp = dp.sort_values("province")
-        fig_pxsec = px.bar(dp, x="province", y="count", color="sector", barmode="stack",
-                           color_discrete_map=cmap, title="Projects by Province (stacked by Sector)", template=template)
-
-        dct = df.groupby("cleantech").size().reset_index(name="count")
-        fig_donut = px.pie(dct, names="cleantech", values="count", hole=0.55, title="Cleantech vs Not", template=template)
-
-        content = html.Div([
-            dbc.Row([dbc.Col(dcc.Graph(figure=fig_stack), width=6), dbc.Col(dcc.Graph(figure=fig_pxsec), width=6)]),
-            html.Br(),
-            dbc.Row([dbc.Col(dcc.Graph(figure=fig_donut), width=6)])
-        ])
-
     elif active_tab == "tab-3":
-        dsy = df.dropna(subset=["start_year"])
-        dsy = dsy.groupby(["start_year","sector"], dropna=False).size().reset_index(name="count")
-        fig_year = px.bar(dsy, x="start_year", y="count", color="sector", barmode="stack",
-                          color_discrete_map=cmap, title="Projects Started by Year (stacked by Sector)", template=template)
+        template = "plotly"
+        cmap = sector_color_map(df)
 
-        fig_hist = px.histogram(df, x="cost_mm", nbins=30, title="Project Cost Distribution (CAD$ MM)", template=template)
-        fig_box = px.box(df, x="sector", y="cost_mm", title="Cost by Sector (CAD$ MM)", template=template)
+        # Ensure numeric project_cost
+        if "project_cost" in df.columns:
+            df["project_cost"] = pd.to_numeric(df["project_cost"], errors="coerce")
+
+        # Decide aggregation based on agg_mode
+        use_cost = (agg_mode == "cost")
+        val_col  = "project_cost" if use_cost else "count"
+        y_label_sector = "Total Project Value (CAD$ MM)" if use_cost else "Project Count"
+        y_label_prov   = "Total Project Value (CAD$ MM)" if use_cost else "Project Count"
+        title_suffix   = " (Cost)" if use_cost else " (Count)"
+        pie_title_ct   = "Project Value by Cleantech (CAD$ MM)" if use_cost else "Project Count by Cleantech"
+        pie_title_own  = "Project Value by Ownership (CAD$ MM)" if use_cost else "Project Count by Ownership"
+        vintage_ylabel = "Total Project Value (CAD$ MM)" if use_cost else "Project Count"
+        vintage_title  = "Projects by Vintage (stacked by Sector)" + title_suffix
+
+        # ---------- Row 1 (toggle Count/Cost) ----------
+        if use_cost:
+            g1 = df.groupby(["sector","group"], dropna=False)["project_cost"].sum().reset_index(name="project_cost")
+            g2 = df.groupby(["province","sector"], dropna=False)["project_cost"].sum().reset_index(name="project_cost").sort_values("province")
+        else:
+            g1 = df.groupby(["sector","group"], dropna=False).size().reset_index(name="count")
+            g2 = df.groupby(["province","sector"], dropna=False).size().reset_index(name="count").sort_values("province")
+
+        fig_sector_group = px.bar(
+            g1, x="sector", y=val_col, color="group", barmode="stack",
+            template=template, title=f"Projects by Sector (stacked by Group){title_suffix}",
+        )
+        fig_sector_group.update_yaxes(title=y_label_sector)
+
+        fig_prov_sector = px.bar(
+            g2, x="province", y=val_col, color="sector", barmode="stack",
+            color_discrete_map=cmap, template=template,
+            title=f"Projects by Province (stacked by Sector){title_suffix}",
+        )
+        fig_prov_sector.update_yaxes(title=y_label_prov)
+
+        # ---------- Row 2 (totals remain fixed to Cost per your spec) ----------
+        g3 = df.groupby("sector", dropna=False)["project_cost"].sum().reset_index()
+        fig_cost_sector = px.bar(g3, x="sector", y="project_cost", template=template,
+                                 title="Total Project Value by Sector (CAD$ MM)")
+
+        g4 = df.groupby("province", dropna=False)["project_cost"].sum().reset_index()
+        fig_cost_prov = px.bar(g4, x="province", y="project_cost", template=template,
+                               title="Total Project Value by Province (CAD$ MM)")
+
+        # ---------- Row 3 (toggle Count/Cost in donuts) ----------
+        if use_cost:
+            g5 = df.groupby("cleantech", dropna=False)["project_cost"].sum().reset_index(name="project_cost")
+        else:
+            g5 = df.groupby("cleantech", dropna=False).size().reset_index(name="count")
+        fig_cleantech = px.pie(
+            g5, names="cleantech", values=("project_cost" if use_cost else "count"), hole=0.55,
+            title=pie_title_ct, template=template
+        )
+
+        if "company_type" in df.columns:
+            if use_cost:
+                g6 = df.groupby("company_type", dropna=False)["project_cost"].sum().reset_index(name="project_cost")
+            else:
+                g6 = df.groupby("company_type", dropna=False).size().reset_index(name="count")
+            fig_ownership = px.pie(
+                g6, names="company_type", values=("project_cost" if use_cost else "count"), hole=0.55,
+                title=pie_title_own, template=template
+            )
+        else:
+            fig_ownership = go.Figure().update_layout(title=pie_title_own + " (company_type missing)")
+
+        # ---------- Row 4 (toggle Count/Cost on Vintage) ----------
+        dsy = df.dropna(subset=["start_year"])
+        if use_cost:
+            g7 = dsy.groupby(["start_year","sector"], dropna=False)["project_cost"].sum().reset_index(name="project_cost")
+        else:
+            g7 = dsy.groupby(["start_year","sector"], dropna=False).size().reset_index(name="count")
+
+        fig_vintage = px.bar(
+            g7, x="start_year", y=("project_cost" if use_cost else "count"),
+            color="sector", barmode="stack",
+            color_discrete_map=cmap, template=template, title=vintage_title
+        )
+        fig_vintage.update_yaxes(title=vintage_ylabel)
 
         content = html.Div([
-            dcc.Graph(figure=fig_year),
+            dbc.Row([dbc.Col(dcc.Graph(figure=fig_sector_group), width=6),
+                     dbc.Col(dcc.Graph(figure=fig_prov_sector),   width=6)]),
             html.Br(),
-            dbc.Row([
-                dbc.Col(dcc.Graph(figure=fig_hist.update_yaxes(tickformat=",")), width=6),
-                dbc.Col(dcc.Graph(figure=fig_box.update_yaxes(tickformat=",")), width=6)
-            ]),
+            dbc.Row([dbc.Col(dcc.Graph(figure=fig_cost_sector),  width=6),
+                     dbc.Col(dcc.Graph(figure=fig_cost_prov),    width=6)]),
+            html.Br(),
+            dbc.Row([dbc.Col(dcc.Graph(figure=fig_cleantech),    width=6),
+                     dbc.Col(dcc.Graph(figure=fig_ownership),    width=6)]),
+            html.Br(),
+            dbc.Row([dbc.Col(dcc.Graph(figure=fig_vintage),      width=12)]),
         ])
 
     
