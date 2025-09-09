@@ -7,8 +7,6 @@ import plotly.graph_objects as go
 from dash import Dash, dcc, html, Input, Output, State, ctx as dash_ctx
 import dash_bootstrap_components as dbc
 
-from exec_view import render_exec_view
-
 # ============================================================
 # Default data loading (auto-discover *.xlsx beside app.py; ignore /data)
 # ============================================================
@@ -323,15 +321,13 @@ def kpi_row():
     center_style = {"textAlign":"center"}
     return dbc.Row([
         dbc.Col(dbc.Card([dbc.CardHeader("Total Projects (Pre-Construction)", style=center_style), dbc.CardBody(html.H4(id="kpi-total", className="card-title", style=center_style))])),
-        dbc.Col(dbc.Card([dbc.CardHeader("Total Investment (CAD$ MM)",        style=center_style), dbc.CardBody(html.H4(id="kpi-invest", className="card-title", style=center_style))])),
+        dbc.Col(dbc.Card([dbc.CardHeader("Total Investment (CAD$ MM)", style=center_style), dbc.CardBody(html.H4(id="kpi-invest", className="card-title", style=center_style))])),
         dbc.Col(dbc.Card([dbc.CardHeader("Probability of Construction (≤3 Years)", style=center_style), dbc.CardBody(html.H4(id="kpi-prob", className="card-title", style=center_style))])),
-        dbc.Col(dbc.Card([dbc.CardHeader("Expected Value (CAD$ MM, 2025–27)", style=center_style), dbc.CardBody(html.H4(id="kpi-evcum", className="card-title", style=center_style))])),
-        dbc.Col(dbc.Card([dbc.CardHeader("Risk-Adjusted Break-Even Multiple (Median)", style=center_style), dbc.CardBody(html.H4(id="kpi-kstar", className="card-title", style=center_style))])),
     ])
 
+
 def tabs():
-    return dcc.Tabs(id="tabs", value="tab-exec", children=[
-        dcc.Tab(label="Executive View", value="tab-exec"),
+    return dcc.Tabs(id="tabs", value="tab-1", children=[
         dcc.Tab(label="Probability & Priority", value="tab-1"),
         dcc.Tab(label="Power Ranking", value="tab-2"),
         dcc.Tab(label="Facts & Figures", value="tab-3"),
@@ -448,36 +444,23 @@ def compute_filtered(companies, provinces, sectors, groups, cleantechs, statuses
     Output("kpi-total", "children"),
     Output("kpi-invest", "children"),
     Output("kpi-prob", "children"),
-    Output("kpi-evcum", "children"),
-    Output("kpi-kstar", "children"),
     Input("filtered", "data")
 )
 def update_kpis(filtered_json):
     if not filtered_json:
-        return "-", "-", "-", "-", "-"
+        return "-", "-", "-"
     df = pd.read_json(filtered_json, orient="split")
     if df.empty:
-        return "0", "0", "0%", "0", "0×"
-
-    # Existing KPIs
+        return "0", "0", "0%"
     total_projects = len(df)
-    total_investment_mm = f"{int(pd.to_numeric(df['project_cost'], errors='coerce').fillna(0).sum()):,}" if 'project_cost' in df.columns else "0"
-    prob = pd.to_numeric(df.get("blended_prob", pd.Series(dtype=float)), errors="coerce")
+    total_investment_b = pd.to_numeric(df["project_cost"], errors="coerce").fillna(0).sum()
+    try:
+        total_investment_mm = f"{int(round(total_investment_b, 0)):,}"
+    except Exception:
+        total_investment_mm = "0"
+    prob = pd.to_numeric(df["blended_prob"], errors="coerce")
     prob_pct = int(round(prob.mean() * 100, 0)) if prob.notna().any() else 0
-
-    # NEW: Expected Value (EV_cum in CAD$ MM, 2025–27)
-    evcum_series = pd.to_numeric(df.get("EV_cum", pd.Series(dtype=float)), errors="coerce")
-    evcum_mm = f"{int(round(evcum_series.fillna(0).sum(), 0)):,}" if evcum_series.notna().any() else "0"
-
-    # NEW: Risk-Adjusted Break-Even Multiple (median k_star_adj)
-    kstar_series = pd.to_numeric(df.get("k_star_adj", pd.Series(dtype=float)), errors="coerce")
-    if kstar_series.notna().any():
-        kstar_med = f"{kstar_series.median():.1f}×"
-    else:
-        kstar_med = "0×"
-
-    return f"{total_projects:,}", total_investment_mm, f"{prob_pct}%", evcum_mm, kstar_med
-
+    return f"{total_projects:,}", total_investment_mm, f"{prob_pct}%"
 # ============================================================
 # Hovers & shared customdata (unchanged visuals)
 # ============================================================
@@ -553,9 +536,6 @@ def render_tabs(filtered_json, active_tab, agg_mode, topn, logcost):
 
     cmap = sector_color_map(df)
     template = "plotly"
-
-    if active_tab == "tab-exec":
-        content = render_exec_view(df, topn=topn)
 
     if active_tab == "tab-1":
         fig_scatter = px.scatter(
