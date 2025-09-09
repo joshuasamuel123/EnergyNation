@@ -7,6 +7,8 @@ import plotly.graph_objects as go
 from dash import Dash, dcc, html, Input, Output, State, ctx as dash_ctx
 import dash_bootstrap_components as dbc
 
+import sys, os
+sys.path.insert(0, os.path.dirname(__file__))
 from exec_view import render_exec_view
 
 # ============================================================
