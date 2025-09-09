@@ -1,4 +1,3 @@
-
 # exec_view.py
 import numpy as np
 import pandas as pd
@@ -10,13 +9,13 @@ import dash_bootstrap_components as dbc
 # ==========
 # Formatting
 # ==========
-_FMT_INT0 = lambda v: f"{int(round(float(v or 0), 0)):,}"
+_FMT_INT0 = lambda v: f"{int(round(v, 0)):,}"
 
 def _as_num(s):
     return pd.to_numeric(s, errors="coerce")
 
 def _notes_block(title: str, body_md: str, block_id: str):
-    # Collapsible notes; caller ensures unique block_id
+    # Simple collapsible notes; caller ensures unique block_id
     return html.Div([
         html.Details([
             html.Summary(html.Span(["Notes ▾"], style={"cursor":"pointer"})),
@@ -168,7 +167,7 @@ def make_heat_cum_ev_group_province(df: pd.DataFrame, topn: int = 10) -> go.Figu
 
     text = z.applymap(lambda v: "" if v == 0 else f"{int(round(v,0)):,}")
     fig = px.imshow(z, text_auto=False, aspect="auto", color_continuous_scale="Blues")
-    fig.update_traces(text=text.values, hovertemplate="Province %{y}<br>Group %{x}<br>EV: C$%{z:,.0f} MM<extra></extra>")
+    fig.update_traces(text=text.values)
     fig.update_layout(coloraxis_colorbar=dict(title="C$ MM"))
     fig.update_xaxes(side="top", tickangle=45)
     fig.update_yaxes(autorange="reversed")
@@ -227,13 +226,13 @@ def render_exec_view(df: pd.DataFrame, topn: int = 10) -> html.Div:
     fig6 = make_heat_cum_ev_group_province(df, topn)
     fig7 = make_heat_kstar_group_province(df, topn)
 
-    # Notes placeholders
-    notes1 = _notes_block("Notes-1", "Add your methods note here (softmax year allocation; sums of annual probabilities).", "notes-1")
-    notes2 = _notes_block("Notes-2", "Province EV aggregation and units (C$ MM).", "notes-2")
-    notes3 = _notes_block("Notes-3", "Top-10 + Other construction (based on filtered EV_cum).", "notes-3")
+    # Notes placeholders (you’ll add copy in app)
+    notes1 = _notes_block("Notes-1", "Add your short methods note here (softmax year allocation; sums of annual probabilities).", "notes-1")
+    notes2 = _notes_block("Notes-2", "Add context on province EV aggregation and units (C$ MM).", "notes-2")
+    notes3 = _notes_block("Notes-3", "Explain Top-10 + Other construction (based on filtered EV_cum).", "notes-3")
     notes4 = _notes_block("Notes-4", "Median of project-level EV/FID ratios; denominator is Σ annual_p_YYYY.", "notes-4")
     notes5 = _notes_block("Notes-5", "Same ratio as above, bucketed by Top-10 + Other.", "notes-5")
-    notes6 = _notes_block("Notes-6", "Zeros hidden in cell text; hover shows 0; province alphabetical.", "notes-6")
+    notes6 = _notes_block("Notes-6", "Zeros hidden in cell text; hover still shows 0; province alphabetical.", "notes-6")
     notes7 = _notes_block("Notes-7", "Color scale capped at p95; hover shows true k* values.", "notes-7")
 
     return html.Div([
