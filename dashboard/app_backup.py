@@ -12,11 +12,6 @@ import dash_bootstrap_components as dbc
 # ============================================================
 from pathlib import Path
 import os
-# --- Header configuration via environment variables (safe defaults) ---
-APP_TITLE = os.getenv("APP_TITLE", "Energy Nation — MPI Probability (≤3 Years)")
-APP_NOTICE_MD = os.getenv("APP_NOTICE_MD", "")  # Markdown allowed
-APP_LINKS_SPEC = os.getenv("APP_LINKS_SPEC", "")  # "Label|URL;Label2|URL2"
-
 
 HERE = Path(__file__).parent
 LAST_SOURCE = None
@@ -222,39 +217,6 @@ MAX_COST = _safe_float(INIT_DF["project_cost"].max() if "project_cost" in INIT_D
 if not np.isfinite(MIN_COST) or not np.isfinite(MAX_COST) or MIN_COST > MAX_COST:
     MIN_COST, MAX_COST = 0.0, 1.0
 
-
-def header():
-    title_block = html.H3(APP_TITLE, className="mb-2")
-
-    notice = None
-    if APP_NOTICE_MD.strip():
-        notice = dbc.Alert(
-            dcc.Markdown(APP_NOTICE_MD),
-            color="warning",
-            className="py-2 px-3 mb-2",
-            style={"whiteSpace": "pre-wrap"}
-        )
-
-    link_buttons = []
-    if APP_LINKS_SPEC.strip():
-        for item in [p.strip() for p in APP_LINKS_SPEC.split(";") if p.strip()]:
-            if "|" in item:
-                label, url = item.split("|", 1)
-                link_buttons.append(
-                    dbc.Button(
-                        label.strip(),
-                        href=url.strip(),
-                        color="secondary",
-                        outline=True,
-                        size="sm",
-                        className="me-2",
-                        target="_blank"
-                    )
-                )
-    links_bar = html.Div(link_buttons, className="mb-1") if link_buttons else None
-
-    return html.Div([title_block, links_bar, notice])
-
 # ============================================================
 # Sidebar (STATIC) and Layout with Tabs
 # ============================================================
@@ -338,7 +300,14 @@ def tabs():
 app.layout = dbc.Container([
     dcc.Store(id="filtered"),
     dbc.Row([
-        dbc.Col(header(), width=9),
+        dbc.Col([
+            html.H3("Energy Nation Dashboard: Canada's Major Projects Planned, 2024-2034"),
+            html.Div([
+                dcc.Markdown("""**Energy Nation** builds on publicly available materials from **Natural Resources Canada (NRCan)**’s **Major Projects Inventory (MPI)**. We are not affiliated with NRCan; any analysis, modeling, or opinions in this repository are our own. For the authoritative MPI materials, please consult the official NRCan resources listed below.
+
+[![GitHub — EnergyNation](https://img.shields.io/badge/GitHub-EnergyNation-24292f?logo=github)](https://github.com/joshuasamuel123/EnergyNation) [![Substack — EnergyNation](https://img.shields.io/badge/Substack-EnergyNation-ff6719?logo=substack)](https://substack.com/@energynation) • [![NRCan — MPI Report](https://img.shields.io/badge/NRCan-MPI_Report-0b5fff)](https://natural-resources.canada.ca/science-data/data-analysis/natural-resources-major-projects-planned-under-construction-2024-2034) [![NRCan — Interactive Map](https://img.shields.io/badge/NRCan-Interactive_Map-0b5fff)](https://nrcan-rncan.maps.arcgis.com/apps/dashboards/5ab61c54487e4d05a4ff83c84e018cde) [![Open Canada — Dataset](https://img.shields.io/badge/Open_Canada-Dataset-0b5fff)](https://open.canada.ca/data/en/dataset/f5f2db55-31e4-42fb-8c73-23e1c44de9b2)""")
+            ], className="mt-2 text-muted", style={"fontSize":"0.9rem"})
+        ], width=9),
         dbc.Col(html.Div(SCHEMA_INIT_MSG, id="schema-msg", className="text-danger"), width=3)
     ], align="center", className="mt-2"),
     dbc.Row([

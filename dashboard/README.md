@@ -1,5 +1,5 @@
 ---
-title: MPI Dashboard
+title: Canada Major Projects Probability & Ranking Dashboard
 emoji: 📊
 colorFrom: blue
 colorTo: gray
