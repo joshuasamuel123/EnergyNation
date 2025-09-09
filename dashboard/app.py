@@ -557,7 +557,7 @@ def render_tabs(filtered_json, active_tab, agg_mode, topn, logcost):
     if active_tab == "tab-exec":
         content = render_exec_view(df, topn=topn)
 
-    if active_tab == "tab-1":
+    elif active_tab == "tab-1":
         fig_scatter = px.scatter(
             df,
             x="priority_index_2dp",
