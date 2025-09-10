@@ -1,3 +1,4 @@
+
 import numpy as np
 import pandas as pd
 import plotly.express as px
@@ -165,15 +166,6 @@ def _unique_sorted(df, col):
         return []
     return sorted([v for v in df[col].dropna().astype(str).unique().tolist() if str(v).strip() != "" ])
 
-# NEW: helper to wrap long tick/category labels with <br>
-def _wrap_label(s, width=14):
-    import textwrap
-    try:
-        s_str = str(s)
-        return "<br>".join(textwrap.wrap(s_str, width=width)) if len(s_str) > width else s_str
-    except Exception:
-        return s
-
 # ============================================================
 # App init & sidebar defaults (static)
 # ============================================================
@@ -313,7 +305,7 @@ def sidebar_static():
                 dcc.RadioItems(id="agg-mode", options=[{"label":"Count","value":"count"},{"label":"Cost","value":"cost"}], value=AGG_DEFAULT, inline=True),
             ]),
 
-            html.Label("Top-N (Power Ranking)"),
+            html.Label("Top‑N (Power Ranking)"),
             dcc.Slider(min=5, max=20, step=None, value=TOPN_DEFAULT, marks={5:"5",10:"10",15:"15",20:"20"}, id="top-n"),
 
             html.Div([
@@ -344,20 +336,16 @@ def tabs():
         dcc.Tab(label="Stage Flow", value="tab-5"),
     ])
 
-# ===== Layout: header full-width, KPIs full-width, then sidebar + tabs aligned =====
 app.layout = dbc.Container([
     dcc.Store(id="filtered"),
-    # Header & description now full width
-    dbc.Row([dbc.Col(header(), width=12)], align="center", className="mt-2"),
-    # KPIs spread across the full page width
-    dbc.Row([dbc.Col(kpi_row(), width=12)], className="mt-2"),
-    # Sidebar flush with tabs (KPIs are above this row)
+    dbc.Row([
+        dbc.Col(header(), width=9),
+        dbc.Col(html.Div(SCHEMA_INIT_MSG, id="schema-msg", className="text-danger"), width=3)
+    ], align="center", className="mt-2"),
     dbc.Row([
         dbc.Col(sidebar_static(), width=3),
-        dbc.Col([tabs(), html.Div(id="tab-content")], width=9)
-    ], className="mt-2"),
-    # Schema / init message (kept, moved below for full-width header)
-    dbc.Row([dbc.Col(html.Div(SCHEMA_INIT_MSG, id="schema-msg", className="text-danger"), width=12)])
+        dbc.Col([kpi_row(), html.Br(), tabs(), html.Div(id="tab-content")], width=9)
+    ], className="mt-2")
 ], fluid=True)
 
 # ============================================================
@@ -636,7 +624,7 @@ def make_cum_ev_by_province(df: pd.DataFrame) -> go.Figure:
     fig = px.bar(g, x="EV_cum", y="province", orientation="h", text=g["EV_cum"].map(_FMT_INT0))
     fig.update_traces(textposition="outside")
     _millions_axis(fig, axis="x")
-    fig.update_yaxes(categoryorder="total ascending", automargin=True)  # ensure space for labels
+    fig.update_yaxes(categoryorder="total ascending")  # horizontal bars: largest on top
     return _style_common(fig, "Cumulative EV by Province")
 
 # =======================================
@@ -646,12 +634,10 @@ def make_cum_ev_by_top_groups(df: pd.DataFrame, topn: int = 10) -> go.Figure:
     bucket = _top10_groups_map(df, topn)
     g = df.assign(group_bucket=bucket).groupby("group_bucket", dropna=False)["EV_cum"].sum()
     g = g.sort_values(ascending=False).reset_index()
-    # Wrap long category names
-    g["group_bucket_wrapped"] = g["group_bucket"].apply(lambda s: _wrap_label(s, 14))
-    fig = px.bar(g, x="EV_cum", y="group_bucket_wrapped", orientation="h", text=g["EV_cum"].map(_FMT_INT0))
+    fig = px.bar(g, x="EV_cum", y="group_bucket", orientation="h", text=g["EV_cum"].map(_FMT_INT0))
     fig.update_traces(textposition="outside")
     _millions_axis(fig, axis="x")
-    fig.update_yaxes(categoryorder="total ascending", automargin=True)
+    fig.update_yaxes(categoryorder="total ascending")
     return _style_common(fig, "Cumulative EV by Top 10 Group + Other")
 
 # =============================================
@@ -677,13 +663,11 @@ def make_median_ev_per_fid_top_groups(df: pd.DataFrame, topn: int = 10) -> go.Fi
     ratio = _as_num(df.get("EV_cum")).where(den > 0, np.nan) / den.where(den > 0, np.nan)
     tmp = pd.DataFrame({"group_bucket": bucket, "ratio": ratio})
     g = tmp.dropna().groupby("group_bucket", dropna=False)["ratio"].median().sort_values(ascending=False).reset_index()
-    # Wrap long category names
-    g["group_bucket_wrapped"] = g["group_bucket"].apply(lambda s: _wrap_label(s, 14))
-    fig = px.bar(g, x="ratio", y="group_bucket_wrapped", orientation="h", text=g["ratio"].map(_FMT_INT0))
+    fig = px.bar(g, x="ratio", y="group_bucket", orientation="h", text=g["ratio"].map(_FMT_INT0))
     fig.update_traces(textposition="outside")
     _millions_axis(fig, axis="x")
     fig.update_layout(xaxis_title="Median EV per Expected FID (C$ MM)")
-    fig.update_yaxes(categoryorder="total ascending", automargin=True)
+    fig.update_yaxes(categoryorder="total ascending")
     return _style_common(fig, "Median EV per Expected FID by Top 10 Group + Other")
 
 # ===================================================
@@ -703,20 +687,12 @@ def make_heat_cum_ev_group_province(df: pd.DataFrame, topn: int = 10) -> go.Figu
     pv = pv.reindex(sorted(pv.index, key=lambda x: str(x)), axis=0)[cols]
     z = pv.fillna(0)
 
-    # Wrap column labels to avoid title run-in
-    wrapped_cols = [_wrap_label(c, 12) for c in z.columns]
-    z.columns = wrapped_cols
-
     text = z.applymap(lambda v: "" if v == 0 else f"{int(round(v,0)):,}")
     fig = px.imshow(z, text_auto=False, aspect="auto", color_continuous_scale="Blues")
-    fig.update_traces(text=text.values, xgap=1, ygap=1)
-    fig.update_layout(
-        coloraxis_colorbar=dict(title="C$ MM", lenmode="pixels", len=220),
-        title_x=0, title_xanchor="left",
-        margin=dict(t=90, r=25, b=60, l=90)
-    )
-    fig.update_xaxes(side="top", tickangle=20, automargin=True)
-    fig.update_yaxes(autorange="reversed", automargin=True)
+    fig.update_traces(text=text.values)
+    fig.update_layout(coloraxis_colorbar=dict(title="C$ MM"))
+    fig.update_xaxes(side="top", tickangle=45)
+    fig.update_yaxes(autorange="reversed")
     return _style_common(fig, "Heat Map — Cumulative EV by Group and Province")
 
 # ============================================================
@@ -744,21 +720,13 @@ def make_heat_kstar_group_province(df: pd.DataFrame, topn: int = 10) -> go.Figur
     else:
         cmin, cmax = 0.0, 1.0
 
-    # Wrap column labels to avoid title run-in
-    wrapped_cols = [_wrap_label(c, 12) for c in z.columns]
-    z.columns = wrapped_cols
-
     fig = px.imshow(z, text_auto=False, aspect="auto", color_continuous_scale="Reds", zmin=cmin, zmax=cmax)
     # Hide zeros in text; show 1 decimal in hover
     text = z.applymap(lambda v: "" if (pd.isna(v) or v == 0) else f"{v:.1f}×")
-    fig.update_traces(text=text.values, hovertemplate="Province %{y}<br>Group %{x}<br>RABE-MOIC: %{z:.1f}×<extra></extra>", xgap=1, ygap=1)
-    fig.update_layout(
-        coloraxis_colorbar=dict(title="Multiple (× DevCost)", lenmode="pixels", len=220),
-        title_x=0, title_xanchor="left",
-        margin=dict(t=90, r=25, b=60, l=90)
-    )
-    fig.update_xaxes(side="top", tickangle=20, automargin=True)
-    fig.update_yaxes(autorange="reversed", automargin=True)
+    fig.update_traces(text=text.values, hovertemplate="Province %{y}<br>Group %{x}<br>RABE-MOIC: %{z:.1f}×<extra></extra>")
+    fig.update_layout(coloraxis_colorbar=dict(title="Multiple (× DevCost)"))
+    fig.update_xaxes(side="top", tickangle=45)
+    fig.update_yaxes(autorange="reversed")
     return _style_common(fig, "Heat Map — Risk-Adjusted Break-Even Multiple by Group and Province")
 
 # ===========================
@@ -780,7 +748,7 @@ def render_exec_view(df: pd.DataFrame, topn: int = 10) -> html.Div:
     fig6 = make_heat_cum_ev_group_province(df, topn)
     fig7 = make_heat_kstar_group_province(df, topn)
 
-    # Notes placeholders (kept as in original)
+    # Notes placeholders (you’ll add copy in app)
     notes1 = _notes_block("Notes-1", "Add your short methods note here (softmax year allocation; sums of annual probabilities).", "notes-1")
     notes2 = _notes_block("Notes-2", "Add context on province EV aggregation and units (C$ MM).", "notes-2")
     notes3 = _notes_block("Notes-3", "Explain Top-10 + Other construction (based on filtered EV_cum).", "notes-3")
@@ -854,7 +822,7 @@ def render_tabs(filtered_json, active_tab, agg_mode, topn, logcost):
         content = html.Div([ dcc.Graph(figure=fig_scatter) ])
 
     elif active_tab == "tab-2":
-        # Build Top-N bars: Power Ranking, Probability, Priority Index
+        # Build Top‑N bars: Power Ranking, Probability, Priority Index
         score = normalize_power_score(df["power_ranking"] if "power_ranking" in df.columns else pd.Series(dtype=float))
         tmp = df.copy()
         tmp["score01"] = score
@@ -864,7 +832,7 @@ def render_tabs(filtered_json, active_tab, agg_mode, topn, logcost):
 
         N = topn if topn else 10
 
-        # Top-N by Power Ranking
+        # Top‑N by Power Ranking
         top_power = tmp.sort_values("score01", ascending=False).head(N)
         fig_power = go.Figure()
         fig_power.add_trace(go.Bar(
@@ -884,7 +852,7 @@ def render_tabs(filtered_json, active_tab, agg_mode, topn, logcost):
             template=template
         )
 
-        # Top-N by Probability
+        # Top‑N by Probability
         top_prob = tmp.sort_values("prob2dp", ascending=False).head(N)
         fig_prob = go.Figure()
         fig_prob.add_trace(go.Bar(
@@ -904,7 +872,7 @@ def render_tabs(filtered_json, active_tab, agg_mode, topn, logcost):
             template=template
         )
 
-        # Top-N by Priority Index (uses urgency_scale_(0-1) mapped to priority_index)
+        # Top‑N by Priority Index (uses urgency_scale_(0-1) mapped to priority_index)
         top_prio = tmp.sort_values('priority_index', ascending=False).head(N)
         fig_prio = go.Figure()
         fig_prio.add_trace(go.Bar(
