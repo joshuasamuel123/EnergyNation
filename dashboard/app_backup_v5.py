@@ -5,51 +5,40 @@ import plotly.graph_objects as go
 
 from dash import Dash, dcc, html, Input, Output, State, ctx as dash_ctx
 import dash_bootstrap_components as dbc
-
 # ============================================================
-# Default data loading (auto-discover *.xlsx/.csv beside app.py; ignore /data)
+# Default data loading (auto-discover *.xlsx beside app.py; ignore /data)
 # ============================================================
 from pathlib import Path
 import os
-
 # --- Header configuration via environment variables (safe defaults) ---
 APP_TITLE = os.getenv("APP_TITLE", "Energy Nation — MPI Probability (≤3 Years)")
 APP_NOTICE_MD = os.getenv("APP_NOTICE_MD", "")  # Markdown allowed
 APP_LINKS_SPEC = os.getenv("APP_LINKS_SPEC", "")  # "Label|URL;Label2|URL2"
 
+
 HERE = Path(__file__).parent
 LAST_SOURCE = None
 LAST_ERRORS = []
 
-def _datafiles_in_here():
-    # Discover common tabular formats next to app.py; ignore temp Excel files
-    patterns = ["*.xlsx", "*.csv", "*.csv.gz"]
-    out = []
-    for pat in patterns:
-        out.extend([p for p in HERE.glob(pat) if not p.name.startswith("~$")])
-    return sorted(out)
+def _xlsx_in_here():
+    # Ignore temporary Excel files like "~$foo.xlsx"
+    return sorted([p for p in HERE.glob("*.xlsx") if not p.name.startswith("~$")])
 
-# Optional override via env var: DATAFILE=mpi_2024_scored.csv
+# Optional override via env var: DATAFILE=mpi_2024_scored.xlsx
 _ENV_CHOICE = os.getenv("DATAFILE")
 
-# Preference order: env var (if provided), then these names if present, then any other
-_PREFERRED_NAMES = [
-    "mpi_2024_ev_dev_combined.xlsx", "mpi_2024_scored.xlsx", "sample_mpi.xlsx",
-    "mpi_2024_ev_dev_combined.csv",  "mpi_2024_scored.csv",  "sample_mpi.csv",
-    "mpi_2024_ev_dev_combined.csv.gz","mpi_2024_scored.csv.gz","sample_mpi.csv.gz",
-]
+# Preference order: env var (if provided), then these names if present, then any other *.xlsx
+_PREFERRED_NAMES = ["mpi_2024_ev_dev_combined.xlsx", "mpi_2024_scored.xlsx", "sample_mpi.xlsx"]
 
 def _candidate_paths():
-    files_here = _datafiles_in_here()
+    files_here = _xlsx_in_here()
     by_name = {p.name: p for p in files_here}
 
     ordered = []
     if _ENV_CHOICE:
         # If DATAFILE points to a file name or absolute/relative path
         env_path = (HERE / _ENV_CHOICE) if not os.path.isabs(_ENV_CHOICE) else Path(_ENV_CHOICE)
-        if env_path.exists() and (
-            env_path.suffix.lower() in [".xlsx", ".csv"] or env_path.name.lower().endswith(".csv.gz")
-        ):
+        if env_path.exists() and env_path.suffix.lower() == ".xlsx":
             ordered.append(env_path)
 
     # Add preferred names if present
@@ -57,7 +46,7 @@ def _candidate_paths():
         if name in by_name:
             ordered.append(by_name[name])
 
-    # Add any remaining discovered files not already included
+    # Add any remaining discovered *.xlsx not already included
     for pth in files_here:
         if pth not in ordered:
             ordered.append(pth)
@@ -67,13 +56,7 @@ def _candidate_paths():
 CANDIDATES = _candidate_paths()
 
 def _read_any(path: Path) -> pd.DataFrame:
-    name = path.name.lower()
-    suf = path.suffix.lower()
-    if suf == ".xlsx":
-        return pd.read_excel(path, engine="openpyxl")
-    if suf == ".csv" or name.endswith(".csv.gz"):
-        return pd.read_csv(path)  # pandas handles gzip transparently
-    raise ValueError(f"Unsupported file type: {path.suffix}")
+    return pd.read_excel(path, engine="openpyxl")
 
 def _load_default_or_raise() -> pd.DataFrame:
     global LAST_SOURCE, LAST_ERRORS
