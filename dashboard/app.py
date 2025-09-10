@@ -35,6 +35,8 @@ _ENV_CHOICE = os.getenv("DATAFILE")
 # Preference order: env var (if provided), then these names if present, then any other
 _PREFERRED_NAMES = [
     "mpi_2024_ev_dev_combined.csv",  "mpi_2024_scored.csv",  "sample_mpi.csv",
+    "mpi_2024_ev_dev_combined.xlsx", "mpi_2024_scored.xlsx", "sample_mpi.xlsx",
+    "mpi_2024_ev_dev_combined.csv.gz","mpi_2024_scored.csv.gz","sample_mpi.csv.gz",
 ]
 
 def _candidate_paths():
