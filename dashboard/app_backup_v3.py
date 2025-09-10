@@ -710,22 +710,13 @@ def make_heat_cum_ev_group_province(df: pd.DataFrame, topn: int = 10) -> go.Figu
     text = z.applymap(lambda v: "" if v == 0 else f"{int(round(v,0)):,}")
     fig = px.imshow(z, text_auto=False, aspect="auto", color_continuous_scale="Blues")
     fig.update_traces(text=text.values, xgap=1, ygap=1)
-
-    # Apply the common style first
-    fig = _style_common(fig, "Heat Map — Cumulative EV by Group and Province")
-
-    # Prevent title/label run-in on top x-axis
     fig.update_layout(
-        # override _style_common's t=60
-        margin=dict(t=140, r=25, b=60, l=90),
-        title=dict(x=0, xanchor="left", y=0.995, yanchor="top", pad=dict(t=6, b=0)),
-        coloraxis_colorbar=dict(title="C$ MM", lenmode="pixels", len=220)
+        coloraxis_colorbar=dict(title="C$ MM", lenmode="pixels", len=220),
+        title_x=0, title_xanchor="left",
+        margin=dict(t=90, r=25, b=60, l=90)
     )
-    fig.update_xaxes(side="top", tickangle=0, automargin=True)
+    fig.update_xaxes(side="top", tickangle=20, automargin=True)
     fig.update_yaxes(autorange="reversed", automargin=True)
-
-    return fig
-
     return _style_common(fig, "Heat Map — Cumulative EV by Group and Province")
 
 # ============================================================
@@ -757,28 +748,17 @@ def make_heat_kstar_group_province(df: pd.DataFrame, topn: int = 10) -> go.Figur
     wrapped_cols = [_wrap_label(c, 12) for c in z.columns]
     z.columns = wrapped_cols
 
-    fig = px.imshow(z, text_auto=False, aspect="auto",
-                    color_continuous_scale="Reds", zmin=cmin, zmax=cmax)
-    fig.update_traces(
-        text=text.values,
-        hovertemplate="Province %{y}<br>Group %{x}<br>RABE-MOIC: %{z:.1f}×<extra></extra>",
-        xgap=1, ygap=1
-    )
-
-    # Apply the common style first
-    fig = _style_common(fig, "Heat Map — Risk-Adjusted Break-Even Multiple by Group and Province")
-
-    # Prevent title/label run-in on top x-axis
+    fig = px.imshow(z, text_auto=False, aspect="auto", color_continuous_scale="Reds", zmin=cmin, zmax=cmax)
+    # Hide zeros in text; show 1 decimal in hover
+    text = z.applymap(lambda v: "" if (pd.isna(v) or v == 0) else f"{v:.1f}×")
+    fig.update_traces(text=text.values, hovertemplate="Province %{y}<br>Group %{x}<br>RABE-MOIC: %{z:.1f}×<extra></extra>", xgap=1, ygap=1)
     fig.update_layout(
-        margin=dict(t=140, r=25, b=60, l=90),  # override _style_common
-        title=dict(x=0, xanchor="left", y=0.995, yanchor="top", pad=dict(t=6, b=0)),
-        coloraxis_colorbar=dict(title="Multiple (× DevCost)", lenmode="pixels", len=220)
+        coloraxis_colorbar=dict(title="Multiple (× DevCost)", lenmode="pixels", len=220),
+        title_x=0, title_xanchor="left",
+        margin=dict(t=90, r=25, b=60, l=90)
     )
-    fig.update_xaxes(side="top", tickangle=0, automargin=True)
+    fig.update_xaxes(side="top", tickangle=20, automargin=True)
     fig.update_yaxes(autorange="reversed", automargin=True)
-
-    return fig
-
     return _style_common(fig, "Heat Map — Risk-Adjusted Break-Even Multiple by Group and Province")
 
 # ===========================
