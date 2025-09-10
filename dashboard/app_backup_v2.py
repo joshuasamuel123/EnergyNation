@@ -301,7 +301,7 @@ def sidebar_static():
             html.Label("Year Range"),
             dcc.RangeSlider(MIN_YEAR, MAX_YEAR, value=[MIN_YEAR, MAX_YEAR], id="f-year", tooltip={"placement":"bottom"}, step=1, marks=build_year_marks(MIN_YEAR, MAX_YEAR)),
 
-            html.Label("Cost Range (C$ MM)", style={"marginTop":"8px"}),
+            html.Label("Cost Range (CAD$ MM)", style={"marginTop":"8px"}),
             dcc.RangeSlider(MIN_COST, MAX_COST, value=[MIN_COST, MAX_COST], id="f-cost", tooltip={"placement":"bottom"}),
 
             # hidden placeholder to preserve signature if used elsewhere
@@ -328,10 +328,10 @@ def kpi_row():
     center_style = {"textAlign":"center"}
     return dbc.Row([
         dbc.Col(dbc.Card([dbc.CardHeader("Total Projects (Pre-Construction)", style=center_style), dbc.CardBody(html.H4(id="kpi-total", className="card-title", style=center_style))])),
-        dbc.Col(dbc.Card([dbc.CardHeader("Total Investment (C$ MM)",        style=center_style), dbc.CardBody(html.H4(id="kpi-invest", className="card-title", style=center_style))])),
+        dbc.Col(dbc.Card([dbc.CardHeader("Total Investment (CAD$ MM)",        style=center_style), dbc.CardBody(html.H4(id="kpi-invest", className="card-title", style=center_style))])),
         dbc.Col(dbc.Card([dbc.CardHeader("Probability of Construction (≤3 Years)", style=center_style), dbc.CardBody(html.H4(id="kpi-prob", className="card-title", style=center_style))])),
-        dbc.Col(dbc.Card([dbc.CardHeader("Expected Value (C$ MM, 2025–27)", style=center_style), dbc.CardBody(html.H4(id="kpi-evcum", className="card-title", style=center_style))])),
-        dbc.Col(dbc.Card([dbc.CardHeader("Risk-Adjusted Break-Even Multiple", style=center_style), dbc.CardBody(html.H4(id="kpi-kstar", className="card-title", style=center_style))])),
+        dbc.Col(dbc.Card([dbc.CardHeader("Expected Value (CAD$ MM, 2025–27)", style=center_style), dbc.CardBody(html.H4(id="kpi-evcum", className="card-title", style=center_style))])),
+        dbc.Col(dbc.Card([dbc.CardHeader("Risk-Adjusted Break-Even Multiple (Median)", style=center_style), dbc.CardBody(html.H4(id="kpi-kstar", className="card-title", style=center_style))])),
     ])
 
 def tabs():
@@ -474,7 +474,7 @@ def update_kpis(filtered_json):
     prob = pd.to_numeric(df.get("blended_prob", pd.Series(dtype=float)), errors="coerce")
     prob_pct = int(round(prob.mean() * 100, 0)) if prob.notna().any() else 0
 
-    # NEW: Expected Value (EV_cum in C$ MM, 2025–27)
+    # NEW: Expected Value (EV_cum in CAD$ MM, 2025–27)
     evcum_series = pd.to_numeric(df.get("EV_cum", pd.Series(dtype=float)), errors="coerce")
     evcum_mm = f"{int(round(evcum_series.fillna(0).sum(), 0)):,}" if evcum_series.notna().any() else "0"
 
@@ -516,7 +516,7 @@ COMMON_HOVER_TMPL = (
     "Province: %{customdata[2]}<br>"
     "Sector: %{customdata[3]}<br>"
     "Group: %{customdata[4]}<br>"
-    "Cost (C$ MM): %{customdata[5]:,.0f}<br>"
+    "Cost (CAD$ MM): %{customdata[5]:,.0f}<br>"
     "Probability of Construction (≤ 3 Years): %{customdata[6]:.2f}<br>"
     "Priority (Time-to-Event Urgency): %{customdata[7]:.2f}<br>"
     "Power Ranking: %{customdata[8]:.2f}"
@@ -943,12 +943,12 @@ def render_tabs(filtered_json, active_tab, agg_mode, topn, logcost):
         # Decide aggregation based on agg_mode
         use_cost = (agg_mode == "cost")
         val_col  = "project_cost" if use_cost else "count"
-        y_label_sector = "Total Project Value (C$ MM)" if use_cost else "Project Count"
-        y_label_prov   = "Total Project Value (C$ MM)" if use_cost else "Project Count"
+        y_label_sector = "Total Project Value (CAD$ MM)" if use_cost else "Project Count"
+        y_label_prov   = "Total Project Value (CAD$ MM)" if use_cost else "Project Count"
         title_suffix   = " (Cost)" if use_cost else " (Count)"
-        pie_title_ct   = "Project Value by Cleantech (C$ MM)" if use_cost else "Project Count by Cleantech"
-        pie_title_own  = "Project Value by Ownership (C$ MM)" if use_cost else "Project Count by Ownership"
-        vintage_ylabel = "Total Project Value (C$ MM)" if use_cost else "Project Count"
+        pie_title_ct   = "Project Value by Cleantech (CAD$ MM)" if use_cost else "Project Count by Cleantech"
+        pie_title_own  = "Project Value by Ownership (CAD$ MM)" if use_cost else "Project Count by Ownership"
+        vintage_ylabel = "Total Project Value (CAD$ MM)" if use_cost else "Project Count"
         vintage_title  = "Projects by Vintage (stacked by Sector)" + title_suffix
 
         # ---------- Row 1 (toggle Count/Cost) ----------
@@ -975,11 +975,11 @@ def render_tabs(filtered_json, active_tab, agg_mode, topn, logcost):
         # ---------- Row 2 (totals remain fixed to Cost per your spec) ----------
         g3 = df.groupby("sector", dropna=False)["project_cost"].sum().reset_index()
         fig_cost_sector = px.bar(g3, x="sector", y="project_cost", template=template,
-                                 title="Total Project Value by Sector (C$ MM)")
+                                 title="Total Project Value by Sector (CAD$ MM)")
 
         g4 = df.groupby("province", dropna=False)["project_cost"].sum().reset_index()
         fig_cost_prov = px.bar(g4, x="province", y="project_cost", template=template,
-                               title="Total Project Value by Province (C$ MM)")
+                               title="Total Project Value by Province (CAD$ MM)")
 
         # ---------- Row 3 (toggle Count/Cost in donuts) ----------
         if use_cost:
