@@ -353,7 +353,7 @@ def kpi_row():
 
 def tabs():
     return dcc.Tabs(id="tabs", value="tab-exec", children=[
-        dcc.Tab(label="Executive View", value="tab-exec"),
+        dcc.Tab(label="Expected Value", value="tab-exec"),
         dcc.Tab(label="Probability & Priority", value="tab-1"),
         dcc.Tab(label="Power Ranking", value="tab-2"),
         dcc.Tab(label="Facts & Figures", value="tab-3"),
@@ -630,7 +630,7 @@ def make_ev_fids_by_year(df: pd.DataFrame) -> go.Figure:
     fig = go.Figure()
     fig.add_trace(go.Bar(
         x=yrs, y=ev_series.values,
-        name="Cumulative EV (C$ MM)",
+        name="3-Year EV (C$ MM)",
         text=[_FMT_INT0(v) for v in ev_series.values],
         textposition="outside"
     ))
@@ -639,14 +639,14 @@ def make_ev_fids_by_year(df: pd.DataFrame) -> go.Figure:
         mode="lines+markers", yaxis="y2"
     ))
     fig.update_layout(
-        yaxis=dict(title="Cumulative EV (C$ MM)", ticks="outside", tickformat=",d", showgrid=True),
+        yaxis=dict(title="3-Year EV (C$ MM)", ticks="outside", tickformat=",d", showgrid=True),
         yaxis2=dict(title="Expected FIDs (count)", overlaying="y", side="right", ticks="outside", showgrid=False),
         xaxis=dict(ticks="outside"),
     )
-    return _style_common(fig, "Expected EV and Expected FIDs by Year")
+    return _style_common(fig, "EV and Expected FIDs by Year")
 
 # ===========================
-# 2) Cumulative EV by Province
+# 2) 3-Year EV by Province
 # ===========================
 def make_cum_ev_by_province(df: pd.DataFrame) -> go.Figure:
     g = df.groupby("province", dropna=False)["EV_cum"].sum().sort_values(ascending=False).reset_index()
@@ -654,10 +654,10 @@ def make_cum_ev_by_province(df: pd.DataFrame) -> go.Figure:
     fig.update_traces(textposition="outside")
     _millions_axis(fig, axis="x")
     fig.update_yaxes(categoryorder="total ascending", automargin=True)  # ensure space for labels
-    return _style_common(fig, "Cumulative EV by Province")
+    return _style_common(fig, "3-Year EV by Province")
 
 # =======================================
-# 3) Cumulative EV by Top-10 Group + Other
+# 3) 3-Year EV by Top-10 Group + Other
 # =======================================
 def make_cum_ev_by_top_groups(df: pd.DataFrame, topn: int = 10) -> go.Figure:
     bucket = _top10_groups_map(df, topn)
@@ -669,7 +669,7 @@ def make_cum_ev_by_top_groups(df: pd.DataFrame, topn: int = 10) -> go.Figure:
     fig.update_traces(textposition="outside")
     _millions_axis(fig, axis="x")
     fig.update_yaxes(categoryorder="total ascending", automargin=True)
-    return _style_common(fig, "Cumulative EV by Top 10 Group + Other")
+    return _style_common(fig, "3-Year EV by Top 10 Group + Other")
 
 # =============================================
 # 4) Median EV per Expected FID by Province
@@ -704,7 +704,7 @@ def make_median_ev_per_fid_top_groups(df: pd.DataFrame, topn: int = 10) -> go.Fi
     return _style_common(fig, "Median EV per Expected FID by Top 10 Group + Other")
 
 # ===================================================
-# 6) Heat Map — Cumulative EV (Group × Province)
+# 6) Heat Map — 3-Year EV (Group × Province)
 # ===================================================
 def make_heat_cum_ev_group_province(df: pd.DataFrame, topn: int = 10) -> go.Figure:
     bucket = _top10_groups_map(df, topn)
@@ -728,7 +728,7 @@ def make_heat_cum_ev_group_province(df: pd.DataFrame, topn: int = 10) -> go.Figu
     fig = px.imshow(z, text_auto=False, aspect="auto", color_continuous_scale="Blues")
     fig.update_traces(text=text.values, xgap=1, ygap=1)
 
-    fig = _style_common(fig, "Heat Map — Cumulative EV by Group and Province")
+    fig = _style_common(fig, "Heat Map — 3-Year EV by Group and Province")
     fig.update_layout(margin=dict(t=140, r=25, b=60, l=90),  # bigger top margin
                     title=dict(x=0, xanchor="left", y=0.995, yanchor="top", pad=dict(t=6, b=0)),
                     coloraxis_colorbar=dict(title="C$ MM", lenmode="pixels", len=220))
