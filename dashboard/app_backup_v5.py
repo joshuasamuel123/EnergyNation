@@ -5,51 +5,40 @@ import plotly.graph_objects as go
 
 from dash import Dash, dcc, html, Input, Output, State, ctx as dash_ctx
 import dash_bootstrap_components as dbc
-
 # ============================================================
-# Default data loading (auto-discover *.xlsx/.csv beside app.py; ignore /data)
+# Default data loading (auto-discover *.xlsx beside app.py; ignore /data)
 # ============================================================
 from pathlib import Path
 import os
-
 # --- Header configuration via environment variables (safe defaults) ---
 APP_TITLE = os.getenv("APP_TITLE", "Energy Nation — MPI Probability (≤3 Years)")
 APP_NOTICE_MD = os.getenv("APP_NOTICE_MD", "")  # Markdown allowed
 APP_LINKS_SPEC = os.getenv("APP_LINKS_SPEC", "")  # "Label|URL;Label2|URL2"
 
+
 HERE = Path(__file__).parent
 LAST_SOURCE = None
 LAST_ERRORS = []
 
-def _datafiles_in_here():
-    # Discover common tabular formats next to app.py; ignore temp Excel files
-    patterns = ["*.xlsx", "*.csv", "*.csv.gz"]
-    out = []
-    for pat in patterns:
-        out.extend([p for p in HERE.glob(pat) if not p.name.startswith("~$")])
-    return sorted(out)
+def _xlsx_in_here():
+    # Ignore temporary Excel files like "~$foo.xlsx"
+    return sorted([p for p in HERE.glob("*.xlsx") if not p.name.startswith("~$")])
 
-# Optional override via env var: DATAFILE=mpi_2024_scored.csv
+# Optional override via env var: DATAFILE=mpi_2024_scored.xlsx
 _ENV_CHOICE = os.getenv("DATAFILE")
 
-# Preference order: env var (if provided), then these names if present, then any other
-_PREFERRED_NAMES = [
-    "mpi_2024_ev_dev_combined.csv",  "mpi_2024_scored.csv",  "sample_mpi.csv",
-    "mpi_2024_ev_dev_combined.xlsx", "mpi_2024_scored.xlsx", "sample_mpi.xlsx",
-    "mpi_2024_ev_dev_combined.csv.gz","mpi_2024_scored.csv.gz","sample_mpi.csv.gz",
-]
+# Preference order: env var (if provided), then these names if present, then any other *.xlsx
+_PREFERRED_NAMES = ["mpi_2024_ev_dev_combined.xlsx", "mpi_2024_scored.xlsx", "sample_mpi.xlsx"]
 
 def _candidate_paths():
-    files_here = _datafiles_in_here()
+    files_here = _xlsx_in_here()
     by_name = {p.name: p for p in files_here}
 
     ordered = []
     if _ENV_CHOICE:
         # If DATAFILE points to a file name or absolute/relative path
         env_path = (HERE / _ENV_CHOICE) if not os.path.isabs(_ENV_CHOICE) else Path(_ENV_CHOICE)
-        if env_path.exists() and (
-            env_path.suffix.lower() in [".xlsx", ".csv"] or env_path.name.lower().endswith(".csv.gz")
-        ):
+        if env_path.exists() and env_path.suffix.lower() == ".xlsx":
             ordered.append(env_path)
 
     # Add preferred names if present
@@ -57,7 +46,7 @@ def _candidate_paths():
         if name in by_name:
             ordered.append(by_name[name])
 
-    # Add any remaining discovered files not already included
+    # Add any remaining discovered *.xlsx not already included
     for pth in files_here:
         if pth not in ordered:
             ordered.append(pth)
@@ -67,13 +56,7 @@ def _candidate_paths():
 CANDIDATES = _candidate_paths()
 
 def _read_any(path: Path) -> pd.DataFrame:
-    name = path.name.lower()
-    suf = path.suffix.lower()
-    if suf == ".xlsx":
-        return pd.read_excel(path, engine="openpyxl")
-    if suf == ".csv" or name.endswith(".csv.gz"):
-        return pd.read_csv(path)  # pandas handles gzip transparently
-    raise ValueError(f"Unsupported file type: {path.suffix}")
+    return pd.read_excel(path, engine="openpyxl")
 
 def _load_default_or_raise() -> pd.DataFrame:
     global LAST_SOURCE, LAST_ERRORS
@@ -353,7 +336,7 @@ def kpi_row():
 
 def tabs():
     return dcc.Tabs(id="tabs", value="tab-exec", children=[
-        dcc.Tab(label="Expected Value", value="tab-exec"),
+        dcc.Tab(label="Executive View", value="tab-exec"),
         dcc.Tab(label="Probability & Priority", value="tab-1"),
         dcc.Tab(label="Power Ranking", value="tab-2"),
         dcc.Tab(label="Facts & Figures", value="tab-3"),
@@ -630,7 +613,7 @@ def make_ev_fids_by_year(df: pd.DataFrame) -> go.Figure:
     fig = go.Figure()
     fig.add_trace(go.Bar(
         x=yrs, y=ev_series.values,
-        name="3-Year EV (C$ MM)",
+        name="Cumulative EV (C$ MM)",
         text=[_FMT_INT0(v) for v in ev_series.values],
         textposition="outside"
     ))
@@ -639,14 +622,14 @@ def make_ev_fids_by_year(df: pd.DataFrame) -> go.Figure:
         mode="lines+markers", yaxis="y2"
     ))
     fig.update_layout(
-        yaxis=dict(title="3-Year EV (C$ MM)", ticks="outside", tickformat=",d", showgrid=True),
+        yaxis=dict(title="Cumulative EV (C$ MM)", ticks="outside", tickformat=",d", showgrid=True),
         yaxis2=dict(title="Expected FIDs (count)", overlaying="y", side="right", ticks="outside", showgrid=False),
         xaxis=dict(ticks="outside"),
     )
-    return _style_common(fig, "EV and Expected FIDs by Year")
+    return _style_common(fig, "Expected EV and Expected FIDs by Year")
 
 # ===========================
-# 2) 3-Year EV by Province
+# 2) Cumulative EV by Province
 # ===========================
 def make_cum_ev_by_province(df: pd.DataFrame) -> go.Figure:
     g = df.groupby("province", dropna=False)["EV_cum"].sum().sort_values(ascending=False).reset_index()
@@ -654,10 +637,10 @@ def make_cum_ev_by_province(df: pd.DataFrame) -> go.Figure:
     fig.update_traces(textposition="outside")
     _millions_axis(fig, axis="x")
     fig.update_yaxes(categoryorder="total ascending", automargin=True)  # ensure space for labels
-    return _style_common(fig, "3-Year EV by Province")
+    return _style_common(fig, "Cumulative EV by Province")
 
 # =======================================
-# 3) 3-Year EV by Top-10 Group + Other
+# 3) Cumulative EV by Top-10 Group + Other
 # =======================================
 def make_cum_ev_by_top_groups(df: pd.DataFrame, topn: int = 10) -> go.Figure:
     bucket = _top10_groups_map(df, topn)
@@ -669,7 +652,7 @@ def make_cum_ev_by_top_groups(df: pd.DataFrame, topn: int = 10) -> go.Figure:
     fig.update_traces(textposition="outside")
     _millions_axis(fig, axis="x")
     fig.update_yaxes(categoryorder="total ascending", automargin=True)
-    return _style_common(fig, "3-Year EV by Top 10 Group + Other")
+    return _style_common(fig, "Cumulative EV by Top 10 Group + Other")
 
 # =============================================
 # 4) Median EV per Expected FID by Province
@@ -704,7 +687,7 @@ def make_median_ev_per_fid_top_groups(df: pd.DataFrame, topn: int = 10) -> go.Fi
     return _style_common(fig, "Median EV per Expected FID by Top 10 Group + Other")
 
 # ===================================================
-# 6) Heat Map — 3-Year EV (Group × Province)
+# 6) Heat Map — Cumulative EV (Group × Province)
 # ===================================================
 def make_heat_cum_ev_group_province(df: pd.DataFrame, topn: int = 10) -> go.Figure:
     bucket = _top10_groups_map(df, topn)
@@ -728,7 +711,7 @@ def make_heat_cum_ev_group_province(df: pd.DataFrame, topn: int = 10) -> go.Figu
     fig = px.imshow(z, text_auto=False, aspect="auto", color_continuous_scale="Blues")
     fig.update_traces(text=text.values, xgap=1, ygap=1)
 
-    fig = _style_common(fig, "Heat Map — 3-Year EV by Group and Province")
+    fig = _style_common(fig, "Heat Map — Cumulative EV by Group and Province")
     fig.update_layout(margin=dict(t=140, r=25, b=60, l=90),  # bigger top margin
                     title=dict(x=0, xanchor="left", y=0.995, yanchor="top", pad=dict(t=6, b=0)),
                     coloraxis_colorbar=dict(title="C$ MM", lenmode="pixels", len=220))
