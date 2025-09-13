@@ -630,7 +630,7 @@ def make_ev_fids_by_year(df: pd.DataFrame) -> go.Figure:
     fig = go.Figure()
     fig.add_trace(go.Bar(
         x=yrs, y=ev_series.values,
-        name="3-Year EV (C$ MM)",
+        name="Expected Value (C$ MM)",
         text=[_FMT_INT0(v) for v in ev_series.values],
         textposition="outside"
     ))
@@ -639,7 +639,7 @@ def make_ev_fids_by_year(df: pd.DataFrame) -> go.Figure:
         mode="lines+markers", yaxis="y2"
     ))
     fig.update_layout(
-        yaxis=dict(title="3-Year EV (C$ MM)", ticks="outside", tickformat=",d", showgrid=True),
+        yaxis=dict(title="Expected Value (C$ MM)", ticks="outside", tickformat=",d", showgrid=True),
         yaxis2=dict(title="Expected FIDs (count)", overlaying="y", side="right", ticks="outside", showgrid=False),
         xaxis=dict(ticks="outside"),
     )
