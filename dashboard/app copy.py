@@ -675,42 +675,33 @@ def make_cum_ev_by_top_groups(df: pd.DataFrame, topn: int = 10) -> go.Figure:
 # 4) Median EV per Expected FID by Province
 # =============================================
 def make_median_ev_per_fid_province(df: pd.DataFrame) -> go.Figure:
-    tmp = pd.DataFrame({
-        "province": df["province"],
-        "ev": _as_num(df.get("EV_cum"))
-    })
-    g = (tmp.dropna()
-            .groupby("province", dropna=False)["ev"]
-            .median()
-            .sort_values(ascending=False)
-            .reset_index())
-    fig = px.bar(g, x="province", y="ev", text=g["ev"].map(_FMT_INT0))
+    den = _as_num(df.get("annual_p_2025")).fillna(0) + _as_num(df.get("annual_p_2026")).fillna(0) + _as_num(df.get("annual_p_2027")).fillna(0)
+    ratio = _as_num(df.get("EV_cum")).where(den > 0, np.nan) / den.where(den > 0, np.nan)
+    tmp = pd.DataFrame({"province": df["province"], "ratio": ratio})
+    g = tmp.dropna().groupby("province", dropna=False)["ratio"].median().sort_values(ascending=False).reset_index()
+    fig = px.bar(g, x="province", y="ratio", text=g["ratio"].map(_FMT_INT0))
     fig.update_traces(textposition="outside")
     _millions_axis(fig, axis="y")
-    fig.update_layout(yaxis_title="Median EV (C$ MM)")
-    return _style_common(fig, "Median EV (Probability-Adjusted) by Province (C$ MM)")
+    fig.update_layout(yaxis_title="Median EV per Expected FID (C$ MM)")
+    return _style_common(fig, "Median EV per Expected FID by Province")
 
 # ==================================================
 # 5) Median EV per Expected FID by Top-10 Group + Other
 # ==================================================
 def make_median_ev_per_fid_top_groups(df: pd.DataFrame, topn: int = 10) -> go.Figure:
     bucket = _top10_groups_map(df, topn)
-    tmp = pd.DataFrame({
-        "group_bucket": bucket,
-        "ev": _as_num(df.get("EV_cum"))
-    })
-    g = (tmp.dropna()
-            .groupby("group_bucket", dropna=False)["ev"]
-            .median()
-            .sort_values(ascending=False)
-            .reset_index())
+    den = _as_num(df.get("annual_p_2025")).fillna(0) + _as_num(df.get("annual_p_2026")).fillna(0) + _as_num(df.get("annual_p_2027")).fillna(0)
+    ratio = _as_num(df.get("EV_cum")).where(den > 0, np.nan) / den.where(den > 0, np.nan)
+    tmp = pd.DataFrame({"group_bucket": bucket, "ratio": ratio})
+    g = tmp.dropna().groupby("group_bucket", dropna=False)["ratio"].median().sort_values(ascending=False).reset_index()
+    # Wrap long category names
     g["group_bucket_wrapped"] = g["group_bucket"].apply(lambda s: _wrap_label(s, 14))
-    fig = px.bar(g, x="ev", y="group_bucket_wrapped", orientation="h", text=g["ev"].map(_FMT_INT0))
+    fig = px.bar(g, x="ratio", y="group_bucket_wrapped", orientation="h", text=g["ratio"].map(_FMT_INT0))
     fig.update_traces(textposition="outside")
     _millions_axis(fig, axis="x")
-    fig.update_layout(xaxis_title="Median EV (C$ MM)")
+    fig.update_layout(xaxis_title="Median EV per Expected FID (C$ MM)")
     fig.update_yaxes(categoryorder="total ascending", automargin=True)
-    return _style_common(fig, "Median EV (Probability-Adjusted) by Top 10 Group + Other (C$ MM)")
+    return _style_common(fig, "Median EV per Expected FID by Top 10 Group + Other")
 
 # ===================================================
 # 6) Heat Map — 3-Year EV (Group × Province)
