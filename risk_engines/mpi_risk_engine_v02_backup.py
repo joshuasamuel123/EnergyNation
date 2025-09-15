@@ -27,7 +27,7 @@ INPUT_XLSX       = "/content/mpi_2024_input.xlsx" # Corrected path and filename
 OUT_CSV          = "/content/mpi_2024_scored.csv"
 OUT_XLSX         = "/content/mpi_2024_scored.xlsx"
 
-S0_T = 0.545332  # baseline survival at 5 years (confirmed)
+S0_3Y = 0.9491  # baseline survival at 3 years (confirmed)
 
 def norm_str(x):
     if pd.isna(x):
@@ -63,7 +63,7 @@ def run():
 
     # --- p_bayes ---
     def compute_p_bayes(row):
-        feats = ["PRIOR"]
+        feats = []
         # cleantech
         cle = norm_str(row.get("cleantech"))
         feats.append(f"cleantech_{cle if cle in ['Yes','No'] else 'Unknown'}")
@@ -87,9 +87,9 @@ def run():
         if ps in bayes_lr_map:
             feats.append(ps)
 
-        log_odds = sum(np.log(bayes_lr_map.get(f, 1.0)) for f in feats)
-        p = 1.0 / (1.0 + np.exp(-log_odds))
-        return float(p)
+        log_odds = sum(np.log(bayes_lr_map.get(f, 1.0)) for f in feats if f in bayes_lr_map)
+        odds = np.exp(log_odds)
+        return odds / (1.0 + odds)
 
     # --- Cox ---
     def compute_risk_score(row):
@@ -112,7 +112,7 @@ def run():
     df["p_bayes"] = df.apply(compute_p_bayes, axis=1)
     df["risk_score"] = df.apply(compute_risk_score, axis=1)
     df["years_remaining"] = (5.0 - df["reporting_years"]).clip(lower=0.25)
-    df["p_cox"] = 1 - (S0_T ** df["risk_score"])
+    df["p_cox"] = 1 - (S0_3Y ** df["risk_score"])
     df["blended_prob"] = 0.60 * df["p_bayes"] + 0.40 * df["p_cox"]
     df["priority_index"] = df["blended_prob"] / df["years_remaining"]
 
