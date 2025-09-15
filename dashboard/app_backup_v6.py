@@ -13,7 +13,7 @@ from pathlib import Path
 import os
 
 # --- Header configuration via environment variables (safe defaults) ---
-APP_TITLE = os.getenv("APP_TITLE", "Energy Nation — MPI Probability (≤5 Years)")
+APP_TITLE = os.getenv("APP_TITLE", "Energy Nation — MPI Probability (≤3 Years)")
 APP_NOTICE_MD = os.getenv("APP_NOTICE_MD", "")  # Markdown allowed
 APP_LINKS_SPEC = os.getenv("APP_LINKS_SPEC", "")  # "Label|URL;Label2|URL2"
 
@@ -34,9 +34,9 @@ _ENV_CHOICE = os.getenv("DATAFILE")
 
 # Preference order: env var (if provided), then these names if present, then any other
 _PREFERRED_NAMES = [
-    "mpi_2024_ev_dev_combined_5y.csv", "mpi_2024_ev_dev_combined.csv",  "mpi_2024_scored.csv",  "sample_mpi.csv",
-    "mpi_2024_ev_dev_combined_5y.xlsx", "mpi_2024_ev_dev_combined.xlsx", "mpi_2024_scored.xlsx", "sample_mpi.xlsx",
-    "mpi_2024_ev_dev_combined_5y.csv.gz","mpi_2024_ev_dev_combined.csv.gz","mpi_2024_scored.csv.gz","sample_mpi.csv.gz",
+    "mpi_2024_ev_dev_combined.csv",  "mpi_2024_scored.csv",  "sample_mpi.csv",
+    "mpi_2024_ev_dev_combined.xlsx", "mpi_2024_scored.xlsx", "sample_mpi.xlsx",
+    "mpi_2024_ev_dev_combined.csv.gz","mpi_2024_scored.csv.gz","sample_mpi.csv.gz",
 ]
 
 def _candidate_paths():
@@ -346,8 +346,8 @@ def kpi_row():
     return dbc.Row([
         dbc.Col(dbc.Card([dbc.CardHeader("Total Projects (Pre-Construction)", style=center_style), dbc.CardBody(html.H4(id="kpi-total", className="card-title", style=center_style))])),
         dbc.Col(dbc.Card([dbc.CardHeader("Total Investment (C$ MM)",        style=center_style), dbc.CardBody(html.H4(id="kpi-invest", className="card-title", style=center_style))])),
-        dbc.Col(dbc.Card([dbc.CardHeader("Probability of Construction (≤5 Years)", style=center_style), dbc.CardBody(html.H4(id="kpi-prob", className="card-title", style=center_style))])),
-        dbc.Col(dbc.Card([dbc.CardHeader("Expected Value (C$ MM, ≤5 Years)", style=center_style), dbc.CardBody(html.H4(id="kpi-evcum", className="card-title", style=center_style))])),
+        dbc.Col(dbc.Card([dbc.CardHeader("Probability of Construction (≤3 Years)", style=center_style), dbc.CardBody(html.H4(id="kpi-prob", className="card-title", style=center_style))])),
+        dbc.Col(dbc.Card([dbc.CardHeader("Expected Value (C$ MM, 2025–27)", style=center_style), dbc.CardBody(html.H4(id="kpi-evcum", className="card-title", style=center_style))])),
         dbc.Col(dbc.Card([dbc.CardHeader("Risk-Adjusted Break-Even Multiple", style=center_style), dbc.CardBody(html.H4(id="kpi-kstar", className="card-title", style=center_style))])),
     ])
 
@@ -534,7 +534,7 @@ COMMON_HOVER_TMPL = (
     "Sector: %{customdata[3]}<br>"
     "Group: %{customdata[4]}<br>"
     "Cost (C$ MM): %{customdata[5]:,.0f}<br>"
-    "Probability of Construction (≤ 5 Years): %{customdata[6]:.2f}<br>"
+    "Probability of Construction (≤ 3 Years): %{customdata[6]:.2f}<br>"
     "Priority (Time-to-Event Urgency): %{customdata[7]:.2f}<br>"
     "Power Ranking: %{customdata[8]:.2f}"
     "<extra></extra>"
@@ -584,24 +584,15 @@ def _top10_groups_map(df: pd.DataFrame, topn: int = 10) -> pd.Series:
     return df["group"].where(df["group"].isin(top), other="Other")
 
 def _expected_fids_by_year(df: pd.DataFrame) -> pd.Series:
-    years = detect_ev_years(df)
-    return pd.Series({y: _as_num(df.get(f"annual_p_{y}")).fillna(0).sum() for y in years})
+    # Sum of annual probabilities per year across filtered projects
+    return pd.Series({
+        2025: _as_num(df.get("annual_p_2025")).fillna(0).sum(),
+        2026: _as_num(df.get("annual_p_2026")).fillna(0).sum(),
+        2027: _as_num(df.get("annual_p_2027")).fillna(0).sum(),
+    })
 
-def detect_ev_years(df: pd.DataFrame):
-    ys = []
-    for c in df.columns:
-        if isinstance(c, str) and c.startswith("EV_"):
-            tail = c.split("_")[-1]
-            if tail.isdigit():
-                ys.append(int(tail))
-    if not ys:
-        for c in df.columns:
-            if isinstance(c, str) and c.startswith("annual_p_"):
-                tail = c.split("_")[-1]
-                if tail.isdigit():
-                    ys.append(int(tail))
-    ys = sorted(set(ys))
-    return ys
+def _years_list():
+    return [2025, 2026, 2027]
 
 def _millions_axis(fig, axis="y"):
     ax = dict(
@@ -631,7 +622,7 @@ def _style_common(fig, title):
 # 1) EV & FIDs by year
 # ======================
 def make_ev_fids_by_year(df: pd.DataFrame) -> go.Figure:
-    yrs = detect_ev_years(df)
+    yrs = _years_list()
     # EV sums from EV_YYYY (already in millions)
     ev_series = pd.Series({y: _as_num(df.get(f"EV_{y}")).fillna(0).sum() for y in yrs})
     fids = _expected_fids_by_year(df)
@@ -655,7 +646,7 @@ def make_ev_fids_by_year(df: pd.DataFrame) -> go.Figure:
     return _style_common(fig, "EV and Expected FIDs by Year")
 
 # ===========================
-# 2) 5-Year EV by Province
+# 2) 3-Year EV by Province
 # ===========================
 def make_cum_ev_by_province(df: pd.DataFrame) -> go.Figure:
     g = df.groupby("province", dropna=False)["EV_cum"].sum().sort_values(ascending=False).reset_index()
@@ -663,10 +654,10 @@ def make_cum_ev_by_province(df: pd.DataFrame) -> go.Figure:
     fig.update_traces(textposition="outside")
     _millions_axis(fig, axis="x")
     fig.update_yaxes(categoryorder="total ascending", automargin=True)  # ensure space for labels
-    return _style_common(fig, "EV (≤5 Years) by Province")
+    return _style_common(fig, "3-Year EV by Province")
 
 # =======================================
-# 3) 5-Year EV by Top-10 Group + Other
+# 3) 3-Year EV by Top-10 Group + Other
 # =======================================
 def make_cum_ev_by_top_groups(df: pd.DataFrame, topn: int = 10) -> go.Figure:
     bucket = _top10_groups_map(df, topn)
@@ -678,7 +669,7 @@ def make_cum_ev_by_top_groups(df: pd.DataFrame, topn: int = 10) -> go.Figure:
     fig.update_traces(textposition="outside")
     _millions_axis(fig, axis="x")
     fig.update_yaxes(categoryorder="total ascending", automargin=True)
-    return _style_common(fig, "EV (≤5 Years) by Top 10 Group + Other")
+    return _style_common(fig, "3-Year EV by Top 10 Group + Other")
 
 # =============================================
 # 4) Median EV per Expected FID by Province
@@ -722,7 +713,7 @@ def make_median_ev_per_fid_top_groups(df: pd.DataFrame, topn: int = 10) -> go.Fi
     return _style_common(fig, "Median EV (Probability-Adjusted) by Top 10 Group + Other (C$ MM)")
 
 # ===================================================
-# 6) Heat Map — 5-Year EV (Group × Province)
+# 6) Heat Map — 3-Year EV (Group × Province)
 # ===================================================
 def make_heat_cum_ev_group_province(df: pd.DataFrame, topn: int = 10) -> go.Figure:
     bucket = _top10_groups_map(df, topn)
@@ -746,7 +737,7 @@ def make_heat_cum_ev_group_province(df: pd.DataFrame, topn: int = 10) -> go.Figu
     fig = px.imshow(z, text_auto=False, aspect="auto", color_continuous_scale="Blues")
     fig.update_traces(text=text.values, xgap=1, ygap=1)
 
-    fig = _style_common(fig, "Heat Map — 5-Year EV by Group and Province")
+    fig = _style_common(fig, "Heat Map — 3-Year EV by Group and Province")
     fig.update_layout(margin=dict(t=140, r=25, b=60, l=90),  # bigger top margin
                     title=dict(x=0, xanchor="left", y=0.995, yanchor="top", pad=dict(t=6, b=0)),
                     coloraxis_colorbar=dict(title="C$ MM", lenmode="pixels", len=220))
@@ -807,8 +798,7 @@ def make_heat_kstar_group_province(df: pd.DataFrame, topn: int = 10) -> go.Figur
 # ===========================
 def render_exec_view(df: pd.DataFrame, topn: int = 10) -> html.Div:
     # Defensive: ensure required cols present
-    years = detect_ev_years(df)
-    need = {"EV_cum","province","group","k_star_adj"} | {f"EV_{y}" for y in years} | {f"annual_p_{y}" for y in years}
+    need = {"EV_cum","EV_2025","EV_2026","EV_2027","annual_p_2025","annual_p_2026","annual_p_2027","province","group","k_star_adj"}
     missing = sorted(list(need - set(df.columns)))
     if missing:
         return html.Div(f"Missing columns for Exec View: {', '.join(missing)}", className="text-danger")
@@ -877,7 +867,7 @@ def render_tabs(filtered_json, active_tab, agg_mode, topn, logcost):
             size_max=22,
             labels={
                 "priority_index_2dp": "Priority Index (Time to Event Urgency)",
-                "blended_prob_2dp": "Probability of Construction (≤ 5 Years)"
+                "blended_prob_2dp": "Probability of Construction (≤ 3 Years)"
             },
             template=template,
             height=700
@@ -939,7 +929,7 @@ def render_tabs(filtered_json, active_tab, agg_mode, topn, logcost):
             hovertemplate=COMMON_HOVER_TMPL
         ))
         fig_prob.update_layout(
-            title=f"Top {N} by Probability of Construction (≤ 5 Years)",
+            title=f"Top {N} by Probability of Construction (≤ 3 Years)",
             xaxis=dict(range=[0,1], title="Probability (0–1)"),
             yaxis=dict(autorange='reversed'),
             margin=dict(l=10,r=10,t=50,b=40),
