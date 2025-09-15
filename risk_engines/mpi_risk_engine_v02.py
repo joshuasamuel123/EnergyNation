@@ -113,7 +113,7 @@ def run():
     df["risk_score"] = df.apply(compute_risk_score, axis=1)
     df["years_remaining"] = (5.0 - df["reporting_years"]).clip(lower=0.25)
     df["p_cox"] = 1 - (S0_T ** df["risk_score"])
-    df["blended_prob"] = 0.60 * df["p_bayes"] + 0.40 * df["p_cox"]
+    df["blended_prob"] = 0.40 * df["p_bayes"] + 0.60 * df["p_cox"]
     df["priority_index"] = df["blended_prob"] / df["years_remaining"]
 
     # Rescale within filtered dataset
