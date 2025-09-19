@@ -1,0 +1,273 @@
+Unique ID,company,project,province,company_type,start_year,end_year,reporting_years,start_status,end_status,current_survival,end_success,project_cost,cost_percentile,latitude_1,longitude_1,sector,group,cleantech,abbreviation,greenfield_flag,FOAK_flag
+0,"Bighorn Mining, LTD",Vista Coal Project (Expansion Projects),AB,Private,2018,2024,7,Announced & Planning,In Review,1,0,870,0.789,53.33,-117.53,Mining,Coal,No,MIN-COAL,0,0
+88,"Canadian Kailuan Dehua Mines Co., Ltd.",Gething Coal Project,BC,Private,2019,2024,6,In Review,In Review,1,0,1360,0.853,55.8753,-121.9153,Mining,Coal,No,MIN-COAL,1,0
+94,Canagold Resources Ltd.,New Polaris Gold Mine,BC,Private,2020,2024,5,In Review,In Review,1,0,143.7,0.433,58.701,-133.64,Mining,Other,No,MIN-OTH,1,0
+98,Kutcho Copper Corp.,Kutcho Creek,BC,Private,2018,2024,7,Announced & Planning,In Review,1,0,483,0.674,58.205,-128.358,Mining,Critical Mineral,Yes,MIN-CM,1,0
+100,Alamos Gold Inc.,Lynn Lake (Gordon site),MB,Private,2018,2024,7,Announced & Planning,In Review,1,0,434.33,0.651,56.79,-100.82,Mining,Precious Metal,No,MIN-PM,1,0
+128,Copper Fox Metals - Teck Resources Limited,Schaft Creek Porphyry Copper-Gold Mine,BC,Private,2020,2023,4,In Review,In Review,0,0,3396.414,0.929,57.364,-130.993,Mining,Precious Metal,No,MIN-PM,1,0
+131,Covanta/Green Island Energy Ltd./Covanta Holding Corporation,Gold River Power Project,BC,Private,2020,2023,4,Announced & Planning,Announced & Planning,0,0,500,0.677,49.788357,-126.04969,Energy,Other,Yes,EN-OTH,1,0
+177,Finavera Wind Energy Inc.,Bullmoose Wind Energy Project,BC,Private,2020,2020,1,Announced & Planning,Announced & Planning,0,0,132,0.415,55.2431,-121.4951,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+188,Fosthall Creek Power LP,Fosthall Creek Hydropower Project,BC,Private,2018,2024,7,Announced & Planning,Announced & Planning,1,0,50,0.214,50.241332,-117.801075,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+205,Giga Metals Corp. & Mitsubishi Corporation,Turnagain Project,BC,Private,2020,2024,5,Announced & Planning,Announced & Planning,1,0,2461.55,0.912,58.476,-128.826,Mining,Critical Mineral,Yes,MIN-CM,1,0
+213,Hurley River Hydro LP,Hurley River Hydroelectric Project,BC,Public,2020,2023,4,In Review,In Review,0,0,138,0.423,50.323327,-122.804933,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+214,Husky Energy,caribou lake,AB,Private,2020,2022,3,Approved,Approved,0,0,0,0,54.955037,-110.628581,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+245,Kitamaat Renewable Energy Corporation,Crab/Europa Hydroelectric Project,BC,Private,2018,2020,3,In Review,In Review,0,0,150,0.441,53.595765,-128.666588,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+256,NorthWest Copper,Lorraine-Jayjay Copper Mine,BC,Private,2020,2024,5,In Review,In Review,1,0,100,0.342,55.91667,-125.58333,Mining,Base Metal,No,MIN-BM,1,0
+269,Meadow Lake Tribal Council,Biomass Generator,SK,Private,2018,2022,5,Announced & Planning,Under Construction,0,1,80,0.304,55.168966,-108.154761,Energy,Waste Biomass,Yes,EN-BIO,1,0
+294,NB Power,Mactaquac Dam upgrades,NB,Public,2019,2023,5,In Review,In Review,0,0,3250,0.924,45.9544,-66.8679,Energy,Clean Electricity,Yes,EN-CLEL,0,0
+309,Nomis Power Corp - Rupert Peace Power Corp,Nahwitti Wind Farm,BC,Private,2020,2023,4,Announced & Planning,Announced & Planning,0,0,400,0.634,51.013755,-127.642456,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+315,North American Palladium,Lac des Iles palladium mine (expansion),ON,Private,2018,2021,4,Announced & Planning,Under Construction,0,1,425,0.649,49.172269,-89.654032,Mining,Precious Metal,No,MIN-PM,0,0
+340,Oceanic Iron Ore Company,Hopes Advance Iron Mine (Ungava Bay),QC,Private,2020,2022,3,In Review,Announced & Planning,0,0,1566.612,0.87,59.310061,-69.888941,Mining,Base Metal,No,MIN-BM,1,0
+347,Pacific Booker Minerals Inc.,Morrison Copper Gold Project,BC,Private,2020,2020,1,In Review,In Review,0,0,517,0.694,55.194,-126.314,Mining,Precious Metal,No,MIN-PM,1,0
+381,Ryan River Joint Venture Regional Power,Ryan River Hydro Project,BC,Private,2018,2023,6,In Review,Announced & Planning,0,0,273,0.56,50.3167,-122.8,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+382,Evolution Mining,Bateman Gold,ON,Private,2020,2024,5,Announced & Planning,Under Construction,1,1,109.3,0.369,51.116,-93.75,Mining,Precious Metal,No,MIN-PM,1,0
+387,"Sea Breeze Pacific Juan de Fuca Cable, LP",Juan de Fuca Power Cable,BC,Private,2018,2023,6,In Review,Announced & Planning,0,0,480,0.67,48.433187,-123.410481,Energy,Trans & Distr,No,EN-LCF,1,0
+409,SCCC Petroleum Corporation,Red Earth Pilot,AB,Private,2018,2018,1,Approved,Approved,0,0,15,0.072,56.668267,-115.311315,Energy,Other,Yes,EN-OTH,1,1
+411,Callinex Mines Inc.,Nash Creek,NB,Private,2020,2020,1,Announced & Planning,Announced & Planning,0,0,168,0.463,47.87,-66.07,Mining,Other,No,MIN-OTH,1,0
+413,Spanish Mountain Gold Ltd.,Spanish Mountain Copper-Gold Mines,BC,Private,2020,2024,5,In Review,In Review,1,0,756,0.762,52.592,-121.465,Mining,Precious Metal,No,MIN-PM,1,0
+417,Generation Mining Ltd.,Marathon PGM Copper Mine,ON,Private,2020,2024,5,In Review,Approved,1,0,897.9,0.793,48.782,-86.319,Mining,Other,No,MIN-OTH,1,0
+422,Suncor Energy Inc.,Lewis,AB,Private,2020,2024,5,In Review,Announced & Planning,1,0,6200,0.96,56.94062,-111.048346,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+425,"Suncor, ExxonMobil, Statoil, Husky Energy , Murphy Oil, Chevron, Mosbacher",Terra Nova (Asset Life Extension),NL,Private,2018,2023,6,In Review,Under Construction,0,1,680,0.739,46.7248,-48.47168,Energy,Other,Yes,EN-OTH,0,0
+440,Taseko Mines Ltd.,New Prosperity,BC,Private,2020,2020,1,In Review,In Review,0,0,1000,0.805,51.463,-123.624,Mining,Other,No,MIN-OTH,1,0
+441,Taseko Mines Ltd.,Harmony Gold Mine,BC,Private,2020,2024,5,In Review,Announced & Planning,1,0,50,0.214,53.514064,-132.397868,Mining,Precious Metal,No,MIN-PM,1,0
+460,GoldMining Inc,Yellowknife Gold,NT,Private,2020,2024,5,In Review,In Review,1,0,193,0.484,63.182,-113.909,Mining,Precious Metal,No,MIN-PM,1,0
+467,Vale,Copper Cliff Deep project,ON,Private,2018,2023,6,Announced & Planning,Under Construction,0,1,760,0.764,46.549417,-81.00769,Mining,Base Metal,No,MIN-BM,1,0
+473,Value Creation Inc.,Tristar' SAGD Pilot Project,AB,Private,2020,2022,3,In Review,In Review,0,0,0,0,56.571589,-111.228436,Energy,Oil & Gas - Upstream,No,EN-OG-U,1,1
+484,Conuma Coal Resources Ltd.,Belcourt/Saxon Coal Mines,BC,Private,2020,2021,2,In Review,In Review,0,0,100,0.342,54.711929,-120.959473,Mining,Coal,No,MIN-COAL,1,0
+485,Conuma Coal Resources Ltd.,Wolverine Coal Mine (Hermann Deposit),BC,Private,2020,2024,5,In Review,Approved,1,0,55,0.241,55.266598,-120.871582,Mining,Coal,No,MIN-COAL,1,0
+499,Taseko Mines Ltd.,Yellowhead (formerly Harper Creek),BC,Private,2020,2022,3,In Review,Announced & Planning,0,0,1347,0.852,51.519,-119.817,Mining,Other,No,MIN-OTH,1,0
+515,Athabasca Oil Corporation,Dover West Clastics,AB,Private,2019,2024,6,In Review,In Review,1,0,615,0.73,57.1005,-113.2251,Energy,Oil & Gas - Upstream,No,EN-OG-U,1,0
+528,Cardero Coal Ltd.,Carbon Creek Coal Mine,BC,Private,2020,2023,4,In Review,In Review,0,0,301,0.581,55.983773,-122.398885,Mining,Coal,No,MIN-COAL,1,0
+529,Cavalier Energy Inc.,Hoole (Paramount),AB,Private,2019,2023,5,Approved,Approved,0,0,452,0.662,56.0429,-113.6742,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+530,Centermount Coal Limited,Bingay Main Metallurgical Coal,BC,Private,2019,2024,6,In Review,In Review,1,0,480,0.67,50.1826,-114.9877,Mining,Coal,No,MIN-COAL,1,0
+545,Holmes Hydro,Robson Valley Hydroelectric Project,BC,Public,2019,2024,6,In Review,In Review,1,0,200,0.49,53.3469,-119.8406,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+588,BridgePower,Rocky Creek Wind Energy Project,BC,Private,2019,2019,1,Announced & Planning,Announced & Planning,0,0,1500,0.863,55.2415,-121.8441,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+606,Treasury Metals Inc.,Goliath Complex,ON,Private,2018,2024,7,In Review,Approved,1,0,335,0.598,49.764413,-92.544708,Mining,Precious Metal,No,MIN-PM,1,0
+620,KGHM International,Victoria Project,ON,Private,2018,2024,7,Announced & Planning,Under Construction,1,1,1000,0.805,46.4235,-81.3864,Mining,Other,No,MIN-OTH,1,0
+626,IAMGOLD Corp./Sumitomo Metal Mining,Cote Lake Project,ON,Private,2018,2024,7,Approved,Under Construction,1,1,2456.493,0.911,47.5474,-81.9363,Mining,Precious Metal,No,MIN-PM,1,0
+629,Sunshine Oilsands Ltd.,West Ells,AB,Private,2020,2024,5,Announced & Planning,Announced & Planning,1,0,2100,0.9,57.202491,-112.729238,Energy,Oil & Gas - Upstream,No,EN-OG-U,1,0
+633,Glencore plc,Sukunka Coal Mine,BC,Private,2018,2022,5,In Review,In Review,0,0,450,0.654,55.1964,-121.569,Mining,Coal,No,MIN-COAL,1,0
+690,Innergex Renewable Energy Inc.,Statlu Creek Hydroelectric Project,BC,Private,2019,2019,1,Announced & Planning,Announced & Planning,0,0,25,0.124,49.2817,-121.9308,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+691,EDF Energies Nouvelles,Sundance Wind Project,BC,Private,2018,2018,1,In Review,In Review,0,0,600,0.714,55.334152,-121.100275,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+707,Port Alberni Harbour Authority,Port Alberni LNG Export Facility,BC,Public,2020,2024,5,Announced & Planning,Announced & Planning,1,0,1600,0.872,49.230014,-124.81106,Energy,Oil & Gas - Downstream,No,EN-OG-D,1,0
+757,Innergex Renewable Energy Inc.,Shovel Creek Hydroelectric Project,BC,Private,2020,2024,5,In Review,In Review,1,0,40,0.177,49.7212,-121.8148,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+770,TransAlta,Sundance 7 Gas fired power plant,AB,Private,2019,2020,2,Approved,Approved,0,0,1600,0.872,53.3027,-114.3326,Energy,NG Power Gen,Yes,EN-LCF,1,0
+783,First Mining Gold Corp.,Springpole Lake Gold Project,ON,Private,2018,2024,7,In Review,Approved,1,0,1067.04673,0.818,51.3961,-92.293,Mining,Precious Metal,No,MIN-PM,1,0
+794,Ascot Resources Ltd,Premier Gold Project,BC,Private,2018,2024,7,In Review,Under Construction,1,1,300,0.573,55.993725,-129.761651,Mining,Precious Metal,No,MIN-PM,1,0
+818,Athabasca Oil Corporation,Hangingstone Oil Sands,AB,Private,2020,2024,5,In Review,In Review,1,0,640,0.731,56.476139,-111.407639,Energy,Oil & Gas - Upstream,No,EN-OG-U,1,0
+858,ConocoPhillips Canada,Surmont (ConocoPhillips),AB,Private,2020,2024,5,In Review,In Review,1,0,6000,0.957,56.1936,-110.9506,Energy,Oil & Gas - Upstream,No,EN-OG-U,1,0
+888,"Stolt-Nielsen Gas Ltd., Sun LNG Holding, LNGaz Inc",Stolt LNGaz,QC,Private,2018,2018,1,In Review,In Review,0,0,570,0.706,46.364,-72.393,Energy,Oil & Gas - Downstream,No,EN-OG-D,1,0
+891,Arctic Canadian Diamond Corp,Ekati (Misery Deep),NT,Private,2018,2024,7,Approved,Approved,1,0,126.721,0.408,64.445237,-110.695595,Mining,Other,No,MIN-OTH,1,0
+996,"AltaLink, ATCO",Central East Area Transmission Development,AB,Private,2019,2024,6,Announced & Planning,Under Construction,1,1,332,0.596,52.848469,-110.899511,Energy,Trans & Distr,No,EN-T&D,1,0
+1034,Fission Uranium Corp.,Patterson Lake South,SK,Private,2020,2024,5,Announced & Planning,In Review,1,0,1177,0.827,57.635749,-109.316745,Mining,Critical Mineral,Yes,MIN-CM,1,0
+1042,BMC Minerals Ltd.,Kudz Ze Kayah,YK,Private,2018,2024,7,Announced & Planning,In Review,1,0,496,0.676,61.45805,-130.61,Mining,Other,No,MIN-OTH,1,0
+2072,Baffinland Iron Mines Corporation,Mary River Iron Ore project,NU,Private,2019,2022,4,In Review,In Review,0,0,1250,0.838,71.9109,-79.6289,Mining,Base Metal,No,MIN-BM,1,0
+2120,Wahpeestan Energy Limited Partnership,Wahpeestan Project,ON,Private,2018,2019,2,Announced & Planning,In Review,0,0,20,0.088,45.408804,-75.980109,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+2121,Ainsworth Energy Co. Ltd.,Anahim Lake Bioenergy Project,BC,Private,2018,2024,7,Announced & Planning,Announced & Planning,1,0,15,0.072,52.418398,-126.486276,Energy,Waste Biomass,Yes,EN-BIO,1,0
+2122,Yun Ka Whu'ten Holdings,Biomass Project - Anahim Lake,BC,Private,2018,2024,7,Announced & Planning,Announced & Planning,1,0,15,0.072,52.465348,-125.317541,Energy,Waste Biomass,Yes,EN-BIO,1,0
+2123,Ainsworth Energy Co. Ltd.,Tumbler Ridge Bioenergy Project,BC,Private,2018,2024,7,Announced & Planning,Announced & Planning,1,0,15,0.072,50.024653,-119.373429,Energy,Waste Biomass,Yes,EN-BIO,1,1
+2124,Nations Energy Corp.,Biomass Project - Kamloops,BC,Private,2018,2024,7,Announced & Planning,Announced & Planning,1,0,15,0.072,50.716188,-120.388986,Energy,Waste Biomass,Yes,EN-BIO,1,1
+2126,CNRL / NRC / Pond Biofuels,Algae Carbon Conversion Pilot Project,AB,Private,2018,2023,6,Announced & Planning,Announced & Planning,0,0,19,0.085,54.585082,-110.262585,Energy,CCUS,Yes,EN-CCU,1,1
+3002,La Granaduiere,Pellet Plant,QC,Private,2018,2021,4,Announced & Planning,Under Construction,0,1,50,0.214,46.6688,-73.9573,Forest,Other,Yes,FOR-OTH,1,0
+3004,FPInnovations and Resolute Forest Products,TMP-Bio,ON,Private,2018,2019,2,Announced & Planning,Announced & Planning,0,0,21,0.103,48.3809,-89.2477,Forest,Other,Yes,FOR-OTH,1,0
+3005,Kruger,Operations diversification,QC,Private,2018,2018,1,Announced & Planning,Announced & Planning,0,0,22.3,0.113,46.32724,-72.557502,Forest,Other,Yes,FOR-OTH,1,0
+3006,Kruger,Operations diversification,QC,Private,2018,2018,1,Announced & Planning,Announced & Planning,0,0,32.9,0.154,46.358881,-72.519968,Forest,Other,Yes,FOR-OTH,1,0
+3007,Kruger,Operations diversification,QC,Private,2018,2018,1,Announced & Planning,Announced & Planning,0,0,47.5,0.206,45.479943,-71.962107,Forest,Other,Yes,FOR-OTH,1,0
+3008,Fortress Global Enterprises,Bioproduct mill,QC,Private,2018,2019,2,Announced & Planning,Announced & Planning,0,0,150,0.441,45.598715,-75.256778,Forest,Pulp & Paper,No,FOR-P&P,1,0
+3101,Frontier Lithium Inc.,Pakeagama Lake,ON,Private,2018,2024,7,Announced & Planning,Announced & Planning,1,0,869.316174,0.788,52.6,-93.37,Mining,Critical Mineral,Yes,MIN-CM,1,0
+3102,Tacora Resources Inc,Scully,NL,Private,2018,2019,2,Approved,Under Construction,0,1,335,0.598,52.91,-66.91,Mining,Other,No,MIN-OTH,1,0
+3103,Goldcorp Inc.,Porcupine (Century),ON,Private,2018,2020,3,Announced & Planning,In Review,0,0,1278.7,0.841,48.46,-81.24,Mining,Precious Metal,No,MIN-PM,1,0
+3104,Gensource Potash Corp,Vanguard,SK,Private,2018,2024,7,Announced & Planning,Approved,1,0,353.6,0.615,50.84,-106.21,Mining,Other,No,MIN-OTH,1,0
+3105,Ram River Coal,Aries,AB,Private,2018,2024,7,Announced & Planning,Announced & Planning,1,0,1028,0.816,52.18,-115.58,Mining,Coal,No,MIN-COAL,1,0
+3106,Glencore plc,Onaping Depth,ON,Private,2018,2024,7,Announced & Planning,Under Construction,1,1,1500,0.863,46.63706,-81.36921,Mining,Other,No,MIN-OTH,1,0
+3200,Innergex Renewable Energy Inc.,Big Creek Hydroelectric,BC,Private,2018,2020,3,In Review,In Review,0,0,0,0,51.801592,-122.75735,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+3201,Bridge Power Hydro Developments Ltd.,Bitter Creek,BC,Public,2018,2018,1,In Review,In Review,0,0,0,0,0,0,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+3202,BC Hydro,BC Hydro Upgrade Alberni/Long Beach Transmission Line,BC,Public,2018,2022,5,In Review,In Review,0,0,42,0.186,0,0,Energy,Clean Electricity,Yes,EN-CLEL,0,0
+3205,NB Power,Fundy Isles Transmission Power Line Project,NB,Public,2018,2019,2,In Review,Under Construction,0,1,35,0.157,44.946988,-66.974109,Energy,Trans & Distr,No,EN-T&D,1,0
+3206,Hydro-Quebec,New England Clean Energy Connect (NECEC) project,QC,Public,2018,2024,7,Announced & Planning,Under Construction,1,1,950,0.801,45.72302,-70.984282,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+3208,"Transmission Developers Inc. (TDI),",Transmission Line - Champlain Hudson Power Express,QC,Private,2018,2024,7,Announced & Planning,Under Construction,1,1,2200,0.903,45.096127,-73.343089,Energy,Trans & Distr,No,EN-T&D,1,0
+3211,Dahl Creek Hydro Power Limited Partnership,Dahl Creek Hydroelectric Project,BC,Private,2018,2022,5,In Review,In Review,0,0,0,0,0,0,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+3215,Dokie Phase II Wind Power Project,0,BC,Private,2018,2020,3,In Review,In Review,0,0,283.8,0.567,55.79771,-122.2823,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+3401,Dow Chemical,Expansion of Fort Saskatchewan Facility,AB,Private,2018,2020,3,Announced & Planning,Announced & Planning,0,0,250,0.534,53.733828,-113.171906,Energy,Other,Yes,EN-OTH,0,0
+3402,Dow Chemical Canada,Dow Net-Zero Polyethylene and Ethylene Derivatives Facility,AB,Private,2018,2024,7,Announced & Planning,Under Construction,1,1,11500,0.98,53.733898,-113.172154,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+3500,Cenovus Energy,Narrows Lake,AB,Private,2018,2018,1,Approved,Approved,0,0,1600,0.872,55.638987,-110.846839,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+3501,Husky Energy Inc.,Husky Energy Exploration Drilling Project,NL,Private,2018,2022,5,In Review,In Review,0,0,265,0.555,46.9,-48.2,Energy,Oil & Gas - Upstream,No,EN-OG-U,1,0
+3502,BP Canada,Newfoundland Orphan Basin Exploration Drilling Project,NL,Private,2018,2023,6,In Review,Under Construction,0,1,426,0.65,50.2,-49.1,Energy,Oil & Gas - Upstream,No,EN-OG-U,1,0
+3503,Nexen,Nexen Energy Flemish Pass Exploration Drilling Project,NL,Private,2018,2021,4,In Review,Approved,0,0,301,0.581,47.5,-46.5,Energy,Oil & Gas - Upstream,No,EN-OG-U,1,0
+3504,Statoil Canada,Flemish Pass Exploration Drilling Project,NL,Private,2018,2023,6,In Review,Approved,0,0,722,0.752,48.3,-46.1,Energy,Oil & Gas - Upstream,No,EN-OG-U,1,0
+3505,Irving and Irving Tissue,Modernization to improve energy use and decrease carbon emissions.,NB,Private,2018,2018,1,Announced & Planning,Announced & Planning,0,0,40,0.177,45.25901,-66.09439,Forest,Other,Yes,FOR-OTH,0,0
+3506,Materiaux Blanchet,Modernization,QC,Private,2018,2019,2,Announced & Planning,Announced & Planning,0,0,25,0.124,48.562522,-78.171104,Forest,Other,Yes,FOR-OTH,0,0
+3507,Resolute,Capacity increase,QC,Private,2018,2022,5,Announced & Planning,Announced & Planning,0,0,52.3,0.234,48.746003,-72.514341,Forest,Pulp & Paper,No,FOR-P&P,0,0
+3508,Skeena Sawmills,Pellet Plant,BC,Private,2018,2019,2,Announced & Planning,Announced & Planning,0,0,20,0.088,54.517778,-128.634556,Forest,Other,Yes,FOR-OTH,1,0
+3509,Wataynikaneyap Power,Wataynikaneyap Transmission Project,ON,Private,2018,2024,7,In Review,Under Construction,1,1,1900,0.89,49.681474,-92.497798,Energy,Trans & Distr,No,EN-T&D,1,0
+3600,Fibre Pontiac,Fibre Pontiac (The Biomass Conversion Centre),QC,Private,2018,2024,7,In Review,In Review,1,0,120,0.388,45.542307,-76.109056,Energy,Waste Biomass,Yes,EN-BIO,1,1
+3601,PEI Energy Corporation,Slemon Park Micro-Grid Project,PE,Private,2018,2023,6,In Review,Under Construction,0,1,49.2,0.213,46.433992,-63.821938,Energy,Trans & Distr,No,EN-T&D,1,1
+3602,Enbridge Pipelines Inc.,Line 21 (Norman Wells Pipeline) Segment Replacement Project,NT,Private,2018,2018,1,Approved,Approved,0,0,530,0.697,61.833863,-121.090706,Energy,Trans & Distr,No,EN-T&D,1,0
+3603,Maritime Resources Corp.,Hammerdown (Green Bay),NL,Private,2018,2024,7,Announced & Planning,Approved,1,0,75,0.292,49.5544,-56.2372,Mining,Precious Metal,No,MIN-PM,1,0
+3604,AuMEGA (previously Matador Mining Limited),Cape Ray,NL,Private,2018,2024,7,In Review,In Review,1,0,145.4,0.439,47.4503,-58.5547,Mining,Other,No,MIN-OTH,1,0
+3607,North Coal Ltd./CanAus Coal Ltd.,Michel Creek Coking Coal,BC,Private,2018,2018,1,In Review,In Review,0,0,0,0,0,0,Mining,Coal,No,MIN-COAL,1,0
+3608,Coeur Silvertip Holdings,Silvertip,BC,Private,2018,2018,1,In Review,In Review,0,0,75,0.292,59.968249,-128.767588,Mining,Precious Metal,No,MIN-PM,1,0
+3610,Telkwa Mining Ltd.,Tenas Project,BC,Private,2018,2024,7,In Review,In Review,1,0,115,0.38,54.62717,-127.161516,Mining,Coal,No,MIN-COAL,1,0
+3611,Spanish Mountain Gold Ltd.,Spanish Mountain,BC,Private,2018,2018,1,In Review,In Review,0,0,507,0.69,52.57771,-121.477008,Mining,Precious Metal,No,MIN-PM,1,0
+3615,NB Power,Advanced Meter Infrastructure,NB,Public,2018,2024,7,In Review,Approved,1,0,109.6,0.369,0,0,Energy,Waste Biomass,Yes,EN-BIO,0,0
+3616,NB Power,Point Lepreau Nuclear Generating Station Major Outage and Inspections,NB,Public,2018,2019,2,In Review,Under Construction,0,1,53,0.235,45.068668,-66.454523,Energy,Nuclear,Yes,EN-NUC,0,0
+3617,St Barbara Ltd.,Beaver Dam Gold Project,NS,Private,2018,2024,7,Announced & Planning,In Review,1,0,314.5,0.585,44.98,-62.94,Mining,Other,No,MIN-OTH,1,0
+3621,Greengate Power Corporation,Travers Solar Project,AB,Private,2018,2022,5,Announced & Planning,Under Construction,0,1,500,0.677,50.303007,-112.655158,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+3622,CVW Cleantech,Titanium and Zircon Extraction Facility,AB,Private,2018,2024,7,Announced & Planning,Announced & Planning,1,0,610,0.726,57.336236,-111.754013,Mining,Critical Mineral,Yes,MIN-CM,1,0
+3625,Pembina Pipelines Corp.,Peace Pipeline Expansion,AB,Private,2018,2019,2,Announced & Planning,Under Construction,0,1,280,0.565,55.413122,-119.16149,Energy,Trans & Distr,No,EN-T&D,0,0
+3627,Pembina Pipelines Corp.,Empress Extraction Plant Fractionation and Terminalling Facilities,AB,Private,2018,2020,3,Announced & Planning,Under Construction,0,1,120,0.388,50.680688,-110.031222,Energy,Oil & Gas - Upstream,No,EN-OG-U,1,0
+3628,EPCOR,EL Smith Solar Farm,AB,Private,2018,2022,5,Announced & Planning,Under Construction,0,1,40.7,0.184,53.470023,-113.611959,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+3629,NOVA Gas Transmission Ltd.,2019 NOVA NGTL Expansion (Montney and Duvernay Basins),AB,Private,2018,2020,3,In Review,Under Construction,0,1,2400,0.908,55.544058,-119.770258,Energy,Other,Yes,EN-OTH,0,0
+3630,Field Upgrading,CleanSEAS Demonstration Plant,AB,Private,2018,2022,5,Announced & Planning,Under Construction,0,1,139,0.424,53.764675,-113.128664,Energy,Waste Biomass,Yes,EN-BIO,1,1
+3631,Gen III Oil Corp.,Bowden Re-refinery,AB,Private,2018,2021,4,Announced & Planning,Announced & Planning,0,0,90,0.328,51.953346,-114.021738,Energy,Oil & Gas - Downstream,No,EN-OG-D,1,0
+3632,Old Elm Wind Farm,Alberta Wind Energy Corp.,AB,Private,2018,2021,4,Announced & Planning,Announced & Planning,0,0,250,0.534,49.332147,-112.914147,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+3633,Tidewater Midstream,Dimsdale Gas Project,AB,Private,2018,2020,3,Announced & Planning,Announced & Planning,0,0,200,0.49,55.191115,-118.922316,Energy,Other,Yes,EN-OTH,1,0
+3634,Capital Power,Whitla Wind Facility,AB,Private,2018,2019,2,Announced & Planning,Under Construction,0,1,325,0.591,49.610821,-111.2035,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+3635,Tidewater Midstream/TransAlta,Tidewater/TransAlta Gas Pipeline,AB,Private,2018,2020,3,Announced & Planning,Announced & Planning,0,0,150,0.441,53.179714,-115.750652,Energy,Trans & Distr,No,EN-T&D,1,0
+3636,Imperial Oil Ltd.,Kearl Debottlenecking Expansion,AB,Private,2018,2020,3,Announced & Planning,Announced & Planning,0,0,563,0.705,57.386039,-111.074988,Energy,Other,Yes,EN-OTH,0,0
+3637,Keyera Corp.,North Wapiti Pipeline System,AB,Private,2018,2020,3,Approved,Approved,0,0,120,0.388,55.070186,-119.111522,Energy,Trans & Distr,No,EN-T&D,1,0
+3638,Kirkland Lake Gold Ltd.,Macassa Expansion,ON,Private,2018,2023,6,Announced & Planning,Under Construction,0,1,438,0.653,48.13561,-80.07181,Mining,Other,No,MIN-OTH,0,0
+3642,Manitoba Hydro,Reenders Station,MB,Public,2018,2022,5,Approved,Under Construction,0,1,46.8,0.206,49.8951,-97.1384,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+3645,Equinor Canada,Bay du Nord offshore oil site,NL,Private,2018,2022,5,Announced & Planning,Approved,0,0,12000,0.98,47.9,-46.7,Energy,Oil & Gas - Upstream,No,EN-OG-U,1,0
+3646,Chaudire Hydro North LP,Gatineau No. 1 Rehabilitation/Capacity Expansion,ON,Public,2018,2018,1,Announced & Planning,Announced & Planning,0,0,30,0.145,45.419797,-75.721209,Energy,Other,Yes,EN-OTH,0,0
+4000,Hydro One,Northwest Bulk Transmission Line Waasigan Transmission Line,ON,Public,2019,2024,6,Announced & Planning,In Review,1,0,1200,0.828,0,0,Energy,Trans & Distr,No,EN-T&D,1,0
+4001,Hydro One,Hawthorne to Merivale transmission upgrades (Planned),ON,Public,2020,2024,5,Announced & Planning,Under Construction,1,1,24.1,0.122,45.392172,-75.608256,Energy,Trans & Distr,No,EN-T&D,0,0
+4004,ITC Holdings Corp. (subsidiary of Fortis),ITC Lake Erie Connector LLC,ON,Private,2019,2022,4,In Review,In Review,0,0,1700,0.884,42.793572,-80.074518,Energy,Other,Yes,EN-OTH,1,0
+4006,Mines Agnico Eagle ltee,Wasamac,QC,Private,2019,2024,6,Announced & Planning,In Review,1,0,533,0.698,48.21,-79.19,Mining,Precious Metal,No,MIN-PM,1,0
+4007,NexGen Energy Ltd.,Rook I,SK,Private,2019,2024,6,Announced & Planning,Approved,1,0,1300,0.842,57.59,-108.99,Mining,Other,No,MIN-OTH,1,0
+4008,Denison Mines Corp.,Wheeler River - Phoenix,SK,Private,2019,2024,6,Announced & Planning,In Review,1,0,945.659,0.8,57.53,-105.41,Mining,Other,No,MIN-OTH,1,0
+4011,Canadian Metals,Langis,QC,Private,2019,2020,2,Announced & Planning,Announced & Planning,0,0,331.13,0.595,48.625,-67.33333,Mining,Other,No,MIN-OTH,1,0
+4012,Lepidico Ltd.,L-Max Plant,ON,Private,2019,2019,1,Announced & Planning,Announced & Planning,0,0,53.83,0.239,46.47,-80.85,Mining,Other,No,MIN-OTH,1,0
+4013,Rio Tinto,Vaudreuil alumina refinery,QC,Private,2019,2024,6,Announced & Planning,Announced & Planning,1,0,250,0.534,48.42623,-71.182543,Mining,Critical Mineral,Yes,MIN-CM,1,0
+4014,Alcoa/Rio Tinto,The Elysis joint venture,QC,Private,2019,2024,6,Announced & Planning,Announced & Planning,1,0,664,0.736,48.43214,-71.17565,Mining,Critical Mineral,Yes,MIN-CM,1,0
+4015,Signal Gold Inc. (formerly Anaconda Mining),Goldboro Gold,NS,Private,2019,2024,6,In Review,Approved,1,0,271,0.559,45.203,-61.6422,Mining,Precious Metal,No,MIN-PM,1,0
+4016,Allkem Limited,James Bay Lithium,QC,Private,2019,2024,6,In Review,Approved,1,0,508.7,0.69,0,0,Mining,Critical Mineral,Yes,MIN-CM,1,0
+4018,San Group (Coulson Manufacturing Ltd.),Lumber mill,BC,Private,2019,2019,1,Announced & Planning,Announced & Planning,0,0,70,0.275,49.2339,-124.8055,Forest,Lumber,No,FOR-LUM,1,0
+4019,Kalesnikoff Lumber,Glulam beams and CLT,BC,Private,2019,2020,2,Announced & Planning,Announced & Planning,0,0,35,0.157,49.3237,-117.6593,Forest,EWP,Yes,FOR-EWP,1,0
+4020,Kruger,New tissue manufacturing facility,QC,Private,2019,2020,2,Announced & Planning,Under Construction,0,1,575,0.706,45.4042,-71.8929,Forest,Pulp & Paper,No,FOR-P&P,1,0
+4021,Tolko,Mill upgrade,BC,Private,2019,2024,6,Announced & Planning,Announced & Planning,1,0,35,0.157,50.4477,-119.197,Forest,Pulp & Paper,No,FOR-P&P,0,0
+4022,Skeena Sawmills,Mill upgrade,BC,Private,2019,2020,2,Announced & Planning,Announced & Planning,0,0,20,0.088,54.5182,-128.6032,Forest,Pulp & Paper,No,FOR-P&P,0,0
+4024,Active Energy Group,New advanced pellet plant,NL,Private,2019,2023,5,Announced & Planning,Announced & Planning,0,0,19.7,0.087,50.616,-57.1511,Forest,Other,Yes,FOR-OTH,1,1
+4025,Barette-Chapais,Pellet plant,QC,Private,2019,2019,1,Announced & Planning,Announced & Planning,0,0,97,0.341,49.7822,-74.8525,Forest,Other,Yes,FOR-OTH,1,0
+4028,Bois d'oeuvre Cedrico,Sawmill upgrade,QC,Private,2019,2022,4,Announced & Planning,Announced & Planning,0,0,27,0.137,48.655231,-67.467515,Forest,Lumber,No,FOR-LUM,0,0
+4029,Rayonier Advanced Materials,Sawmill upgrade,QC,Private,2019,2022,4,Announced & Planning,Under Construction,0,1,23,0.116,48.800096,-79.201022,Forest,Lumber,No,FOR-LUM,0,0
+4030,Gitxsan Development Corp and Airex Energy,Torrefied pellet plant,BC,Private,2019,2024,6,Announced & Planning,Under Construction,1,1,50,0.214,55.2568,-127.672,Forest,Other,Yes,FOR-OTH,1,1
+4031,Uniboard,Mill upgrade,QC,Private,2019,2020,2,Announced & Planning,Announced & Planning,0,0,38.5,0.175,48.0987,0,Forest,Pulp & Paper,No,FOR-P&P,0,0
+4032,Kruger,Upgrade packaging plant,QC,Private,2019,2020,2,Announced & Planning,Announced & Planning,0,0,20,0.088,45.5017,-73.5673,Forest,Other,Yes,FOR-OTH,0,0
+4033,Hibernia Management and Development Company,Hibernia West Project,NL,Private,2019,2020,2,In Review,In Review,0,0,2000,0.893,46.45026,-48.46976,Energy,Other,Yes,EN-OTH,1,0
+4034,NGTL,NGTL 2021 Expansion,AB,Private,2019,2021,3,In Review,Under Construction,0,1,2400,0.908,52.362087,-114.910576,Energy,Other,Yes,EN-OTH,0,0
+4035,NGTL,NGTL 2022 Expansion (North Corridor and Edson Mainline),AB,Private,2019,2022,4,In Review,Under Construction,0,1,1400,0.856,52.082813,-115.015467,Energy,Trans & Distr,No,EN-T&D,0,0
+4036,VanadiumCorp Resource inc.,Lac Dor Vanadium,QC,Private,2019,2020,2,Announced & Planning,Announced & Planning,0,0,321,0.588,49.835624,-74.023701,Mining,Critical Mineral,Yes,MIN-CM,1,0
+4037,Les Ressources Yorbeau inc.,Lac scott,QC,Private,2019,2022,4,Announced & Planning,Announced & Planning,0,0,390,0.631,49.843449,-74.661342,Mining,Other,No,MIN-OTH,1,0
+4038,SOQUEM-Focus graphite,Kwyjibo,QC,Private,2019,2020,2,Announced & Planning,Announced & Planning,0,0,763,0.766,50.212809,-66.376109,Mining,Critical Mineral,Yes,MIN-CM,1,0
+4039,Eastmain Resources,Eau Claire,QC,Private,2019,2023,5,Announced & Planning,Announced & Planning,0,0,175,0.471,48.224089,-78.997427,Mining,Other,No,MIN-OTH,1,0
+4040,CRB Innovations,0,QC,Private,2019,2020,2,In Review,In Review,0,0,0,0,45.4724,-71.6208,Forest,Other,Yes,FOR-OTH,1,0
+4041,Gazoduq inc.,Gazoduq,Multi,Private,2019,2022,4,Announced & Planning,In Review,0,0,5000,0.946,48.428256,-80.329828,Energy,Other,Yes,EN-OTH,1,0
+4042,Enel Green Power North America,Riverview Wind Farm (115 MW),AB,Private,2019,2019,1,Announced & Planning,Announced & Planning,0,0,134,0.417,49.526976,-113.950593,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4043,Enel Green Power North America,Castle Rock Ridge Wind Power Plant Phase 2 (31 MW),AB,Private,2019,2019,1,Announced & Planning,Announced & Planning,0,0,0,0,0,0,Energy,Clean Electricity,Yes,EN-CLEL,0,0
+4044,EDF Renewables Canada Inc.,Cypress Wind Power Project,AB,Private,2019,2022,4,Announced & Planning,Under Construction,0,1,250,0.534,0,0,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4045,Potentia Renewables Inc.,Stirling Wind Power Project,AB,Private,2019,2023,5,Announced & Planning,Under Construction,0,1,170,0.464,0,0,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4046,Capstone Infrastructure Corporation,Buffalo Atlee Wind Farm 1 -3,AB,Private,2019,2023,5,Announced & Planning,Under Construction,0,1,85,0.317,0,0,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4047,TransAlta Corporation,Windrise Wind (207 MW),AB,Private,2019,2021,3,Announced & Planning,Under Construction,0,1,275,0.563,49.526976,-113.950593,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4048,Potentia Renewables Inc.,Jenner Wind Power Project 1 and 2,AB,Private,2019,2023,5,Announced & Planning,Under Construction,0,1,157,0.454,0,0,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4049,Innogy/Solar Krafte Utilities Inc,Prairie Sunlight II and III (30 MW and 27 MW),AB,Private,2019,2019,1,Announced & Planning,Announced & Planning,0,0,80,0.304,50.074309,-112.108606,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4050,Canadian Solar,Three solar farms,AB,Private,2019,2023,5,Announced & Planning,Approved,0,0,100,0.342,50.280081,-111.68567,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4051,Canadian Solar,Suffield bi-facial solar Project,AB,Private,2019,2020,2,Announced & Planning,Under Construction,0,1,49,0.211,50.223224,-111.160782,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4052,Cascade Power,Cascade Natural Gas Project,AB,Private,2019,2023,5,Announced & Planning,Under Construction,0,1,1500,0.863,53.546576,-116.601057,Energy,NG Power Gen,No,EN-NGPG,1,0
+4054,University of Alberta,South Campus District Energy System,AB,Private,2019,2020,2,Announced & Planning,Announced & Planning,0,0,29.5,0.144,53.523149,-113.524093,Energy,Clean Heat,Yes,EN-CLHT,1,0
+4055,Kineticor Resource Corp,Three Creeks Power Plant,AB,Private,2019,2020,2,Announced & Planning,Announced & Planning,0,0,100,0.342,56.228128,-117.433396,Energy,NG Power Gen,Yes,EN-LCF,1,0
+4056,Vanderwell Contractors,Vanderwell Sawmill bioenergy plant (3.6 MW),AB,Private,2019,2019,1,Announced & Planning,Announced & Planning,0,0,40,0.177,55.391952,-114.289016,Energy,Waste Biomass,Yes,EN-BIO,1,0
+4057,EDF Renewables Canada,Vulcan Solar Project,AB,Private,2019,2024,6,Announced & Planning,Announced & Planning,1,0,155,0.451,50.403783,-113.253133,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4059,Solar Krafte,Prairie Sunlight I,AB,Private,2019,2019,1,Announced & Planning,Announced & Planning,0,0,125,0.402,49.789854,-112.162682,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4061,Solar Krafte,Spring Coulle Solar Project,AB,Private,2019,2020,2,Approved,Under Construction,0,1,50,0.214,49.333282,-113.05492,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4062,Solar Krafte,Strathmore Solar Farm,AB,Private,2019,2021,3,Announced & Planning,Under Construction,0,1,60,0.253,51.037057,-113.402242,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4063,Suncor,Forty Mile Wind Power Project,AB,Private,2019,2022,4,Announced & Planning,Under Construction,0,1,600,0.714,0,0,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4064,NGTL,NGTL Westpath Delivery project,AB,Private,2019,2019,1,Approved,Approved,0,0,409,0.646,51.189019,-114.469601,Energy,Other,Yes,EN-OTH,1,0
+4066,Westcoast,T South Expansion and Reliability Project,BC,Private,2019,2021,3,Announced & Planning,Approved,0,0,329,0.593,55.697009,-121.63026,Energy,Other,Yes,EN-OTH,0,0
+4067,Global First Power,Micro Modular Reactor demonstration project at Chalk River Laboratories,ON,Private,2019,2022,4,Announced & Planning,In Review,0,0,0,0,46.0502,-77.361,Energy,Nuclear,Yes,EN-NUC,1,1
+4072,PEI Energy Corporation,Borden Battery Park,PE,Public,2020,2024,5,Announced & Planning,In Review,1,0,35,0.157,46.253763,-63.692162,Energy,"DER, Storage, EV",Yes,EN-DER,1,0
+4073,PEI Energy Corporation,Western PEI Transmission Upgrade,PE,Private,2019,2024,6,In Review,In Review,1,0,44,0.192,46.794249,-64.157612,Energy,Trans & Distr,No,EN-T&D,0,0
+4077,Synex Energy Resources Ltd.,Victoria Lake Hydro Project,BC,Private,2019,2024,6,In Review,In Review,1,0,18,0.083,50.424697,-127.487264,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4080,Pacific Greengen Power Inc.,Fries Creek Hydroelectric Project,BC,Private,2019,2024,6,In Review,In Review,1,0,20,0.088,49.307766,-121.799622,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4091,Moose Lake Wind LP,Moose Lake Wind Project,BC,Private,2019,2019,1,Announced & Planning,Announced & Planning,0,0,45,0.194,55.11167,-121.000634,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4093,BC Hydro,Mica Modernize Controls (Digital) Project,BC,Public,2019,2024,6,Announced & Planning,Under Construction,1,1,56,0.246,51.001442,-118.19374,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4096,Boralex,Babcock Ridge Wind Farm,BC,Private,2019,2024,6,In Review,Announced & Planning,1,0,50,0.214,55.11167,-121.000634,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4097,Sukunka Wind Project LP,Sukunka Wind Energy Project,BC,Private,2019,2022,4,In Review,In Review,0,0,50,0.214,55.568893,-121.461838,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4104,Canfor Corporation/Licella,Biofuel Facility,BC,Private,2019,2024,6,Announced & Planning,Announced & Planning,1,0,70,0.275,53.92241,-122.745706,Energy,Low Carbon Fuels,Yes,EN-LCF,1,1
+4107,BC Hydro,Mica Replace Units 1-4 Transformers Project,BC,Public,2019,2022,4,Approved,Under Construction,0,1,82,0.312,51.001442,-118.19374,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4109,BC Hydro,Bridge River 2 Units 5 and 6 Upgrade Project,BC,Public,2019,2019,1,In Review,In Review,0,0,86,0.321,50.685977,-121.936464,Energy,Other,Yes,EN-OTH,0,0
+4111,Borealis Geopower,Canoe Reach Geothermal Energy Project,BC,Private,2019,2024,6,Announced & Planning,In Review,1,0,120,0.388,52.830616,-119.265917,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4112,Western Bioenergy Inc. (subsidiary of Dalkia Canada),Ditni Yoh Green Energy Project,BC,Private,2019,2019,1,In Review,In Review,0,0,140,0.425,54.232283,-125.76662,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4115,Pembina Pipeline Corp.,Watson Island Propane Export Terminal,BC,Private,2019,2022,4,Announced & Planning,Announced & Planning,0,0,260,0.552,50.93169,-126.818821,Energy,Oil & Gas - Downstream,No,EN-OG-D,1,0
+4116,Alcan Aluminum Ltd. and the Province of BC,Kenney Dam Cold Water Release Facility,BC,Public,2020,2024,5,Announced & Planning,Announced & Planning,1,0,275,0.563,53.566667,-124.95,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4119,AltaGas / Vopak Development Canada Inc.,Ridley Island Energy Export Facility (REEF),BC,Private,2019,2024,6,In Review,In Review,1,0,750,0.757,54.314188,-130.322183,Energy,"DER, Storage, EV",Yes,EN-DER,1,0
+4122,Teck Resources/NGEx Resources,GJ Kinaskan Lake Copper-Gold Project,BC,Private,2020,2023,4,In Review,Announced & Planning,0,0,216,0.515,57.666667,-130.25,Mining,Precious Metal,No,MIN-PM,1,0
+4123,Fortis BC Inc.,Nicola Lake Hydro Project,BC,Private,2020,2022,3,Announced & Planning,Announced & Planning,0,0,0,0,0,0,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4124,Selkirk Metals Corp.,Gold Mine,BC,Private,2019,2022,4,Announced & Planning,In Review,0,0,0,0,49.25546,-125.67439,Mining,Precious Metal,No,MIN-PM,1,0
+4125,Nisgaa Nation,Nisgaa LNG,BC,Private,2019,2024,6,Announced & Planning,Announced & Planning,1,0,10000,0.975,54.901569,-130.072604,Energy,Oil & Gas - Downstream,No,EN-OG-D,1,0
+4126,Devon Energy Corporation/ BP JV,Pike,AB,Private,2019,2024,6,Announced & Planning,Announced & Planning,1,0,1900,0.89,55.599405,-110.995766,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4130,Pembina Pipelines Corp.,Peace Pipeline Expansion,AB,Private,2019,2023,5,Announced & Planning,Under Construction,0,1,530,0.697,55.404987,-119.154484,Energy,Trans & Distr,No,EN-T&D,0,0
+4133,SinoCan Global,SinoCan Global Upgrader and Petrochemical Facility,AB,Private,2019,2023,5,Announced & Planning,Announced & Planning,0,0,8500,0.972,53.737388,-112.476887,Energy,Oil & Gas - Downstream,No,EN-OG-D,0,0
+4134,Nauticol Energy,Nauticol Methanol Plant,AB,Private,2019,2022,4,Announced & Planning,Announced & Planning,0,0,4000,0.936,55.153707,-118.734061,Energy,Low Carbon Fuels,Yes,EN-LCF,1,1
+4136,Inter Pipeline Corp,Acrylic Acid Plant,AB,Private,2019,2020,2,Announced & Planning,Announced & Planning,0,0,600,0.714,53.836613,-113.067894,Energy,Waste Biomass,Yes,EN-BIO,1,0
+4137,Wapahki Energy /CN Rail JV,Canapux Bitumen Processing Facility,AB,Private,2019,2023,5,Announced & Planning,Announced & Planning,0,0,50,0.214,54.784671,-111.933917,Energy,Oil & Gas - Upstream,No,EN-OG-U,1,0
+4138,DP Energy,South Calgary Solar Facility,AB,Private,2019,2022,4,Announced & Planning,Under Construction,0,1,50,0.214,50.952488,-113.983022,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4143,Calibre Mining (previously Marathon Gold Corporation),Valentine Gold Mine,NL,Private,2019,2024,6,In Review,Under Construction,1,1,534,0.699,48.4182,-57.0736,Mining,Precious Metal,No,MIN-PM,1,0
+4146,Newfoundland & Labrador,Regional Assessment of Offshore Oil and Gas Exploratory Drilling East of Newfoundland and Labrador,NL,Public,2019,2021,3,In Review,In Review,0,0,0,0,0,0,Energy,Oil & Gas - Upstream,No,EN-OG-U,1,0
+4147,Pure Gold Mining Inc.,Madsen,ON,Private,2019,2021,3,Announced & Planning,Under Construction,0,1,95.1,0.336,50.96932,-93.93847,Mining,Precious Metal,No,MIN-PM,1,0
+4152,Corporation Aurifres Monarques,Croinor,QC,Private,2019,2019,1,In Review,In Review,0,0,50.7,0.228,48.345611,-77.268868,Mining,Other,No,MIN-OTH,1,0
+4153,DP Energy Limited (Haligonia Tidal Energy Ltd. / Rio Fundo Operations Canada Ltd.),Uisce Tapa In-Stream Tidal Energy Project,NS,Private,2019,2024,6,Approved,Approved,1,0,117,0.384,45.367408,-63.70584,Energy,Clean Electricity,Yes,EN-CLEL,1,1
+4155,Eagle Hill Energy LP /Kwanlin D n First Nation,Haeckel Hill Wind Farm,YK,Private,2019,2023,5,Announced & Planning,Under Construction,0,1,27,0.137,60.779238,-135.273115,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4156,SaskPower,Birtle Tantallon line,SK,Public,2019,2019,1,Announced & Planning,Announced & Planning,0,0,0,0,0,0,Energy,Trans & Distr,No,EN-T&D,1,0
+4157,SaskPower,Golden South Wind Energy Facility,SK,Public,2019,2021,3,Announced & Planning,Under Construction,0,1,325,0.591,0,0,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4158,EDF Renewables,Sharp Hills wind farm (248 MW),AB,Private,2019,2023,5,Announced & Planning,Under Construction,0,1,510,0.692,51.359587,-110.488489,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4159,Noront Resources Ltd.,Ferrochrome Processing Facility,ON,Private,2019,2022,4,Announced & Planning,Announced & Planning,0,0,1100,0.821,46.512756,-84.399697,Mining,Other,No,MIN-OTH,1,0
+4160,Resolute Forest Products,New cellulose filament plant,QC,Private,2020,2022,3,Announced & Planning,Announced & Planning,0,0,38,0.174,48.425209,-71.247103,Forest,Other,Yes,FOR-OTH,1,0
+4162,Waroona Energy Inc.,Superior Lake (formerly Pick Lake/Winston Lake Zinc Project),ON,Private,2020,2024,5,Announced & Planning,Announced & Planning,1,0,145.0846,0.438,49.011,-87.41,Mining,Other,No,MIN-OTH,1,0
+4163,Canadian Premium Sand,Wanipigow,MB,Private,2020,2024,5,Announced & Planning,Approved,1,0,124,0.4,0,0,Mining,Other,No,MIN-OTH,1,0
+4164,Copper Mountain Mining Corp.,New Ingerbelle,BC,Private,2020,2024,5,Announced & Planning,In Review,1,0,183,0.478,49.33,-120.53,Mining,Critical Mineral,Yes,MIN-CM,1,0
+4166,Foran Mining Corp.,McIlvenna Bay,SK,Private,2020,2024,5,Announced & Planning,Approved,1,0,368,0.622,54.66,-102.89,Mining,Other,No,MIN-OTH,1,0
+4169,Allegiance Coal,Telkwa (Delete same project as Tenas Project (ID3610),BC,Private,2020,2024,5,Announced & Planning,Announced & Planning,1,0,73.216,0.288,0,0,Mining,Coal,No,MIN-COAL,1,0
+4170,FortisBC,Tilbury Phase 2 LNG Expansion,BC,Private,2020,2022,3,Announced & Planning,Announced & Planning,0,0,0,0,0,0,Energy,Oil & Gas - Downstream,No,EN-OG-D,0,0
+4171,FortisBC,Tilbury 1A and 1B Marine Terminal,BC,Private,2020,2021,2,In Review,In Review,0,0,0,0,0,0,Energy,Oil & Gas - Downstream,No,EN-OG-D,1,0
+4172,NGTL,NGTL Westpath Delivery project 2023,AB,Private,2020,2023,4,Announced & Planning,Under Construction,0,1,1200,0.828,0,0,Energy,Other,Yes,EN-OTH,1,0
+4173,SJ Energy,Burchill Wind Energy,NB,Private,2020,2023,4,In Review,Approved,0,0,60,0.253,44.939686,-66.305938,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4174,Kahnawake Sustainable Energies (KSE) et Kruger,Des cultures,QC,Private,2020,2023,4,Approved,Under Construction,0,1,73.3,0.289,45.215373,-73.620353,Energy,Other,Yes,EN-OTH,1,0
+4176,Innergex et corporation foncire Pituvik,Centrale hydro lectrique Innavik,QC,Private,2020,2023,4,Announced & Planning,Announced & Planning,0,0,127,0.409,58.452155,-78.097279,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4178,Suncor Energy Inc.,Suncor Power Cogeneration Units,AB,Private,2020,2024,5,Announced & Planning,Under Construction,1,1,1400,0.856,56.997184,-111.480503,Energy,NG Power Gen,No,EN-NGPG,1,0
+4179,Cenovus Energy Inc.,Christina Lake Phase H Expansion,AB,Private,2020,2023,4,Announced & Planning,Announced & Planning,0,0,1300,0.842,55.580155,-110.8887,Energy,Other,Yes,EN-OTH,0,0
+4180,TC Energy Corporation,2023 NGTL Intra-Basin System Expansion,AB,Private,2020,2023,4,Announced & Planning,Under Construction,0,1,900,0.793,53.853115,-116.586914,Energy,Other,Yes,EN-OTH,0,0
+4181,Nova Gas Transmission,Edson Mainline Expansion Project,AB,Private,2020,2022,3,Announced & Planning,Under Construction,0,1,509,0.691,0,-116.295776,Energy,Trans & Distr,No,EN-T&D,0,0
+4182,Imperial Oil Ltd.,Cold Lake Thermal Project Enhancements,AB,Private,2020,2023,4,Announced & Planning,Under Construction,0,1,450,0.654,54.753161,-110.468216,Energy,Oil & Gas - Upstream,No,EN-OG-U,1,0
+4183,TC Energy Corporation,Alberta XPress Expansion Project,AB,Private,2020,2022,3,Announced & Planning,Under Construction,0,1,300,0.573,54.537672,-117.103271,Energy,Other,Yes,EN-OTH,0,0
+4184,Dow Chemical Canada,Dow Ethylene Plant Expansion,AB,Private,2020,2020,1,Announced & Planning,Announced & Planning,0,0,298,0.571,53.739271,-113.165359,Energy,Other,Yes,EN-OTH,0,0
+4186,Berkshire Hathaway Energy Canada,Rattlesnake Ridge Wind Project,AB,Private,2020,2022,3,Announced & Planning,Under Construction,0,1,200,0.49,49.908953,-111.047745,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4188,Alpin Sun,Airport City Solar,AB,Private,2020,2024,5,Announced & Planning,Announced & Planning,1,0,169,0.464,53.291079,-113.593655,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4189,Capital Power,Whitla Wind Power Project - Phase 2,AB,Private,2020,2021,2,Announced & Planning,Under Construction,0,1,165,0.46,49.642734,-111.289444,Energy,Clean Electricity,Yes,EN-CLEL,0,0
+4190,Pembina Pipeline Corporation,Empress Cogeneration Power Facility,AB,Private,2020,2021,2,Announced & Planning,Under Construction,0,1,120,0.388,50.67621,-110.024761,Energy,NG Power Gen,No,EN-NGPG,1,0
+4194,Pembina Pipeline Corporation,Peace Pipeline Expansion Phase 9,AB,Private,2020,2022,3,Announced & Planning,Under Construction,0,1,120,0.388,55.797162,-119.629269,Energy,Trans & Distr,No,EN-T&D,0,0
+4195,Capital Power,Whitla Wind Power Project - Phase 3,AB,Private,2020,2021,2,Announced & Planning,Under Construction,0,1,92,0.332,49.636509,-111.227646,Energy,Clean Electricity,Yes,EN-CLEL,0,0
+4197,Canadian Natural Resources Ltd. (CNRL),Scotford Upgrader Expansion,AB,Private,2020,2020,1,Announced & Planning,Announced & Planning,0,0,70,0.275,53.804503,-113.093176,Energy,Oil & Gas - Downstream,No,EN-OG-D,0,0
+4198,Climate Transition Development Corporation,Greenview Geothermal Power Plant (Alberta No. 1),AB,Private,2020,2024,5,Announced & Planning,Announced & Planning,1,0,106,0.365,54.841827,-117.649841,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4200,Elemental Energy,Brooks Solar 2 Power Plant,AB,Private,2020,2021,2,Announced & Planning,Under Construction,0,1,50,0.214,50.58528,-111.871998,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4201,Manitoba Hydro,Portage Area Capacity Enhancements,MB,Public,2020,2024,5,Announced & Planning,Under Construction,1,1,162,0.459,0,0,Energy,Other,Yes,EN-OTH,1,0
+4202,Spicer,Pempaoq In-stream Tidal Energy Project,NS,Private,2020,2023,4,Announced & Planning,Approved,0,0,111,0.376,45.364444,-64.414722,Energy,Clean Electricity,Yes,EN-CLEL,1,1
+4203,Big Moon Power,Tidal power demonstration facility,NS,Private,2020,2023,4,Announced & Planning,Approved,0,0,43.5,0.19,45.327765,-64.415497,Energy,Clean Electricity,Yes,EN-CLEL,1,1
+4204,Jupiter Hydro,In-Stream Tidal Demonstration Project,NS,Public,2020,2024,5,Announced & Planning,Approved,1,0,23.3,0.118,45.357404,-64.409667,Energy,Clean Electricity,Yes,EN-CLEL,1,1
+4205,Nova Innovation,The Nova Tidal Array (Petit Passage),NS,Private,2020,2024,5,Announced & Planning,Under Construction,1,1,22,0.108,44.392336,-66.20676,Energy,Clean Electricity,Yes,EN-CLEL,1,1
+4208,Alton Natural Gas Pipeline,0,NS,Private,2020,2021,2,Approved,Approved,0,0,0,0,45.207672,-63.269594,Energy,Oil & Gas - Upstream,No,EN-OG-U,1,0
+4211,Enbridge,2021 Dawn Parkway Expansion Project - Kirkwall-Hamilton Project,ON,Private,2020,2020,1,In Review,In Review,0,0,204,0.511,43.305362,-80.093277,Energy,Other,Yes,EN-OTH,0,0
+4212,Northeast Midstream,Nipigon LNG and North Shore Gas Distribution Project,ON,Private,2020,2021,2,In Review,In Review,0,0,95.6,0.337,49.013224,-88.28485,Energy,Oil & Gas - Downstream,No,EN-OG-D,1,0
+4214,Imperial Oil Ltd.,Waterdown to Finch Project,ON,Private,2020,2022,3,In Review,Under Construction,0,1,385,0.629,43.330152,-79.910069,Energy,Oil & Gas - Upstream,No,EN-OG-U,1,0
+4215,Hydro One,Lakeshore Transmission Stations Project Leamington Area Transmission Reinforcement (Lakeshore Transmission Station & Chatham to Lakeshore Line),ON,Public,2020,2024,5,Announced & Planning,Under Construction,1,1,295,0.57,42.278537,-82.93384,Energy,Trans & Distr,No,EN-T&D,1,0
+4216,NRStor and Six Nations of the Grand River Development Corporation Oneida Energy Storage LP,Oneida Energy Storage,ON,Private,2020,2024,5,Announced & Planning,Approved,1,0,800,0.776,0,0,Energy,"DER, Storage, EV",Yes,EN-DER,1,0
+4219,Yukon Energy Corporation,Grid-Scale Battery Storage,YK,Public,2020,2024,5,Announced & Planning,Under Construction,1,1,35,0.157,60.779238,-135.273115,Energy,"DER, Storage, EV",Yes,EN-DER,1,0
+4220,Port Hawkesbury Paper,Goose Harbour Lake Wind Farm (formerly Pirate Harbour),NS,Private,2020,2024,5,Announced & Planning,Approved,1,0,155,0.451,45.605694,-61.370927,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4221,City of Summerside / Republic of Koreaos Samsung Renewable Energy,City of Summerside Solar Farm,PE,Public,2020,2023,4,Announced & Planning,Under Construction,0,1,69,0.27,46.3934,-63.7902,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4223,Potentia Renewables Inc.,Jenner Wind Power Project 3,AB,Private,2020,2023,4,Approved,Under Construction,0,1,243,0.533,0,0,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4224,WindRiver Power Corp. & TC Energy,Canyon Creek Hydro Power Project (storage),AB,Private,2020,2024,5,Announced & Planning,In Review,1,0,200,0.49,53.530105,-117.524529,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4226,Greengate Power Corporation,Wheatland Wind Project,AB,Private,2020,2022,3,Approved,Under Construction,0,1,170,0.464,51.252246,-112.727966,Energy,Clean Electricity,Yes,EN-CLEL,1,0
+4227,Element5,New cross-laminated timber plant,ON,Private,2020,2020,1,Announced & Planning,Announced & Planning,0,0,50,0.214,0,0,Forest,EWP,Yes,FOR-EWP,1,0
+4230,JD Irving,Mill modernization and upgrade,NB,Private,2020,2024,5,Announced & Planning,Under Construction,1,1,35,0.157,0,0,Forest,Pulp & Paper,No,FOR-P&P,0,0
+4231,Enbridge Frontier Inc.,Frontier NGL Plant and Pipeline Project,BC,Private,2020,2024,5,Announced & Planning,Announced & Planning,1,0,2500,0.912,55.712509,-121.668907,Energy,Trans & Distr,No,EN-T&D,1,0
+4232,West Coast Olefins Ltd.,West Coast Olefins Ethylene Plant,BC,Private,2020,2021,2,Announced & Planning,Announced & Planning,0,0,5200,0.952,53.926817,-122.8925,Energy,Waste Biomass,Yes,EN-BIO,1,0
