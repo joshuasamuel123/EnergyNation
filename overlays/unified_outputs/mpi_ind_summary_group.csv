@@ -1,0 +1,19 @@
+group,n,mean_delta_blended,sum_delta_EV,cross_over_to_favorite,cross_out_to_underdog,sum_delta_EV_disc,scenario_key
+Base Metal,5,0.054308,486.596211,0,0,112.876544,mpi_ind
+CCUS,4,0.041348,44.928637,1,0,19.964853,mpi_ind
+Clean Electricity,99,0.028773,2219.574308,6,0,1076.772018,mpi_ind
+Coal,12,0.010827,109.388531,0,0,10.594714,mpi_ind
+Critical Mineral,29,0.023056,365.974061,0,0,40.419642,mpi_ind
+"DER, Storage, EV",9,0.020587,79.33513,0,0,32.8823,mpi_ind
+EWP,1,0.023595,9.437811,0,0,4.145533,mpi_ind
+Low Carbon Fuels,19,0.005763,173.519653,1,0,62.053937,mpi_ind
+Lumber,1,0.047594,0.951889,1,0,0.442484,mpi_ind
+NG Power Gen,3,0.0,0.0,0,0,0.0,mpi_ind
+Nuclear,2,0.023784,994.171108,1,0,489.697731,mpi_ind
+Oil & Gas - Downstream,19,0.038694,2441.555196,3,0,520.435275,mpi_ind
+Oil & Gas - Upstream,15,0.117936,4605.246288,14,0,2071.138813,mpi_ind
+Other,59,0.036894,2589.023324,2,0,1015.56084,mpi_ind
+Precious Metal,27,0.042194,1009.561598,0,0,236.831457,mpi_ind
+Pulp & Paper,5,0.010972,2.907687,0,0,0.380639,mpi_ind
+Trans & Distr,35,0.016148,597.488623,2,0,109.538642,mpi_ind
+Waste Biomass,20,0.030524,317.660383,3,0,157.381882,mpi_ind

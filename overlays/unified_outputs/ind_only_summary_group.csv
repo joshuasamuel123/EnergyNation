@@ -1,0 +1,19 @@
+group,n,mean_delta_blended,sum_delta_EV,cross_over_to_favorite,cross_out_to_underdog,sum_delta_EV_disc,scenario_key
+Base Metal,5,0.0,0.0,0,0,0.0,ind_only
+CCUS,4,0.0,0.0,0,0,0.0,ind_only
+Clean Electricity,99,0.0,0.0,0,0,0.0,ind_only
+Coal,12,0.0,0.0,0,0,0.0,ind_only
+Critical Mineral,29,0.0,0.0,0,0,0.0,ind_only
+"DER, Storage, EV",9,0.0,0.0,0,0,0.0,ind_only
+EWP,1,0.0,0.0,0,0,0.0,ind_only
+Low Carbon Fuels,19,0.0,0.0,0,0,0.0,ind_only
+Lumber,1,0.0,0.0,0,0,0.0,ind_only
+NG Power Gen,3,0.0,0.0,0,0,0.0,ind_only
+Nuclear,2,0.0,0.0,0,0,0.0,ind_only
+Oil & Gas - Downstream,19,0.0,0.0,0,0,0.0,ind_only
+Oil & Gas - Upstream,15,0.0,0.0,0,0,0.0,ind_only
+Other,59,0.0,0.0,0,0,0.0,ind_only
+Precious Metal,27,0.0,0.0,0,0,0.0,ind_only
+Pulp & Paper,5,0.0,0.0,0,0,0.0,ind_only
+Trans & Distr,35,0.0,0.0,0,0,0.0,ind_only
+Waste Biomass,20,0.0,0.0,0,0,0.0,ind_only

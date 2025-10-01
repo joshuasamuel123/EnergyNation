@@ -1,0 +1,14 @@
+province,n,mean_delta_blended,sum_delta_EV,cross_over_to_favorite,cross_out_to_underdog,sum_delta_EV_disc,scenario_key
+AB,83,0.0,0.0,0,0,0.0,ind_only
+BC,99,0.0,0.0,0,0,0.0,ind_only
+MB,7,0.0,0.0,0,0,0.0,ind_only
+Multi,3,0.0,0.0,0,0,0.0,ind_only
+NB,4,0.0,0.0,0,0,0.0,ind_only
+NL,10,0.0,0.0,0,0,0.0,ind_only
+NS,14,0.0,0.0,0,0,0.0,ind_only
+NT,9,0.0,0.0,0,0,0.0,ind_only
+ON,43,0.0,0.0,0,0,0.0,ind_only
+PE,3,0.0,0.0,0,0,0.0,ind_only
+QC,69,0.0,0.0,0,0,0.0,ind_only
+SK,16,0.0,0.0,0,0,0.0,ind_only
+YK,4,0.0,0.0,0,0,0.0,ind_only
