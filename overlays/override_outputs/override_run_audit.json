@@ -1,0 +1,55 @@
+{
+  "rows": 364,
+  "ev_basis": "EV_disc (discounted basis preferred)",
+  "cap_p": 0.9,
+  "cap_hits": 0,
+  "threshold": 0.5,
+  "alphas": [
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "betas": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "theta": 0.0,
+  "theta_scale": 0.05,
+  "anchors_used": "central",
+  "anchors_bands": {
+    "conservative": {
+      "OR_override": 1.568312185490169,
+      "HR_override": 1.3498588075760032,
+      "k_contract": 0.5,
+      "h_contract": 0.35
+    },
+    "central": {
+      "OR_override": 2.117000016612675,
+      "HR_override": 1.6487212707001282,
+      "k_contract": 0.75,
+      "h_contract": 0.5
+    },
+    "optimistic": {
+      "OR_override": 2.718281828459045,
+      "HR_override": 2.117000016612675,
+      "k_contract": 1.0,
+      "h_contract": 0.65
+    }
+  },
+  "evidence": {
+    "timeline": "moderate",
+    "contracts": "weak",
+    "indigenous": "weak"
+  },
+  "disclaimer": "Counterfactual overlays; no re-estimation of Bayes/Cox; stylized scenario dials with sensitivity bands; not a forecast.",
+  "outputs": {
+    "per_project_csv": "./overlay_out/override_contract_overlay_full.csv",
+    "override_summary_by_alpha": "./overlay_out/override_summary_by_alpha.csv",
+    "override_contract_grid_summary": "./overlay_out/override_contract_grid_summary.csv",
+    "anchor_sensitivity_csv": "./overlay_out/override_anchor_sensitivity.csv"
+  }
+}

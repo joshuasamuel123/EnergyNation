@@ -1,0 +1,4 @@
+sector,n,mean_delta_blended,sum_delta_EV,cross_over_to_favorite,cross_out_to_underdog,sum_delta_EV_disc,scenario_key
+Energy,235,0.033135,13486.089462,33,0,5453.087882,mpi_ind
+Forest,17,0.015692,22.852278,1,0,7.903325,mpi_ind
+Mining,112,0.031204,2538.378698,0,0,500.126097,mpi_ind
